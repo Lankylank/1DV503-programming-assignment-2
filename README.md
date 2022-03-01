@@ -5,4 +5,4 @@
 
 
 
-## Data to needed to test the application is located in the directory: application_data_files
+## Data to test the application is located in the directory: application_data_files
