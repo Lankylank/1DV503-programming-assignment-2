@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# ignore ALL files in ANY Direcort named temo
+temp/
+
 # C extensions
 *.so
 
