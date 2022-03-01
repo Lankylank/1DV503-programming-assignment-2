@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # ignore ALL files in ANY Direcort named temo
-*temp/
+/temp
 
 # ignore all .log files
 *.log
