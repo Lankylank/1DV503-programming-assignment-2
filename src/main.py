@@ -14,6 +14,8 @@ password  = "root"
 host      = "127.0.0.1"
 DB_NAME   = "database_name"
 
+
+
 DatabaseManager = CDatabaseManager.CDatabaseManager(username, password, host)
 DatabaseManager.Connect()
 DatabaseManager.SelectDatabase(DB_NAME)
