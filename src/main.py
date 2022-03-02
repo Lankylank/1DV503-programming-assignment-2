@@ -19,7 +19,7 @@ DB_NAME   = "database_name"
 DatabaseManager = CDatabaseManager.CDatabaseManager(username, password, host)
 DatabaseManager.Connect()
 DatabaseManager.SelectDatabase(DB_NAME)
-DatabaseManager.ImportData("Game.csv", "game")
+DatabaseManager.ImportData("game_data.csv", "game")
 
 
 
