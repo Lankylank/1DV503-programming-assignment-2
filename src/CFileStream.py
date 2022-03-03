@@ -3,7 +3,7 @@ import csv
 
 #custom
 import Debugger
-
+#
 class CFileStream:
   def __init__(self):
     self._searchPath = os.getcwd()
