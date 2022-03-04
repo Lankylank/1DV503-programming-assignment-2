@@ -66,15 +66,15 @@ for element in matrix[0]:
 
 print()
 print("MAIN SCHEMAS WITH PRIMARY KEY") ## WE NEED TO CREATE THESE TABLES FIRST (Because of FK)
-print(schema_game_info)
-print(schema_game_store)
-print(schema_genre)
-print(schema_platform)
+print(schema_game_info)  # title, year, publisher
+print(schema_game_store) # game_store
+print(schema_genre) # genre
+print(schema_platform) # platform
 print("-------")
 print("SCHEMAS WITH FOREIGN KEYS ONLY")
-print(schema_game_genre)
-print(schema_game_platform)
-print(schema_game_price)
+print(schema_game_genre) # title, genre
+print(schema_game_platform) # title, platform
+print(schema_game_price) # title, game_store, price
 
 
 
