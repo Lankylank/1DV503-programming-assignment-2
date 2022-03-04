@@ -88,3 +88,8 @@ print("SCHEMAS WITH FOREIGN KEYS ONLY")
 print(schema_game_genre) # title, genre
 print(schema_game_platform) # title, platform
 print(schema_game_price) # title, game_store, price
+
+
+# COULD DO THIS ASWELL
+testschema = matrix[0][0] + " CHAR(64) PRIMARY KEY," + matrix[0][1] + " CHAR(64)," + matrix[0][2] + " CHAR(64)"
+print("------\nTEST SCHEMA\n" + testschema)
