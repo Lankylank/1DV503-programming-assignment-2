@@ -1,6 +1,6 @@
 import csv
 
-file = open('game_data.csv')
+file = open('game_data_ordered.csv')
 game_data = csv.reader(file)
 #total_csv_rows = sum(1 for row in game_data) ## gets the total rows in csv file, 
                                               ## but removes data for some reason
@@ -96,3 +96,31 @@ print("------\nTEST SCHEMA\n" + schema_game_info)
 
 # this works just aswell
 schema_game_info = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
+
+
+#############################################
+# primarys
+NUM_ATTRIBUTES = 3
+schemas = list(str())
+tmpStr = str()
+for i in range(0, NUM_ATTRIBUTES):
+  if (i == 0):
+    tmpStr += matrix[0][0] + " CHAR(64) PRIMARY KEY,"
+  else:
+    tmpStr += matrix[0][i] + " CHAR(64),"
+schemas.append(tmpStr.removesuffix(","))
+
+for i in range(NUM_ATTRIBUTES, len(matrix[0])):
+  tmpStr = str()
+  tmpStr += matrix[0][i] + " CHAR(64) PRIMARY KEY"
+  schemas.append(tmpStr)
+
+for i in range(NUM_ATTRIBUTES, len(matrix[0])):
+  tmpStr = str()
+  tmpStr += matrix[0][0] + " CHAR(64) FOREGIN KEY,"
+  tmpStr += matrix[0][i] + " CHAR(64) FOREGIN KEY"
+  schemas.append(tmpStr)
+
+print("------------------------------------------")
+for schema in schemas:
+  print(schema)
