@@ -133,4 +133,4 @@ for schema in schemas:
     INDEX par_ind (parent_id),
     FOREIGN KEY (parent_id)
     REFERENCES parent(id)  
-    ON DELETE CASCADE'''   # CHECK THIS OUT # https://www.javatpoint.com/mysql-on-delete-cascade #####
+    ON DELETE CASCADE'''   # <<------ CHECK THIS OUT # https://www.javatpoint.com/mysql-on-delete-cascade #####
