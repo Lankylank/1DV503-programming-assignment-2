@@ -91,5 +91,8 @@ print(schema_game_price) # title, game_store, price
 
 
 # COULD DO THIS ASWELL
-testschema = matrix[0][0] + " CHAR(64) PRIMARY KEY," + matrix[0][1] + " CHAR(64)," + matrix[0][2] + " CHAR(64)"
-print("------\nTEST SCHEMA\n" + testschema)
+schema_game_info = matrix[0][0] + " CHAR(64) PRIMARY KEY," + matrix[0][1] + " CHAR(64)," + matrix[0][3] + " CHAR(64)"
+print("------\nTEST SCHEMA\n" + schema_game_info)
+
+# this works just aswell
+schema_game_info = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
