@@ -41,26 +41,31 @@ for element in matrix[0]:
     schema_game_platform += " CHAR(64)," #TODO ADD FOREGGN KEY (Cant remember syntax atm)
     schema_game_price += element
     schema_game_price += " CHAR(64)," #TODO ADD FOREGGN KEY (Cant remember syntax atm)
+    continue ## we don't need to continue the loop
 
   if element == 'year':
     schema_game_info += element
     schema_game_info += " CHAR(64),"
+    continue ## we don't need to continue the loop
   
   if element == 'platform':
     schema_platform += element
     schema_platform += " CHAR(64) PRIMARY KEY"
     schema_game_platform += element
     schema_game_platform += " CHAR(64)" #TODO ADD FOREGGN KEY (Cant remember syntax atm)
+    continue ## we don't need to continue the loop
 
   if element == 'publisher':
     schema_game_info += element
     schema_game_info += " CHAR(64)"
-    
+    continue ## we don't need to continue the loop
+
   if element == 'genre':
     schema_genre += element
     schema_genre += " CHAR(64) PRIMARY KEY"
     schema_game_genre += element
-    schema_game_genre += " CHAR(64)" #TODO FK
+    schema_game_genre += " CHAR(64)" #TODO 
+    continue ## we don't need to continue the loop
 
   if element == 'game_store':
     schema_game_store += element
