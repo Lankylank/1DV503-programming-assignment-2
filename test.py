@@ -122,3 +122,15 @@ for i in range(NUM_ATTRIBUTES, len(matrix[0])):
 print("------------------------------------------")
 for schema in schemas:
   print(schema)
+
+######
+'''cHandler.execute("CREATE TABLE Writers(Id INT PRIMARY KEY, name TEXT)")'''
+'''cHandler.execute("CREATE TABLE Readers(Id INT PRIMARY KEY, name TEXT, Writer_id INTEGER, FOREIGN KEY(Writer_id) REFERENCES Writers(Id))")'''
+#####
+'''CREATE TABLE child (
+    id INT,
+    parent_id INT,
+    INDEX par_ind (parent_id),
+    FOREIGN KEY (parent_id)
+    REFERENCES parent(id)  
+    ON DELETE CASCADE'''   # CHECK THIS OUT # https://www.javatpoint.com/mysql-on-delete-cascade #####
