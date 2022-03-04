@@ -46,7 +46,6 @@ for element in matrix[0]:
     schema_game_platform += element
     schema_game_platform += " CHAR(64)" #TODO ADD FOREGGN KEY (Cant remember syntax atm)
 
-
   if element == 'publisher':
     schema_game_info += element
     schema_game_info += " CHAR(64)"
