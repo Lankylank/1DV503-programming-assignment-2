@@ -114,9 +114,7 @@ for i in range(NUM_ATTRIBUTES, len(matrix[0])):
   tmpStr = str()
   tmpStr += matrix[0][i] + " CHAR(64) PRIMARY KEY"
   schemas.append(tmpStr)
-
-for i in range(NUM_ATTRIBUTES, len(matrix[0])):
-  tmpStr = str()
+  tmpStr = str()  # Reset string
   tmpStr += matrix[0][0] + " CHAR(64) FOREGIN KEY,"
   tmpStr += matrix[0][i] + " CHAR(64) FOREGIN KEY"
   schemas.append(tmpStr)
