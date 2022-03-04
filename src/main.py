@@ -117,6 +117,8 @@ DatabaseManager.ImportData("game_data.csv", "game")
 #################################################################################################
 
 
-# Application loop
-while(True):
-  pass
+## THIS FOOLED ME, I SAT AND WAITED FOR THE PROGRAM TO END, THOUGHT MY COMPUTER WOULD EXPLODE
+
+## Application loop
+#while(True):
+#  pass
