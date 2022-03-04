@@ -1,9 +1,9 @@
 import csv
 
-# pythons open method opens the file and returns a file object
 file = open('game_data.csv')
 game_data = csv.reader(file)
-#total_csv_rows = sum(1 for row in game_data)  ## gets the total rows in csv file, bute removes data for some reason
+#total_csv_rows = sum(1 for row in game_data) ## gets the total rows in csv file, 
+                                              ## but removes data for some reason
 #print(total_csv_rows)
 
 matrix = list()
@@ -24,6 +24,12 @@ schema_game_genre = str()
 schema_game_platform = str()
 schema_game_price = str()
 
+###################################################################
+## THIS CREATES ALL OUR SCHEMAS IN ONE FOR LOOP
+## EITHER WE CREATE ALL SCHEMAS FIRST AND THEN INSERT ALL DATA
+## OR WE CREATE 1 SCHEMA, INSERT DATA, CREATE ANOTHER SCHEMA, INSERT DATA......
+## THOUGHTS?
+######################################################################
 
 for element in matrix[0]:
   if element == 'title':
@@ -63,6 +69,9 @@ for element in matrix[0]:
     schema_game_price += " CHAR(64)," #TODO ADD FOREGGN KEY (Cant remember syntax atm)
     schema_game_price += "price CHAR(64)" # this we add at the end of this schema
 
+
+
+# PRINT TO SHOW HOW THE SCHEMAS LOOK
 print()
 print("MAIN SCHEMAS WITH PRIMARY KEY") ## WE NEED TO CREATE THESE TABLES FIRST (Because of FK)
 print(schema_game_info)  # title, year, publisher
@@ -74,8 +83,3 @@ print("SCHEMAS WITH FOREIGN KEYS ONLY")
 print(schema_game_genre) # title, genre
 print(schema_game_platform) # title, platform
 print(schema_game_price) # title, game_store, price
-
-
-
-
-
