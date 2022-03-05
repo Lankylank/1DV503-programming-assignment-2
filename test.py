@@ -160,6 +160,8 @@ def CreateJunctionScheme(attributes: list):
       scheme += attribute + " VARCHAR(64),"
       fkeys += ForeginKey(attribute)
       pkeys += attribute + ","
+    else:
+      scheme += attribute + " VARCHAR(64),"
 
   scheme += PrimaryKey(pkeys) + fkeys.removesuffix(", ")
   return scheme
