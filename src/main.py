@@ -311,7 +311,7 @@ sql = "DELETE FROM game_type WHERE title = 'gta'"
 DatabaseManager.Execute(sql)
 DatabaseManager.connector.commit()
 '''
-## TESTING ON CASCADE ( it is specified on the game table, not genre, to see if it applies to both)
+## TESTING ON CASCADE (it is specified on the game table, not genre, to see if it applies to both)
 ## doesn't work on genre if not specified 
 '''
 sql = "DELETE FROM genre WHERE genre_name = 'action'"
@@ -326,9 +326,9 @@ sql = "DELETE FROM game WHERE title = 'gta'"
 DatabaseManager.Execute(sql)
 DatabaseManager.connector.commit()
 '''
-
+########################################################################
 '''RESULT IS THAT ON CASCADE HAS TO BE SPECIFIED FOR EACH FOREIGN KEY'''
-
+#######################################################################
 
 #sql = "DELETE store FROM realtion WHERE game_title='gta'"
 #DatabaseManager.Execute(sql)
