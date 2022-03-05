@@ -130,7 +130,7 @@ for i in range(0, numTables):
     values = str()
     a = GetAttribs(matrix[j][i])
     for value in a:
-      values += value + ","
+      values += "'" + value + "'" + ","
 
     values = " VALUES(" + values.removesuffix(",") + ")"
 
