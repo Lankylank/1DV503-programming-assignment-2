@@ -87,9 +87,9 @@ def CreateTableName(scheme: str):
     else:
       tableName += char
 
-def CreateJunctionName(attributes: list):
-  junctionName = list[0] + "_" + list[1]
-  return junctionName
+def CreateTableNameJunction(attributes: list):
+  return attributes[0] + "_" + attributes[1] + "_table"
+   
 
 print("*****************************************************")
 # def LoadData(numJunctions: int):
@@ -103,20 +103,23 @@ for i in range(0, numTables):
   if(i < numPrimaryTables):
     scheme = CreateScheme(attributes)
     print(scheme) # for testing purpose now since no sql intalled
+    tableName = CreateTableName(scheme)
+    print(tableName)
   else:
     scheme = CreateJunctionScheme(attributes)
     print(scheme)
+    tableName = CreateTableNameJunction(attributes)
+    print(tableName)
 
-  tableName = CreateTableName(scheme)
-  print(tableName)
+  
   # CreateTable(tableName, scheme)
 
   cleanScheme = str()
   for attribute in attributes:
     cleanScheme += attribute + ","
 
-  values = str()
   for j in range(1, len(matrix)):
+    values = str()
     a = GetAttribs(matrix[j][i])
     for value in a:
       values += value + ","
