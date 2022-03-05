@@ -131,6 +131,10 @@ for i in range(NUM_ATTRIBUTES, len(matrix[0])):
   schemas.append(tmpStr)
   tmpStr = str()  # Reset string
   tmpStr += DoubleAttrib(matrix[0][0], matrix[0][i], "64")
+  ####  hardcoding solves everything  ####
+  if matrix[0][i] == matrix[0][5]: # insert price column here
+    tmpStr += "price (VARCHAR(64), "
+  ####  hardcoding solves everything  ####
   tmpStr += DoublePK(matrix[0][0], matrix[0][i])
   tmpStr += ForeginKeyCascade(matrix[0][0])
   if (i < NUM_ATTRIBUTES + NON_CASCADES):
