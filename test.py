@@ -1,3 +1,4 @@
+from ast import For
 import csv
 
 file = open('game_data_ordered.csv')
@@ -30,6 +31,7 @@ schema_game_price = str()
 ## OR WE CREATE 1 SCHEMA, INSERT DATA, CREATE ANOTHER SCHEMA, INSERT DATA......
 ## THOUGHTS?
 ######################################################################
+
 
 for element in matrix[0]:
   if element == 'title':
@@ -97,7 +99,15 @@ print("------\nTEST SCHEMA\n" + schema_game_info)
 # this works just aswell
 schema_game_info = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
 
+def ForeginKey(key: str):
+  return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + ") ON DELETE CASCADE, "
 
+def DoublePK(key1: str, key2:str):
+  return "PRIMARY KEY(" + key1 + ", " + key2 + "),"
+
+def DoubleAttrib(attrib1: str, attrib2: str, size: str):
+  return attrib1 + " VARCHAR(" + size + "), " + attrib2 + " VARCHAR(" + size + "), "
+  
 #############################################
 # primarys
 NUM_ATTRIBUTES = 3
@@ -105,19 +115,21 @@ schemas = list(str())
 tmpStr = str()
 for i in range(0, NUM_ATTRIBUTES):
   if (i == 0):
-    tmpStr += matrix[0][0] + " CHAR(64) PRIMARY KEY,"
+    tmpStr += matrix[0][0] + " VARCHAR(64) PRIMARY KEY,"
   else:
-    tmpStr += matrix[0][i] + " CHAR(64),"
+    tmpStr += matrix[0][i] + " VARCHAR(64),"
 schemas.append(tmpStr.removesuffix(","))
 
 for i in range(NUM_ATTRIBUTES, len(matrix[0])):
   tmpStr = str()
-  tmpStr += matrix[0][i] + " CHAR(64) PRIMARY KEY"
+  tmpStr += matrix[0][i] + " VARCHAR(64) PRIMARY KEY"
   schemas.append(tmpStr)
   tmpStr = str()  # Reset string
-  tmpStr += matrix[0][0] + " CHAR(64) FOREGIN KEY,"
-  tmpStr += matrix[0][i] + " CHAR(64) FOREGIN KEY"
-  schemas.append(tmpStr)
+  tmpStr += DoubleAttrib(matrix[0][0], matrix[0][i], "64")
+  tmpStr += DoublePK(matrix[0][0], matrix[0][i])
+  tmpStr += ForeginKey(matrix[0][0])
+  tmpStr += ForeginKey(matrix[0][i])
+  schemas.append(tmpStr.removesuffix(", "))
 
 print("------------------------------------------")
 for schema in schemas:
@@ -131,21 +143,6 @@ for schema in schemas:
 
 '''Syntax for composite key'''
 # column-1 CHAR(64), column-2 CHAR(64), PRIMARY KEY (column-1, column-2)
-
-# Why not use title TEXT instead of CHAR(64)? 
-# TEXT only occupies the actual lenght of the text + 2 bytes
-# CHAR size in bytes is number of char
-# VARCHAR size in bytes is number of chars used +1
-# Isn't it better to dynamically allocate memory instead?
-# CHAR allocates a set chunk?
-
-# if we use CHAR, Mysql pads the remainder of spaces that are not used
-# VARCHAR are not padded, stores only the lenght of the string + 1 or 2 bytes for a prefix
-# TEXT, mysql doesnt support text data types well. Can lead to creation of a temporary table
-# on disk instead of memory, which leads to significant performance penalties.
-'''https://blog.cpanel.com/varchar-vs-text-for-mysql-databases/'''
-
-
 
 '''Our table syntax should look like this: '''
 # title CHAR(64) PRIMARY KEY,year CHAR(64),publisher CHAR(64)
@@ -168,3 +165,20 @@ for schema in schemas:
 
 # CREATE TABLE store (store_name CHAR(64) PRIMARY KEY)
 # CREATE TABLE game_store (title CHAR(64), store_name CHAR(64), price VARCHAR(10), PRIMARY KEY(title, store_name), FOREIGN KEY(title) REFERENCES game_info(title), FOREIGN KEY(store_name) REFERENCES store(store_name) ON DELETE CASCADE)
+
+
+
+
+
+# Why not use title TEXT instead of CHAR(64)? 
+# TEXT only occupies the actual lenght of the text + 2 bytes
+# CHAR size in bytes is number of char
+# VARCHAR size in bytes is number of chars used +1
+# Isn't it better to dynamically allocate memory instead?
+# CHAR allocates a set chunk?
+
+# if we use CHAR, Mysql pads the remainder of spaces that are not used
+# VARCHAR are not padded, stores only the lenght of the string + 1 or 2 bytes for a prefix
+# TEXT, mysql doesnt support text data types well. Can lead to creation of a temporary table
+# on disk instead of memory, which leads to significant performance penalties.
+'''https://blog.cpanel.com/varchar-vs-text-for-mysql-databases/'''
