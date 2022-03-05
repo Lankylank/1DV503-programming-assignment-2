@@ -80,9 +80,13 @@ def CreateJunctionScheme(attributes: list):
   return scheme
 
 def CreateTableName(attributes: list):
+  assert len(attributes) > 1
+  
   return attributes[0] + "_table"
 
 def CreateTableNameJunction(attributes: list):
+  assert len(attributes) > 2
+
   return attributes[0] + "_" + attributes[1] + "_table"
    
 
