@@ -59,9 +59,6 @@ def CreateScheme(attributes: list):
 
 
 def CreateSchemeJunction(attributes: list):
-  # title CHAR(64), genre_name CHAR(64), 
-  # PRIMARY KEY(title, genre_name), 
-  # FOREIGN KEY(title) REFERENCES tableName(title), FOREIGN KEY(genre_name) REFERENCES tableName(genre_name)
   scheme = str()
   pkeys = str()
   fkeys = str()
@@ -126,9 +123,14 @@ for i in range(0, numTables):
 
   insertScheme = CreateSchemeInsert(attributes)
 
-  for j in range(1, len(matrix[i])):
+  for j in range(1, len(matrix)):
     values = str()
     a = GetAttribs(matrix[j][i])
+    
+    # hack
+    if(len(a[0]) < 1):
+      break
+
     for value in a:
       values += "'" + value + "'" + ","
 
