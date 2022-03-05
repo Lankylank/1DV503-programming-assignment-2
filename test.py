@@ -123,7 +123,7 @@ def GetAttribs(attributeData: str):
   attributes = list(str())
   attrib = str()
   for char in attributeData:
-    if(char == ','):
+    if(char == '~'):
       attributes.append(attrib)
       attrib = str() # Reset
     else:
