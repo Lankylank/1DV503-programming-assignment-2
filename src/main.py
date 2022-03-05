@@ -57,6 +57,12 @@ DatabaseManager.SelectDatabase(DB_NAME)
 ###########################  EXPERIMENTING  ##################################################
 #################################################################################################
 ### CREATE TABLE  ### REMOVE ''' at start and end to create the databse with all values
+
+
+#TODO test ON CASCADE
+#TODO test ON DELETE
+#TODO test update and delete to check how the constraints work.
+
 ''' 
 tableName1 = "game"
 schema = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
