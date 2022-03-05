@@ -100,7 +100,7 @@ print("------\nTEST SCHEMA\n" + schema_game_info)
 schema_game_info = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
 
 def ForeginKeyCascade(key: str):
-  return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + ") ON DELETE CASCADE, "
+  return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + ") ON DELETE CASCADE ON UPDATE CASCADE, "
 
 def ForeginKey(key: str):
   return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + "), "
