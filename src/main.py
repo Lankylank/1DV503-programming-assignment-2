@@ -229,13 +229,83 @@ print("\nSELECT genre FROM game_type")
 for i in result:
   print(i)
 
+## This deletes the row ('skyrim', 'adventure') from table game_type
+'''
+sql = "DELETE FROM game_type WHERE title = 'skyrim' AND genre = 'adventure'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
 
+# This removes all rows where genre = 'adventure'
+'''
+sql = "DELETE FROM game_type WHERE genre = 'adventure'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
 
+# changes ('gta', 'action') into ('gta', 'adventure)
+'''
+sql = "UPDATE game_type SET genre = 'adventure' WHERE title = 'gta' AND genre = 'action'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+## this produces error because 'test' doesn't exist in the parent table genre
+'''
+sql = "UPDATE game_type SET genre = 'test' WHERE title = 'gta' AND genre = 'adventure'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+# produces error, because of the key constraint that 
+# there can't exist duplicated values in the table
+'''
+sql = "UPDATE game_type SET genre = 'action' WHERE title = 'gta'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
 
-#sql = "UPDATE Game SET year='1367' WHERE game_title='gta'"
-#DatabaseManager.Execute(sql)
-#DatabaseManager.connector.commit()
-
+# producers error: causes foreign key constraint becuase
+# adventure us used as an foreign key in the game_type table
+'''
+sql = "DELETE FROM genre WHERE genre_name = 'adventure'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+# remove all entrys from game_type where genre = adventure
+'''
+sql = "DELETE FROM game_type WHERE genre = 'adventure'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+# now we can delete 'adventure' from the table genre since it isn't referenced any where.
+'''
+sql = "DELETE FROM genre WHERE genre_name = 'adventure'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+## error: cant remove skyrim since it is used as an reference
+'''
+sql = "DELETE FROM game WHERE title = 'skyrim'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+# update year for minecraft
+'''
+sql = "UPDATE game SET year = '2013' WHERE title = 'minecraft'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+# cant delete becuase of foreign key constraint
+'''
+sql = "DELETE FROM game WHERE year = '2013'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+## remove gta from game_type, this deletes all row with gta
+'''
+sql = "DELETE FROM game_type WHERE title = 'gta'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
 
 
 
