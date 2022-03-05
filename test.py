@@ -105,6 +105,9 @@ def ForeginKeyCascade(key: str):
 def ForeginKey(key: str):
   return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + "), "
 
+def PrimaryKey(keys: str):
+  return "PRIMARY KEY(" + keys.removesuffix(",") + "),"
+
 def DoublePK(key1: str, key2:str):
   return "PRIMARY KEY(" + key1 + ", " + key2 + "),"
 
@@ -116,7 +119,79 @@ def DoubleAttrib(attrib1: str, attrib2: str, size: str):
 NUM_ATTRIBUTES = 3
 NON_CASCADES = 1
 
-schemas = list(str())
+def GetAttribs(attributeData: str):
+  attributes = list(str())
+  attrib = str()
+  for char in attributeData:
+    if(char == ','):
+      attributes.append(attrib)
+      attrib = str() # Reset
+    else:
+      attrib += char
+  attributes.append(attrib)
+  return attributes
+
+
+def CreateScheme(attributes: list):
+  scheme = str()
+  for attribute in attributes:
+    if(attribute[0] == '*'):
+      scheme += attribute.removeprefix("*") + " VARCHAR(64) PRIMARY KEY,"
+    else:
+      scheme += attribute + " VARCHAR(64),"
+
+  return scheme.removesuffix(",")
+
+def CreateJunctionScheme(attributes: list):
+  # title CHAR(64), genre_name CHAR(64), 
+  # PRIMARY KEY(title, genre_name), 
+  # FOREIGN KEY(title) REFERENCES tableName(title), FOREIGN KEY(genre_name) REFERENCES tableName(genre_name)
+  scheme = str()
+  pkeys = str()
+  fkeys = str()
+  for attribute in attributes:
+    if(attribute[0] == '&'):  # FK Cascade symbol
+      attribute = str(attribute).removeprefix("&") # Attribute is already a string but intellisense is retarded
+      scheme += attribute + " VARCHAR(64),"
+      fkeys += ForeginKeyCascade(attribute)  
+      pkeys += attribute + ","
+    elif(attribute[0] == '#'):# FK NON Cascade symbol
+      attribute = str(attribute).removeprefix("#")
+      scheme += attribute + " VARCHAR(64),"
+      fkeys += ForeginKey(attribute)
+      pkeys += attribute + ","
+
+  scheme += PrimaryKey(pkeys) + fkeys.removesuffix(", ")
+  return scheme
+
+
+
+print("*****************************************************")
+# def LoadData(numJunctions: int):
+numTables = len(matrix[0])  # matrix[0] should be an argument
+numJunctions = 3
+numPrimaryTables = numTables - numJunctions
+
+# For each table in matrix[0]
+for i in range(0, numTables):
+  attributes = GetAttribs(matrix[0][i])
+  if(i < numPrimaryTables):
+    scheme = CreateScheme(attributes)
+    print(scheme) # for testing purpose now since no sql intalled
+    # CreateTable(scheme)
+  else:
+    scheme = CreateJunctionScheme(attributes)
+    print(scheme)
+    # CreateTable(scheme)
+
+
+
+
+
+
+
+
+""" schemas = list(str())
 tmpStr = str()
 for i in range(0, NUM_ATTRIBUTES):
   if (i == 0):
@@ -131,10 +206,6 @@ for i in range(NUM_ATTRIBUTES, len(matrix[0])):
   schemas.append(tmpStr)
   tmpStr = str()  # Reset string
   tmpStr += DoubleAttrib(matrix[0][0], matrix[0][i], "64")
-  ####  hardcoding solves everything  ####
-  if matrix[0][i] == matrix[0][5]: # insert price column here
-    tmpStr += "price (VARCHAR(64), "
-  ####  hardcoding solves everything  ####
   tmpStr += DoublePK(matrix[0][0], matrix[0][i])
   tmpStr += ForeginKeyCascade(matrix[0][0])
   if (i < NUM_ATTRIBUTES + NON_CASCADES):
@@ -145,7 +216,7 @@ for i in range(NUM_ATTRIBUTES, len(matrix[0])):
 
 print("------------------------------------------")
 for schema in schemas:
-  print(schema)
+  print(schema) """
 
   
 #ON DELETE, ON CASCADE <<------ CHECK THIS OUT # https://www.javatpoint.com/mysql-on-delete-cascade #####
