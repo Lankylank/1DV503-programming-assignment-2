@@ -79,7 +79,13 @@ def CreateJunctionScheme(attributes: list):
   scheme += PrimaryKey(pkeys) + fkeys.removesuffix(", ")
   return scheme
 
-
+def CreateTableName(scheme: str):
+  tableName = str()
+  for char in scheme:
+    if(char == " "):
+      return tableName + "_table"
+    else:
+      tableName += char
 
 print("*****************************************************")
 # def LoadData(numJunctions: int):
@@ -93,7 +99,9 @@ for i in range(0, numTables):
   if(i < numPrimaryTables):
     scheme = CreateScheme(attributes)
     print(scheme) # for testing purpose now since no sql intalled
-    # CreateTable(scheme)
+    tableName = CreateTableName(scheme)
+    print(tableName)
+    # CreateTable(tableName, scheme)
   else:
     scheme = CreateJunctionScheme(attributes)
     print(scheme)
