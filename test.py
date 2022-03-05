@@ -99,8 +99,11 @@ print("------\nTEST SCHEMA\n" + schema_game_info)
 # this works just aswell
 schema_game_info = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
 
-def ForeginKey(key: str):
+def ForeginKeyCascade(key: str):
   return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + ") ON DELETE CASCADE, "
+
+def ForeginKey(key: str):
+  return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + "), "
 
 def DoublePK(key1: str, key2:str):
   return "PRIMARY KEY(" + key1 + ", " + key2 + "),"
@@ -111,6 +114,8 @@ def DoubleAttrib(attrib1: str, attrib2: str, size: str):
 #############################################
 # primarys
 NUM_ATTRIBUTES = 3
+NON_CASCADES = 1
+
 schemas = list(str())
 tmpStr = str()
 for i in range(0, NUM_ATTRIBUTES):
@@ -127,8 +132,11 @@ for i in range(NUM_ATTRIBUTES, len(matrix[0])):
   tmpStr = str()  # Reset string
   tmpStr += DoubleAttrib(matrix[0][0], matrix[0][i], "64")
   tmpStr += DoublePK(matrix[0][0], matrix[0][i])
-  tmpStr += ForeginKey(matrix[0][0])
-  tmpStr += ForeginKey(matrix[0][i])
+  tmpStr += ForeginKeyCascade(matrix[0][0])
+  if (i < NUM_ATTRIBUTES + NON_CASCADES):
+    tmpStr += ForeginKey(matrix[0][i])
+  else:
+    tmpStr += ForeginKeyCascade(matrix[0][i])
   schemas.append(tmpStr.removesuffix(", "))
 
 print("------------------------------------------")
