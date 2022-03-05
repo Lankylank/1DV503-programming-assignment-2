@@ -58,12 +58,11 @@ DatabaseManager.SelectDatabase(DB_NAME)
 #################################################################################################
 ### CREATE TABLE  ### REMOVE ''' at start and end to create the databse with all values
 
-#TODO test ON CASCADE
-#TODO test ON DELETE
-#TODO test update and delete to check how the constraints work.
+
 #TODO test join game + game_type ---> (title, year, publisher, genre)
 
-''' 
+#### REMOVE ''' FROM HERE
+'''
 tableName1 = "game"
 schema = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
 schema = " (" + schema + ")"
@@ -77,7 +76,7 @@ DatabaseManager.cursor.execute("CREATE TABLE " + tableName2 + schema )
 
 ### CREATE TABLE
 tableName3 = "game_type"
-schema = "title CHAR(64), genre CHAR(64), PRIMARY KEY (title, genre), FOREIGN KEY(title) REFERENCES game(title), FOREIGN KEY(genre) REFERENCES genre(genre_name)"
+schema = "title CHAR(64), genre CHAR(64), PRIMARY KEY (title, genre), FOREIGN KEY(title) REFERENCES game(title) ON DELETE CASCADE, FOREIGN KEY(genre) REFERENCES genre(genre_name) ON DELETE CASCADE"
 schema = " (" + schema + ")"
 DatabaseManager.cursor.execute("CREATE TABLE " + tableName3 + schema )
 
@@ -185,7 +184,9 @@ DatabaseManager.cursor.execute("INSERT INTO " + tableName3 + schema + values)
 DatabaseManager.connector.commit()
 '''
 
+## REMOVE ''' FROM HERE
 
+'''
 sql = "SELECT title FROM game_type WHERE title ='gta'"
 DatabaseManager.Execute(sql)
 result = DatabaseManager.cursor.fetchall()
@@ -228,6 +229,10 @@ result = DatabaseManager.cursor.fetchall()
 print("\nSELECT genre FROM game_type")
 for i in result:
   print(i)
+'''
+####   REMOVE ''' FROM HERE
+
+
 
 ## This deletes the row ('skyrim', 'adventure') from table game_type
 '''
@@ -306,7 +311,23 @@ sql = "DELETE FROM game_type WHERE title = 'gta'"
 DatabaseManager.Execute(sql)
 DatabaseManager.connector.commit()
 '''
+## TESTING ON CASCADE ( it is specified on the game table, not genre, to see if it applies to both)
+## doesn't work on genre if not specified 
+'''
+sql = "DELETE FROM genre WHERE genre_name = 'action'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
 
+## TESTING ON CASCADE for games
+## THIS WORKS
+'''
+sql = "DELETE FROM game WHERE title = 'gta'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+
+'''RESULT IS THAT ON CASCADE HAS TO BE SPECIFIED FOR EACH FOREIGN KEY'''
 
 
 #sql = "DELETE store FROM realtion WHERE game_title='gta'"
