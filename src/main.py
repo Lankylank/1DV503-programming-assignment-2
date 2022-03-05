@@ -56,40 +56,41 @@ DatabaseManager.SelectDatabase(DB_NAME)
 ##################################################################################################
 ###########################  EXPERIMENTING  ##################################################
 #################################################################################################
-### CREATE TABLE
-tableName = "game"
+### CREATE TABLE  ### REMOVE ''' at start and end to create the databse with all values
+''' 
+tableName1 = "game"
 schema = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
 schema = " (" + schema + ")"
-DatabaseManager.cursor.execute("CREATE TABLE " + tableName + schema )
+DatabaseManager.cursor.execute("CREATE TABLE " + tableName1 + schema )
 
 ### CREATE TABLE
-tableName = "genre"
+tableName2 = "genre"
 schema = "genre_name CHAR(64) PRIMARY KEY"
 schema = " (" + schema + ")"
-DatabaseManager.cursor.execute("CREATE TABLE " + tableName + schema )
+DatabaseManager.cursor.execute("CREATE TABLE " + tableName2 + schema )
 
 ### CREATE TABLE
-tableName = "game_type"
+tableName3 = "game_type"
 schema = "title CHAR(64), genre CHAR(64), PRIMARY KEY (title, genre), FOREIGN KEY(title) REFERENCES game(title), FOREIGN KEY(genre) REFERENCES genre(genre_name)"
 schema = " (" + schema + ")"
-DatabaseManager.cursor.execute("CREATE TABLE " + tableName + schema )
+DatabaseManager.cursor.execute("CREATE TABLE " + tableName3 + schema )
 
  
-
+### INSERT DATA TO game
 schema = "title, year, publisher"
 schema = " (" + schema + ")"
 values = "'gta', '2013', 'rockstar'"
 values = " VALUES(" + values + ")"
 
-DatabaseManager.cursor.execute("INSERT INTO " + tableName + schema + values)
+DatabaseManager.cursor.execute("INSERT INTO " + tableName1 + schema + values)
 DatabaseManager.connector.commit()
 
 schema = "title, year, publisher"
 schema = " (" + schema + ")"
-values = "'Skyrim', '2014', 'bethesda'"
+values = "'skyrim', '2014', 'bethesda'"
 values = " VALUES(" + values + ")"
 
-DatabaseManager.cursor.execute("INSERT INTO " + tableName + schema + values)
+DatabaseManager.cursor.execute("INSERT INTO " + tableName1 + schema + values)
 DatabaseManager.connector.commit()
 
 schema = "title, year, publisher"
@@ -97,11 +98,116 @@ schema = " (" + schema + ")"
 values = "'minecraft', '2009', 'Mojan'"
 values = " VALUES(" + values + ")"
 
-DatabaseManager.cursor.execute("INSERT INTO " + tableName + schema + values)
+DatabaseManager.cursor.execute("INSERT INTO " + tableName1 + schema + values)
+DatabaseManager.connector.commit()
+
+###  INSERT DATA TO genre ###
+schema = "genre_name"
+schema = " (" + schema + ")"
+values = "'action'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName2 + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "genre_name"
+schema = " (" + schema + ")"
+values = "'adventure'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName2 + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "genre_name"
+schema = " (" + schema + ")"
+values = "'roleplay'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName2 + schema + values)
 DatabaseManager.connector.commit()
 
 
+### INSERT DATA INTO game_type
+## gta, minecraft, skyrim
 
+schema = "title, genre" 
+schema = " (" + schema + ")"
+values = "'gta', 'action'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName3 + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "title, genre" 
+schema = " (" + schema + ")"
+values = "'gta', 'roleplay'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName3 + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "title, genre" 
+schema = " (" + schema + ")"
+values = "'minecraft', 'adventure'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName3 + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "title, genre" 
+schema = " (" + schema + ")"
+values = "'skyrim', 'action'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName3 + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "title, genre" 
+schema = " (" + schema + ")"
+values = "'skyrim', 'adventure'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName3 + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "title, genre" 
+schema = " (" + schema + ")"
+values = "'skyrim', 'roleplay'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName3 + schema + values)
+DatabaseManager.connector.commit()
+'''
+
+
+sql = "SELECT title FROM game_type WHERE title ='gta'"
+DatabaseManager.Execute(sql)
+result = DatabaseManager.cursor.fetchall()
+print("\nSELECT title FROM game_type WHERE title ='gta'")
+print("This is why title isn't a good key:")
+for i in result:
+  print(i)
+
+sql = "SELECT title, genre FROM game_type WHERE title ='gta'"
+DatabaseManager.Execute(sql)
+result = DatabaseManager.cursor.fetchall()
+print("\nSELECT title, genre FROM game_type WHERE title ='gta'")
+for i in result:
+  print(i)
+
+sql = "SELECT genre FROM game_type WHERE title ='gta'"
+DatabaseManager.Execute(sql)
+result = DatabaseManager.cursor.fetchall()
+print("\nSELECT genre FROM game_type WHERE title ='gta'")
+for i in result:
+  print(i)
+
+sql = "SELECT * FROM game WHERE title ='gta'"
+DatabaseManager.Execute(sql)
+result = DatabaseManager.cursor.fetchall()
+print("\nSELECT * FROM game WHERE title ='gta' Title is a good key here because it only has 1 row")
+for i in result:
+  print(i)
 
 #tableName = "realtion"
 #schema = "game_title CHAR(64), store CHAR(64), FOREIGN KEY (game_title) REFERENCES Game(game_title)"
