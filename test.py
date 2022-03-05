@@ -126,8 +126,11 @@ for schema in schemas:
   
 #ON DELETE, ON CASCADE <<------ CHECK THIS OUT # https://www.javatpoint.com/mysql-on-delete-cascade #####
 
-## BASIC SUNTAX FOR FOREIGN KEY:
-# column-2 CHAR(64), FOREIGN KEY(column-2) REFERENCES table(column-1)
+'''SYNTAX FOR FOREIGN KEY'''
+# column CHAR(64), FOREIGN KEY(column) REFERENCES table(column-1)
+
+'''Syntax for composite key'''
+# column-1 CHAR(64), column-2 CHAR(64), PRIMARY KEY (column-1, column-2)
 
 '''Our tables should look like this:'''
 # title CHAR(64) PRIMARY KEY,year CHAR(64),publisher CHAR(64)
