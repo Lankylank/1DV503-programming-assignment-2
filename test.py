@@ -99,15 +99,28 @@ for i in range(0, numTables):
   if(i < numPrimaryTables):
     scheme = CreateScheme(attributes)
     print(scheme) # for testing purpose now since no sql intalled
-    tableName = CreateTableName(scheme)
-    print(tableName)
-    # CreateTable(tableName, scheme)
   else:
     scheme = CreateJunctionScheme(attributes)
     print(scheme)
-    # CreateTable(scheme)
 
+  tableName = CreateTableName(scheme)
+  print(tableName)
+  # CreateTable(tableName, scheme)
 
+  cleanScheme = str()
+  for attribute in attributes:
+    cleanScheme += attribute + ","
+
+  values = str()
+  for j in range(1, len(matrix)):
+    a = GetAttribs(matrix[j][i])
+    for value in a:
+      values += value + ","
+
+    values = "VALUES(" + values.removesuffix(",") + ")"
+
+    print("INSERT INTO " + cleanScheme + values)
+    
 
 
 
