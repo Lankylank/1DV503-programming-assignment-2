@@ -79,13 +79,8 @@ def CreateJunctionScheme(attributes: list):
   scheme += PrimaryKey(pkeys) + fkeys.removesuffix(", ")
   return scheme
 
-def CreateTableName(scheme: str):
-  tableName = str()
-  for char in scheme:
-    if(char == " "):
-      return tableName + "_table"
-    else:
-      tableName += char
+def CreateTableName(attributes: list):
+  return attributes[0] + "_table"
 
 def CreateTableNameJunction(attributes: list):
   return attributes[0] + "_" + attributes[1] + "_table"
@@ -103,15 +98,14 @@ for i in range(0, numTables):
   if(i < numPrimaryTables):
     scheme = CreateScheme(attributes)
     print(scheme) # for testing purpose now since no sql intalled
-    tableName = CreateTableName(scheme)
-    print(tableName)
+    tableName = CreateTableName(attributes)
   else:
     scheme = CreateJunctionScheme(attributes)
     print(scheme)
     tableName = CreateTableNameJunction(attributes)
-    print(tableName)
 
   
+  print(tableName)
   # CreateTable(tableName, scheme)
 
   cleanScheme = str()
