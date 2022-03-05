@@ -132,6 +132,21 @@ for schema in schemas:
 '''Syntax for composite key'''
 # column-1 CHAR(64), column-2 CHAR(64), PRIMARY KEY (column-1, column-2)
 
+# Why not use title TEXT instead of CHAR(64)? 
+# TEXT only occupies the actual lenght of the text + 2 bytes
+# CHAR size in bytes is number of char
+# VARCHAR size in bytes is number of chars used +1
+# Isn't it better to dynamically allocate memory instead?
+# CHAR allocates a set chunk?
+
+# if we use CHAR, Mysql pads the remainder of spaces that are not used
+# VARCHAR are not padded, stores only the lenght of the string + 1 or 2 bytes for a prefix
+# TEXT, mysql doesnt support text data types well. Can lead to creation of a temporary table
+# on disk instead of memory, which leads to significant performance penalties.
+'''https://blog.cpanel.com/varchar-vs-text-for-mysql-databases/'''
+
+
+
 '''Our table syntax should look like this: '''
 # title CHAR(64) PRIMARY KEY,year CHAR(64),publisher CHAR(64)
 # platform_name CHAR(64) PRIMARY KEY
