@@ -126,7 +126,7 @@ for i in range(0, numTables):
 
   insertScheme = CreateSchemeInsert(attributes)
 
-  for j in range(1, len(matrix)):
+  for j in range(1, len(matrix[i])):
     values = str()
     a = GetAttribs(matrix[j][i])
     for value in a:
