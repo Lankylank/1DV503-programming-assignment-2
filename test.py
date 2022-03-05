@@ -123,14 +123,17 @@ print("------------------------------------------")
 for schema in schemas:
   print(schema)
 
-######
-'''cHandler.execute("CREATE TABLE Writers(Id INT PRIMARY KEY, name TEXT)")'''
-'''cHandler.execute("CREATE TABLE Readers(Id INT PRIMARY KEY, name TEXT, Writer_id INTEGER, FOREIGN KEY(Writer_id) REFERENCES Writers(Id))")'''
-#####
-'''CREATE TABLE child (
-    id INT,
-    parent_id INT,
-    INDEX par_ind (parent_id),
-    FOREIGN KEY (parent_id)
-    REFERENCES parent(id)  
-    ON DELETE CASCADE'''   # <<------ CHECK THIS OUT # https://www.javatpoint.com/mysql-on-delete-cascade #####
+  
+#ON DELETE, ON CASCADE <<------ CHECK THIS OUT # https://www.javatpoint.com/mysql-on-delete-cascade #####
+
+## BASIC SUNTAX FOR FOREIGN KEY:
+# column-2 CHAR(64), FOREIGN KEY(column-2) REFERENCES table(column-1)
+
+'''Our tables should look like this:'''
+# title CHAR(64) PRIMARY KEY,year CHAR(64),publisher CHAR(64)
+# platform CHAR(64) PRIMARY KEY
+# title CHAR(64) PRIMARY KEY,FOREIGN KEY(title) REFERENCES game_table(title), platform CHAR(64) PRIMARY KEY, FOREIGN KEY(platform) REFERENCES platform(platform_name)
+# genre CHAR(64) PRIMARY KEY
+# title CHAR(64) PRIMARY KEY, FOREIGN KEY(title) REFERENCES game_table(title), genre CHAR(64) PRIMARY KEY, FOREIGN KEY(genre) REFERENCES genre(genre_name)
+# game_store CHAR(64) PRIMARY KEY
+# title CHAR(64) PRIMARY KEY, FOREIGN KEY(title) REFERENCES game_table(title), game_store CHAR(64) PRIMARY KEY, FOREIGN KEY(game_store) REFERENCES game_store(store_name)
