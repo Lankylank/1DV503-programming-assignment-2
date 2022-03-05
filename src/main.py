@@ -22,7 +22,7 @@ DatabaseManager.SelectDatabase(DB_NAME)
 
 # this loads the data and parses it,
 #  creates table based on this data and inserts data
-DatabaseManager.ImportData("game_data.csv", "game") 
+####DatabaseManager.ImportData("game_data.csv", "game") 
 
 
 ########   DATAFLOW   ########
@@ -56,20 +56,50 @@ DatabaseManager.ImportData("game_data.csv", "game")
 ##################################################################################################
 ###########################  EXPERIMENTING  ##################################################
 #################################################################################################
+### CREATE TABLE
+tableName = "game"
+schema = "title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
+schema = " (" + schema + ")"
+DatabaseManager.cursor.execute("CREATE TABLE " + tableName + schema )
 
-#tableName = "Game"
-#schema = "game_title CHAR(64) PRIMARY KEY, year CHAR(64), publisher CHAR(64)"
-#schema = " (" + schema + ")"
-#DatabaseManager.cursor.execute("CREATE TABLE " + tableName + schema )
+### CREATE TABLE
+tableName = "genre"
+schema = "genre_name CHAR(64) PRIMARY KEY"
+schema = " (" + schema + ")"
+DatabaseManager.cursor.execute("CREATE TABLE " + tableName + schema )
+
+### CREATE TABLE
+tableName = "game_type"
+schema = "title CHAR(64), genre CHAR(64), PRIMARY KEY (title, genre), FOREIGN KEY(title) REFERENCES game(title), FOREIGN KEY(genre) REFERENCES genre(genre_name)"
+schema = " (" + schema + ")"
+DatabaseManager.cursor.execute("CREATE TABLE " + tableName + schema )
+
  
 
-#schema = "game_title, year, publisher"
-#schema = " (" + schema + ")"
-#values = "'gta', '1908', 'rockstar'"
-#values = " VALUES(" + values + ")"
+schema = "title, year, publisher"
+schema = " (" + schema + ")"
+values = "'gta', '2013', 'rockstar'"
+values = " VALUES(" + values + ")"
 
-#DatabaseManager.cursor.execute("INSERT INTO " + tableName + schema + values)
-#DatabaseManager.connector.commit()
+DatabaseManager.cursor.execute("INSERT INTO " + tableName + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "title, year, publisher"
+schema = " (" + schema + ")"
+values = "'Skyrim', '2014', 'bethesda'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName + schema + values)
+DatabaseManager.connector.commit()
+
+schema = "title, year, publisher"
+schema = " (" + schema + ")"
+values = "'minecraft', '2009', 'Mojan'"
+values = " VALUES(" + values + ")"
+
+DatabaseManager.cursor.execute("INSERT INTO " + tableName + schema + values)
+DatabaseManager.connector.commit()
+
 
 
 
