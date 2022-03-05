@@ -57,6 +57,7 @@ def CreateScheme(attributes: list):
 
   return scheme.removesuffix(",")
 
+
 def CreateSchemeJunction(attributes: list):
   # title CHAR(64), genre_name CHAR(64), 
   # PRIMARY KEY(title, genre_name), 
@@ -87,7 +88,8 @@ def CreateSchemeInsert(attributes: list):
   insertScheme = str()
   for attribute in attributes:
     insertScheme += attribute + ","
-  return insertScheme.removesuffix(",")
+  return " (" + insertScheme.removesuffix(",") + ")"
+
 
 def CreateTableName(attributes: list):
   assert len(attributes) > 0
@@ -132,7 +134,7 @@ for i in range(0, numTables):
 
     values = " VALUES(" + values.removesuffix(",") + ")"
 
-    print("INSERT INTO " + insertScheme + values)
+    print("INSERT INTO " + tableName + insertScheme + values)
     
 
 
