@@ -58,10 +58,10 @@ DatabaseManager.SelectDatabase(DB_NAME)
 #################################################################################################
 ### CREATE TABLE  ### REMOVE ''' at start and end to create the databse with all values
 
-
 #TODO test ON CASCADE
 #TODO test ON DELETE
 #TODO test update and delete to check how the constraints work.
+#TODO test join game + game_type ---> (title, year, publisher, genre)
 
 ''' 
 tableName1 = "game"
@@ -214,6 +214,21 @@ result = DatabaseManager.cursor.fetchall()
 print("\nSELECT * FROM game WHERE title ='gta' Title is a good key here because it only has 1 row")
 for i in result:
   print(i)
+
+sql = "SELECT title FROM game_type"
+DatabaseManager.Execute(sql)
+result = DatabaseManager.cursor.fetchall()
+print("\nSELECT title FROM game_type")
+for i in result:
+  print(i)
+
+sql = "SELECT genre FROM game_type"
+DatabaseManager.Execute(sql)
+result = DatabaseManager.cursor.fetchall()
+print("\nSELECT genre FROM game_type")
+for i in result:
+  print(i)
+
 
 
 
