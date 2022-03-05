@@ -132,8 +132,10 @@ for schema in schemas:
 '''Our tables should look like this:'''
 # title CHAR(64) PRIMARY KEY,year CHAR(64),publisher CHAR(64)
 # platform CHAR(64) PRIMARY KEY
-# title CHAR(64) PRIMARY KEY,FOREIGN KEY(title) REFERENCES game_table(title), platform CHAR(64) PRIMARY KEY, FOREIGN KEY(platform) REFERENCES platform(platform_name)
+# title CHAR(64), platform CHAR(64), PRIMARY KEY(title, platform), FOREIGN KEY(title) REFERENCES game_table(title), FOREIGN KEY(platform) REFERENCES platform(platform_name)
 # genre CHAR(64) PRIMARY KEY
-# title CHAR(64) PRIMARY KEY, FOREIGN KEY(title) REFERENCES game_table(title), genre CHAR(64) PRIMARY KEY, FOREIGN KEY(genre) REFERENCES genre(genre_name)
+# title CHAR(64), genre CHAR(64), PRIMARY KEY(title, genre), FOREIGN KEY(title) REFERENCES game_table(title), FOREIGN KEY(genre) REFERENCES genre(genre_name)
 # game_store CHAR(64) PRIMARY KEY
-# title CHAR(64) PRIMARY KEY, FOREIGN KEY(title) REFERENCES game_table(title), game_store CHAR(64) PRIMARY KEY, FOREIGN KEY(game_store) REFERENCES game_store(store_name)
+# title CHAR(64), game_store CHAR(64), PRIMARY KEY(title, game_store), FOREIGN KEY(title) REFERENCES game_table(title), FOREIGN KEY(game_store) REFERENCES game_store(store_name)
+
+
