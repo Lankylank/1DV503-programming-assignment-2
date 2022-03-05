@@ -330,6 +330,16 @@ DatabaseManager.connector.commit()
 '''RESULT IS THAT ON CASCADE HAS TO BE SPECIFIED FOR EACH FOREIGN KEY'''
 #######################################################################
 
+## TESTING ON UPDATE CASCADE
+'''
+sql = "UPDATE game SET title = 'testing' WHERE title = 'gta'"
+DatabaseManager.Execute(sql)
+DatabaseManager.connector.commit()
+'''
+
+
+
+
 #sql = "DELETE store FROM realtion WHERE game_title='gta'"
 #DatabaseManager.Execute(sql)
 #DatabaseManager.connector.commit() #*
