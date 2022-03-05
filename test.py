@@ -1,4 +1,3 @@
-from ast import For
 import csv
 
 file = open('game_data_ordered.csv')
@@ -125,18 +124,30 @@ for i in range(0, numTables):
 
   for j in range(1, len(matrix)):
     values = str()
-    a = GetAttribs(matrix[j][i])
-    
+    attribValues = GetAttribs(matrix[j][i])
     # hack
-    if(len(a[0]) < 1):
+    if(len(attribValues[0]) < 1):
       break
 
-    for value in a:
-      values += "'" + value + "'" + ","
+    
+    NUM_ATTRIBUTES = len(attributes) - 1
+    numAdded = 0
+    for k in range(1, len(attribValues)):
+      values += "'" + attribValues[k] + "'" + ","
+      numAdded += 1
+      if(numAdded == NUM_ATTRIBUTES):
+        numAdded = 0
+        values = " VALUES(" + attribValues[0] + "," + values
+        values = values.removesuffix(",")
+        values += ")"
+        print("INSERT INTO " + tableName + insertScheme + values)
+        values = str()
+        
 
-    values = " VALUES(" + values.removesuffix(",") + ")"
 
-    print("INSERT INTO " + tableName + insertScheme + values)
+
+
+
     
 
 
