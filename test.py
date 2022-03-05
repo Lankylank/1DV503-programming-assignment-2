@@ -47,45 +47,55 @@ def GetAttribs(attributeData: str):
 
 def CreateScheme(attributes: list):
   scheme = str()
-  for attribute in attributes:
-    if(attribute[0] == '*'):
-      scheme += attribute.removeprefix("*") + " VARCHAR(64) PRIMARY KEY,"
+  for i in range(0, len(attributes)):
+    # Check the first character of each string in the list
+    if(attributes[i][0] == '*'):
+      attributes[i] = str(attributes[i]).removeprefix("*")
+      scheme += str(attributes[i]).removeprefix("*") + " VARCHAR(64) PRIMARY KEY,"
     else:
-      scheme += attribute + " VARCHAR(64),"
+      scheme += attributes[i] + " VARCHAR(64),"
 
   return scheme.removesuffix(",")
 
-def CreateJunctionScheme(attributes: list):
+def CreateSchemeJunction(attributes: list):
   # title CHAR(64), genre_name CHAR(64), 
   # PRIMARY KEY(title, genre_name), 
   # FOREIGN KEY(title) REFERENCES tableName(title), FOREIGN KEY(genre_name) REFERENCES tableName(genre_name)
   scheme = str()
   pkeys = str()
   fkeys = str()
-  for attribute in attributes:
-    if(attribute[0] == '&'):  # FK Cascade symbol
-      attribute = str(attribute).removeprefix("&") # Attribute is already a string but intellisense is retarded
-      scheme += attribute + " VARCHAR(64),"
-      fkeys += ForeginKeyCascade(attribute)  
-      pkeys += attribute + ","
-    elif(attribute[0] == '#'):# FK NON Cascade symbol
-      attribute = str(attribute).removeprefix("#")
-      scheme += attribute + " VARCHAR(64),"
-      fkeys += ForeginKey(attribute)
-      pkeys += attribute + ","
+  for i in range(0, len(attributes)):
+    # Check the first character of each string in the list
+    if(attributes[i][0] == '&'):  # FK Cascade symbol
+      attributes[i] = str(attributes[i]).removeprefix("&") # Attribute is already a string but intellisense is retarded
+      scheme += attributes[i] + " VARCHAR(64),"
+      fkeys += ForeginKeyCascade(attributes[i])  
+      pkeys += attributes[i] + ","
+    elif(attributes[i][0] == '#'):# FK NON Cascade symbol
+      attributes[i] = str(attributes[i]).removeprefix("#")
+      scheme += attributes[i] + " VARCHAR(64),"
+      fkeys += ForeginKey(attributes[i])
+      pkeys += attributes[i] + ","
     else:
-      scheme += attribute + " VARCHAR(64),"
+      scheme += attributes[i] + " VARCHAR(64),"
 
   scheme += PrimaryKey(pkeys) + fkeys.removesuffix(", ")
   return scheme
 
+
+def CreateSchemeInsert(attributes: list):
+  insertScheme = str()
+  for attribute in attributes:
+    insertScheme += attribute + ","
+  return insertScheme.removesuffix(",")
+
 def CreateTableName(attributes: list):
-  assert len(attributes) > 1
-  
+  assert len(attributes) > 0
+
   return attributes[0] + "_table"
 
 def CreateTableNameJunction(attributes: list):
-  assert len(attributes) > 2
+  assert len(attributes) > 1
 
   return attributes[0] + "_" + attributes[1] + "_table"
    
@@ -104,7 +114,7 @@ for i in range(0, numTables):
     print(scheme) # for testing purpose now since no sql intalled
     tableName = CreateTableName(attributes)
   else:
-    scheme = CreateJunctionScheme(attributes)
+    scheme = CreateSchemeJunction(attributes)
     print(scheme)
     tableName = CreateTableNameJunction(attributes)
 
@@ -112,9 +122,7 @@ for i in range(0, numTables):
   print(tableName)
   # CreateTable(tableName, scheme)
 
-  cleanScheme = str()
-  for attribute in attributes:
-    cleanScheme += attribute + ","
+  insertScheme = CreateSchemeInsert(attributes)
 
   for j in range(1, len(matrix)):
     values = str()
@@ -122,9 +130,9 @@ for i in range(0, numTables):
     for value in a:
       values += value + ","
 
-    values = "VALUES(" + values.removesuffix(",") + ")"
+    values = " VALUES(" + values.removesuffix(",") + ")"
 
-    print("INSERT INTO " + cleanScheme + values)
+    print("INSERT INTO " + insertScheme + values)
     
 
 
