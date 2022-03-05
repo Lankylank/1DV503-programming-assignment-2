@@ -87,6 +87,10 @@ def CreateTableName(scheme: str):
     else:
       tableName += char
 
+def CreateJunctionName(attributes: list):
+  junctionName = list[0] + "_" + list[1]
+  return junctionName
+
 print("*****************************************************")
 # def LoadData(numJunctions: int):
 numTables = len(matrix[0])  # matrix[0] should be an argument
