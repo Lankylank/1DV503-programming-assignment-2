@@ -116,10 +116,10 @@ for i in range(0, numTables):
     print(scheme)
     tableName = CreateTableNameJunction(attributes)
 
-  
   print(tableName)
   # CreateTable(tableName, scheme)
   ### Add () around scheme when creating table otherwise error
+  #__TableInsert() does this automatically anyway ´, only use when testing
 
   insertScheme = CreateSchemeInsert(attributes)
 
