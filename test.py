@@ -130,22 +130,22 @@ for i in range(0, numTables):
     if(len(attribValues[0]) < 1):
       break
 
-    
-    ## for single column tables  NUM_ATTRIBUTES = 0
-    NUM_ATTRIBUTES = len(attributes) - 1
-    numAdded = 0
-    ### SKIPS single column tables
-    # in range(1, 1)    skipps the loop for single column tables
-    for k in range(1, len(attribValues)):
-      values += "'" + attribValues[k] + "'" + ","
-      numAdded += 1
-      if(numAdded == NUM_ATTRIBUTES):
-        numAdded = 0
-        values = " VALUES(" + "'" + attribValues[0] + "'," + values ## dont forget ' :)
-        values = values.removesuffix(",")
-        values += ")"
-        print("INSERT INTO " + tableName + insertScheme + values)
-        values = str()
+    if(len(attribValues) == 1):
+      values = " VALUES(" + "'" + attribValues[0] + "')"
+      print("INSERT INTO " + tableName + insertScheme + values)
+    else:
+      NUM_ATTRIBUTES = len(attributes) - 1
+      numAdded = 0
+      for k in range(1, len(attribValues)):
+        values += "'" + attribValues[k] + "'" + ","
+        numAdded += 1
+        if(numAdded == NUM_ATTRIBUTES):
+          numAdded = 0
+          values = " VALUES(" + "'" + attribValues[0] + "'," + values
+          values = values.removesuffix(",")
+          values += ")"
+          print("INSERT INTO " + tableName + insertScheme + values)
+          values = str()
         
 
 

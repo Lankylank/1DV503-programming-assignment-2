@@ -1,5 +1,4 @@
 import CDatabaseManager
-from ast import For
 import csv
 
 # Connection details
