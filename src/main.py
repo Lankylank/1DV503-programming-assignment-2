@@ -86,22 +86,22 @@ tableName3 = "game_type"
 schema = "title CHAR(64), genre CHAR(64), PRIMARY KEY (title, genre), FOREIGN KEY(title) REFERENCES game(title) ON DELETE CASCADE, FOREIGN KEY(genre) REFERENCES genre(genre_name) ON DELETE CASCADE"
 schema = " (" + schema + ")"
 DatabaseManager.cursor.execute("CREATE TABLE " + tableName3 + schema )
-
+'''
  
 ### INSERT DATA TO game
 schema = "title, year, publisher"
 schema = " (" + schema + ")"
 values = "'gta', '2013', 'rockstar'"
 values = " VALUES(" + values + ")"
-
-DatabaseManager.cursor.execute("INSERT INTO " + tableName1 + schema + values)
+print("INSERT INTO" + "game" + schema + values)
+DatabaseManager.cursor.execute("INSERT INTO " + " game" + schema + values)
 DatabaseManager.connector.commit()
 
 schema = "title, year, publisher"
 schema = " (" + schema + ")"
 values = "'skyrim', '2014', 'bethesda'"
 values = " VALUES(" + values + ")"
-
+'''
 DatabaseManager.cursor.execute("INSERT INTO " + tableName1 + schema + values)
 DatabaseManager.connector.commit()
 

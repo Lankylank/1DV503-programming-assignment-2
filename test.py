@@ -119,6 +119,7 @@ for i in range(0, numTables):
   
   print(tableName)
   # CreateTable(tableName, scheme)
+  ### Add () around scheme when creating table otherwise error
 
   insertScheme = CreateSchemeInsert(attributes)
 
@@ -130,14 +131,17 @@ for i in range(0, numTables):
       break
 
     
+    ## for single column tables  NUM_ATTRIBUTES = 0
     NUM_ATTRIBUTES = len(attributes) - 1
     numAdded = 0
+    ### SKIPS single column tables
+    # in range(1, 1)    skipps the loop for single column tables
     for k in range(1, len(attribValues)):
       values += "'" + attribValues[k] + "'" + ","
       numAdded += 1
       if(numAdded == NUM_ATTRIBUTES):
         numAdded = 0
-        values = " VALUES(" + attribValues[0] + "," + values
+        values = " VALUES(" + "'" + attribValues[0] + "'," + values ## dont forget ' :)
         values = values.removesuffix(",")
         values += ")"
         print("INSERT INTO " + tableName + insertScheme + values)
