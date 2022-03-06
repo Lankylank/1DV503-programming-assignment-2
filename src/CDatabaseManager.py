@@ -20,12 +20,11 @@ class CDatabaseManager:
 # where we choose a file path and reads it and attatches it as an class attribute
     self.fstream = CFileStream.CFileStream()
 
-####### ERROR AFTER INSERTING RECORDS, WEAKLY REFERENCES OBJECT WHEN RUNNING TEST1.py
-####### IT ISN'T EVEN USED THERE#
+# TODO: look into when retard python frees resources automaticly
   # Use RAII to free our resources
   #def __del__(self):
     # Free resources in the reverse order they were allocated.
-  #  self.cursor.close()
+  # self.cursor.close()
   # self.connector.close()
 
 
