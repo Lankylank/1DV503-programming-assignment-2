@@ -146,6 +146,18 @@ for i in range(0, numTables):
     numAdded = 0
     ### SKIPS single column tables
         # in range(1, 1)    skipps the loop for single column tables
+####################  SINGLE COLUMN HACK  ##################################
+    if len(attributes) == 1:
+      values = " VALUES(" + "'" + attribValues[0] + "'," + values ## dont forget '' :)
+      values = values.removesuffix(",")
+      values += ")"
+      # Syntax for INSERT
+      # INSERT INTO game (title, year, publisher) VALUES('gta', '2013', 'rockstar')
+      print("INSERT INTO " + tableName + insertScheme + values)
+      DatabaseManager.cursor.execute("INSERT INTO " + tableName + insertScheme + values)
+      DatabaseManager.connector.commit()
+      values = str()
+############################################################################
     for k in range(1, len(attribValues)):
       values += "'" + attribValues[k] + "'" + ","
       numAdded += 1
@@ -158,6 +170,6 @@ for i in range(0, numTables):
         # Syntax for INSERT
         # INSERT INTO game (title, year, publisher) VALUES('gta', '2013', 'rockstar')
         print("INSERT INTO " + tableName + insertScheme + values)
-        #DatabaseManager.cursor.execute("INSERT INTO " + tableName + insertScheme + values)
-        #DatabaseManager.connector.commit()
+        DatabaseManager.cursor.execute("INSERT INTO " + tableName + insertScheme + values)
+        DatabaseManager.connector.commit()
         values = str()
