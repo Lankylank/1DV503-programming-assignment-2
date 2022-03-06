@@ -13,7 +13,7 @@ DB_NAME   = "game_database"
 DatabaseManager = CDatabaseManager.CDatabaseManager(username, password, host)
 DatabaseManager.Connect() # Connect to to database and a crusor with this function
 DatabaseManager.SelectDatabase(DB_NAME)
-
+'''
 file = open('game_data_ordered.csv')
 game_data = csv.reader(file)
 
@@ -173,3 +173,5 @@ for i in range(0, numTables):
         DatabaseManager.cursor.execute("INSERT INTO " + tableName + insertScheme + values)
         DatabaseManager.connector.commit()
         values = str()
+'''
+
