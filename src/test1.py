@@ -32,25 +32,33 @@ def create_priceStatistics_view():
   DatabaseManager.Execute(sql)
 
 def getGameInfo(title: str):
-  sql = "SELECT * FROM title_table WHERE title = '" + title + "'" 
+  sql = ("SELECT * "
+        "FROM title_table "
+        "WHERE title = '" + title + "'")
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
   return result
 
 def getGameGenres(title: str):
-  sql = "SELECT genre FROM title_genre_table WHERE title = '" + title + "'" 
+  sql = ("SELECT genre "
+        "FROM title_genre_table "
+        "WHERE title = '" + title + "'")
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
   return result
 
 def getGamePlatforms(title: str):
-  sql = "SELECT platform FROM title_platform_table WHERE title = '" + title + "'" 
+  sql = ("SELECT platform "
+        "FROM title_platform_table "
+        "WHERE title = '" + title + "'")
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
   return result
 
 def getGamePrices(title: str):
-  sql = "SELECT game_store, price FROM title_game_store_table WHERE title = '" + title + "'" 
+  sql = ("SELECT game_store, price "
+        "FROM title_game_store_table "
+        "WHERE title = '" + title + "'")
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
   return result
