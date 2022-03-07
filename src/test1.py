@@ -180,13 +180,24 @@ def checkIfGenreExists(genre: str) -> bool:
     else:
       return True
 
+def checkIfGame_storeExists(game_store: str) -> bool:
+  sql = ("SELECT EXISTS"
+       "(SELECT * "
+       "FROM game_store_table "
+       "WHERE game_store = '" + game_store + "')")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  # if value = 0, --> it doesn't exit 
+  for i in result:
+    if i[0] == 0:
+      return False
+    else:
+      return True
 ###############################################################################
 # allow for seaerching on half a title name, example = mine...
 # groupings?
 
-# what platforms exists?
-# what genres exists?
-# what stores exists?
+
 
 # insert new enrtry (without using csv file)
 # update entry?
