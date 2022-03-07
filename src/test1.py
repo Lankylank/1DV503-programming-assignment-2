@@ -201,6 +201,20 @@ def checkIfGame_storeExists(game_store: str) -> bool:
       return False
     else:
       return True
+
+def checkIfTitleExists(title: str) -> bool:
+  sql = ("SELECT EXISTS"
+       "(SELECT title "
+       "FROM title_table "
+       "WHERE title = '" + title + "')")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  # if value = 0, --> it doesn't exit 
+  for i in result:
+    if i[0] == 0:
+      return False
+    else:
+      return True
 ###############################################################################
 # allow for seaerching on half a title name, example = mine...
 # groupings?
