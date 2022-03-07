@@ -93,8 +93,9 @@ def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
 
 
 
-# search for a game, get title, min max avg prices, and what store the price is connected to
-
+# search for a game, get title, min price and what store the price is connected to
+# search for a platform and return games and their info(title, year, publisher, avgPrice)
+# search for a genre -||-
 
 
 
