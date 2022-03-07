@@ -107,10 +107,9 @@ def getAll():
 
 #TODO take user input to determin the price range
 def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
-  sql = ("SELECT title, GROUP_CONCAT(game_store SEPARATOR ', ') "
+  sql = ("SELECT DISTINCT title "
          "FROM title_game_store_table "
-         "WHERE title_game_store_table.price BETWEEN " + lowestPrice + " AND " + highestPrice + " "
-         "GROUP BY title")
+         "WHERE title_game_store_table.price BETWEEN " + lowestPrice + " AND " + highestPrice + " ")
 
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
