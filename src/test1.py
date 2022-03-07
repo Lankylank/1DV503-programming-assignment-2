@@ -15,6 +15,12 @@ DatabaseManager.SelectDatabase(DB_NAME)
 
 GAME_NAME = 'minecraft'
 
+
+# GROUP_CONCAT is a group function so if we dont use a group clause
+# at the end it will only return 1 row.
+
+
+
 # has to be used when creating a database, otherwise some queries wont work.
 # only has to be created once because views auto updates it valuse when the
 # normal tables updates. a simple check if exists solves it so it wont cause an error.
@@ -52,7 +58,7 @@ def getGamePrices(title: str):
   return result
 
 ### GET ALL THE INFO ABOUT A SPECIFIC GAME ###  MAIN QUERY  ####
-def getAll(title: str):
+def getAllFromSpecificGame(title: str):
 ## we has to do this because the table we use, have multiple tuples with the same title
 ## so we have to use GROUP_CONCAT which groups all of them together into a single row,
 ## otherwise we would have multiple rows but only with different genre's. Added DISTINCT to this
@@ -79,48 +85,85 @@ def getAll(title: str):
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
   return result
-
-# get info about a game within a certain price range
-#TODO take user input to determin the price range
-#TODO add show available stores
-def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
-  sql = ("SELECT DISTINCT title "
-        "FROM title_game_store_table "
-        "WHERE title_game_store_table.price BETWEEN " + lowestPrice + " AND " + highestPrice+"")
+## get all information in the whole database
+def getAll():
+  sql = ("SELECT title_table.*, "
+        "GROUP_CONCAT(DISTINCT(title_genre_table.genre) SEPARATOR ', '), "
+        "GROUP_CONCAT(DISTINCT(title_platform_table.platform) SEPARATOR ', '), "
+        "GROUP_CONCAT(DISTINCT(title_game_store_table.game_store) SEPARATOR ', '), "
+        "price_statistics.min, price_statistics.max, price_statistics.avg "
+        "FROM title_table "
+        "JOIN title_genre_table USING (title) "
+        "JOIN title_platform_table USING (title) "
+        "JOIN title_game_store_table USING (title) "
+        "JOIN price_statistics USING (title) "
+        #"WHERE title_table.title = 'minecraft'"
+        "GROUP BY title_table.title")
 
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
   return result
 
 
+#TODO take user input to determin the price range
+def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
+  sql = ("SELECT title, group_concat(game_store) "
+         "FROM title_game_store_table "
+         "WHERE title_game_store_table.price BETWEEN " + lowestPrice + " AND " + highestPrice + " "
+         "GROUP BY title")
+
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
+
+a = gamesWithinPriceRange("199", "399")
+for i in a:
+  print(i)
+
+# search for a game and get the stores and its prices
+def gameAvailableAt(title: str):
+  sql = ("SELECT game_store, price "
+          "FROM title_game_store_table "
+          "WHERE title = '" + title + "'")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
+
+def getGamePriceStatistics(title: str):
+  sql = ("SELECT min, max, avg "
+          "FROM price_statistics "
+          "WHERE title = '" + title + "'")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
+
+
+
+
+
+###############################################################################
+# allow for seaerching on half a title name, example = mine...
 
 # search for a game, get title, min price and what store the price is connected to
 # search for a platform and return games and their info(title, year, publisher, avgPrice)
 # search for a genre -||-
-# Custom search based on what the user chooses
+
+# what platforms exists?
+# what genres exists?
+# what stores exists?
+
 # insert new enrtry (without using csv file)
 # update entry?
 # delete entry?
 
 
+# Custom search based on what the user chooses
+# 1. choose a platform
+# 2. choose a genre
+# 3. select price range (query to get max pricerange)
+# 4. show results if there is some
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+##################################################################################
 
 
 
