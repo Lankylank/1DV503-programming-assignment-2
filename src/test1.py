@@ -80,6 +80,63 @@ def getAll(title: str):
   result = DatabaseManager.cursor.fetchall()
   return result
 
+# get info about a game within a certain price range
+#TODO take user input to determin the price range
+def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
+  sql = ("SELECT DISTINCT title "
+        "FROM title_game_store_table "
+        "WHERE title_game_store_table.price BETWEEN " + lowestPrice + " AND " + highestPrice+"")
+
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
+
+
+
+# search for a game, get title, min max avg prices, and what store the price is connected to
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## USING GROUP BY HERE only prduces 1 record, it skips all other entrys.
 '''
