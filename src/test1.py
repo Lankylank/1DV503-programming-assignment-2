@@ -105,7 +105,6 @@ def getAll():
   return result
 
 
-#TODO take user input to determin the price range
 def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
   sql = ("SELECT DISTINCT title "
          "FROM title_game_store_table "
@@ -115,9 +114,6 @@ def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
   result = DatabaseManager.cursor.fetchall()
   return result
 
-a = gamesWithinPriceRange("199", "399")
-for i in a:
-  print(i)
 
 # search for a game and get the stores and its prices
 def gameAvailableAt(title: str):
@@ -136,16 +132,35 @@ def getGamePriceStatistics(title: str):
   result = DatabaseManager.cursor.fetchall()
   return result
 
+def searchByPlatform(platform: str):
+  # first check if platfrom exists using a query, return true
+  # if not, return a msg, chosen platform doesnät exist
+  sql = ("SELECT title_table.title, "
+         "price_statistics.avg "
+         "FROM title_table "
+         "JOIN title_platform_table USING(title) " 
+         "JOIN price_statistics USING (title) "
+         "WHERE platform = '" + platform + "'")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
 
-
-
+def searchByGenre(genre: str):
+  # first check if platfrom exists using a query, return true
+  # if not, return a msg, chosen platform doesnät exist
+  sql = ("SELECT title_table.title, "
+         "price_statistics.avg "
+         "FROM title_table "
+         "JOIN title_genre_table USING(title) " 
+         "JOIN price_statistics USING (title) "
+         "WHERE genre = '" + genre + "'")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
 
 ###############################################################################
 # allow for seaerching on half a title name, example = mine...
-
-# search for a game, get title, min price and what store the price is connected to
-# search for a platform and return games and their info(title, year, publisher, avgPrice)
-# search for a genre -||-
+# groupings?
 
 # what platforms exists?
 # what genres exists?
@@ -163,8 +178,6 @@ def getGamePriceStatistics(title: str):
 # 4. show results if there is some
 
 ##################################################################################
-
-
 
 
 
