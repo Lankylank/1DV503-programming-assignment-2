@@ -82,6 +82,7 @@ def getAll(title: str):
 
 # get info about a game within a certain price range
 #TODO take user input to determin the price range
+#TODO add show available stores
 def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
   sql = ("SELECT DISTINCT title "
         "FROM title_game_store_table "
