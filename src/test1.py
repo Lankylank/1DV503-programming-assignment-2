@@ -17,7 +17,7 @@ GAME_NAME = 'minecraft'
 
 # has to be used when creating a database, otherwise some queries wont work.
 # only has to be created once because views auto updates it valuse when the
-# normal tables updates.
+# normal tables updates. a simple check if exists solves it so it wont cause an error.
 def create_priceStatistics_view():
   sql = ("CREATE VIEW price_statistics AS "
         "SELECT title, min(price) AS min, "
