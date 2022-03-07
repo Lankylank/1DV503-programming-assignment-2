@@ -19,8 +19,6 @@ GAME_NAME = 'minecraft'
 # GROUP_CONCAT is a group function so if we dont use a group clause
 # at the end it will only return 1 row.
 
-
-
 # has to be used when creating a database, otherwise some queries wont work.
 # only has to be created once because views auto updates it valuse when the
 # normal tables updates. a simple check if exists solves it so it wont cause an error.
@@ -57,7 +55,6 @@ def getGamePrices(title: str):
   result = DatabaseManager.cursor.fetchall()
   return result
 
-### GET ALL THE INFO ABOUT A SPECIFIC GAME ###  MAIN QUERY  ####
 def getAllFromSpecificGame(title: str):
 ## we has to do this because the table we use, have multiple tuples with the same title
 ## so we have to use GROUP_CONCAT which groups all of them together into a single row,
@@ -85,7 +82,7 @@ def getAllFromSpecificGame(title: str):
   DatabaseManager.Execute(sql)
   result = DatabaseManager.cursor.fetchall()
   return result
-## get all information in the whole database
+
 def getAll():
   sql = ("SELECT title_table.*, "
         "GROUP_CONCAT(DISTINCT(title_genre_table.genre) SEPARATOR ', '), "
@@ -104,7 +101,6 @@ def getAll():
   result = DatabaseManager.cursor.fetchall()
   return result
 
-
 def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
   sql = ("SELECT DISTINCT title "
          "FROM title_game_store_table "
@@ -114,8 +110,6 @@ def gamesWithinPriceRange(lowestPrice: str, highestPrice: str):
   result = DatabaseManager.cursor.fetchall()
   return result
 
-
-# search for a game and get the stores and its prices
 def gameAvailableAt(title: str):
   sql = ("SELECT game_store, price "
           "FROM title_game_store_table "
@@ -158,6 +152,34 @@ def searchByGenre(genre: str):
   result = DatabaseManager.cursor.fetchall()
   return result
 
+def checkIfPlatformExists(platform: str) -> bool:
+  sql = ("SELECT EXISTS"
+       "(SELECT * "
+       "FROM platform_table "
+       "WHERE platform = '" + platform + "')")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  # if value = 0, --> it doesn't exit 
+  for i in result:
+    if i[0] == 0:
+      return False
+    else:
+      return True
+  
+def checkIfGenreExists(genre: str) -> bool:
+  sql = ("SELECT EXISTS"
+       "(SELECT * "
+       "FROM genre_table "
+       "WHERE genre = '" + genre + "')")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  # if value = 0, --> it doesn't exit 
+  for i in result:
+    if i[0] == 0:
+      return False
+    else:
+      return True
+
 ###############################################################################
 # allow for seaerching on half a title name, example = mine...
 # groupings?
@@ -178,6 +200,33 @@ def searchByGenre(genre: str):
 # 4. show results if there is some
 
 ##################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
