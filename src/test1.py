@@ -1,3 +1,4 @@
+from distutils.util import get_platform
 import CDatabaseManager
 import csv
 
@@ -215,11 +216,24 @@ def checkIfTitleExists(title: str) -> bool:
       return False
     else:
       return True
+
+def getExistingPlatforms() -> str:
+  sql = ("SELECT * "
+         "FROM platform_table ")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
+
+def getExistingGenres() -> str:
+  sql = ("SELECT * "
+         "FROM genre_table ")
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
+
 ###############################################################################
 # allow for seaerching on half a title name, example = mine...
 # groupings?
-
-
 
 # insert new enrtry (without using csv file)
 # update entry?
@@ -229,14 +243,47 @@ def checkIfTitleExists(title: str) -> bool:
 # Custom search based on what the user chooses
 # 1. choose a platform
 # 2. choose a genre
-# 3. select price range (query to get max pricerange)
+# 3. select price range 
 # 4. show results if there is some
 
 ##################################################################################
 
+a = platform = "pc"
+b = genre = "action"
+c = lowestPrice = "149"
+d = highestPrice = "599"
+
+#TODO add for when a user doesn't want to provide any/one of the choices
+#      maybe give them a choice to choose nothing, and return a specific code/number
+#     that can be passed to a new function that creates the query, and if a
+#     argument is a certain code, we choose not to include that part???
+
+def askForCustomSearch():
+  print("choose a platform: ") # check for validity, not, empty, etc
+  print(get_platform())
+  if checkIfPlatformExists(a) == False:
+    return "Platform doesn't exist!"
+  else:
+    print("choose a genre: ") # check for validity, not, empty, etc
+    print(getExistingGenres())
+    if checkIfGenreExists() == False:
+      return "Genre doesn't exist!"
+    else: # this lowest/highest price could be more sofisticated
+      print("Choose the lowest price: ") # check for validity, not, empty, etc
+      print("Choose the highest price: ") # check for validity, not, empty, etc
+
+def createCustomSearch(platform: str, genre: str, 
+                      lowestPrice: str, highestPrice: str):
+
+  pass
 
 
 
+
+
+
+#DatabaseManager.Execute(sql)
+#result = DatabaseManager.cursor.fetchall()
 
 
 
