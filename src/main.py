@@ -87,7 +87,7 @@ schema = "title CHAR(64), genre CHAR(64), PRIMARY KEY (title, genre), FOREIGN KE
 schema = " (" + schema + ")"
 DatabaseManager.cursor.execute("CREATE TABLE " + tableName3 + schema )
 '''
- 
+'''
 ### INSERT DATA TO game
 schema = "title, year, publisher"
 schema = " (" + schema + ")"
@@ -101,6 +101,7 @@ schema = "title, year, publisher"
 schema = " (" + schema + ")"
 values = "'skyrim', '2014', 'bethesda'"
 values = " VALUES(" + values + ")"
+'''
 '''
 DatabaseManager.cursor.execute("INSERT INTO " + tableName1 + schema + values)
 DatabaseManager.connector.commit()
