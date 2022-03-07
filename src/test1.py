@@ -248,10 +248,10 @@ def getExistingGenres() -> str:
 
 ##################################################################################
 
-a = platform = "pc"
-b = genre = "action"
-c = lowestPrice = "149"
-d = highestPrice = "599"
+platform = "pc"
+genre = "adventure"
+lowestPrice = "400"
+highestPrice = "599"
 
 #TODO add for when a user doesn't want to provide any/one of the choices
 #      maybe give them a choice to choose nothing, and return a specific code/number
@@ -274,16 +274,22 @@ def askForCustomSearch():
 
 def createCustomSearch(platform: str, genre: str, 
                       lowestPrice: str, highestPrice: str):
+                      # FORMAT, return only a title
+  sql = ("SELECT DISTINCT title_table.title "
+        "FROM title_table "
+        "JOIN title_platform_table USING (title) "
+        "JOIN title_genre_table USING (title) "
+        "JOIN title_game_store_table USING (title) "
+        "WHERE title_platform_table.platform = '" + platform + "' "
+        "AND title_genre_table.genre = '" + genre + "' "
+        "AND title_game_store_table.price "
+        "BETWEEN "+ lowestPrice + " AND " + highestPrice + " ") # BETWEEN is inclusive
 
-  pass
+  DatabaseManager.Execute(sql)
+  result = DatabaseManager.cursor.fetchall()
+  return result
 
 
-
-
-
-
-#DatabaseManager.Execute(sql)
-#result = DatabaseManager.cursor.fetchall()
 
 
 
