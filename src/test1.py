@@ -27,7 +27,6 @@ def create_priceStatistics_view():
         "GROUP BY title") ### if we dont have this, it only gets 1 row
   DatabaseManager.Execute(sql)
 
-
 def getGameInfo(title: str):
   sql = "SELECT * FROM title_table WHERE title = '" + title + "'" 
   DatabaseManager.Execute(sql)
