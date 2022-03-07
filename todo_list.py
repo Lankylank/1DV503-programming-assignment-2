@@ -3,27 +3,14 @@
 #######  QUERIES  ########
 # Remove TODO after it is completed
 '''3 queries where we use atleast 2 multirelational queries'''
-#TODO - 1
 #TODO - 2
 #TODO - 3
-
-'''Make use of SQL JOIN'''
-#TODO
-
-
-'''Use Aggregation , do some calculation (calculating avg of something)'''
-#TODO
-# Example calculate avg price for a specific game.
-# Extra if time allows: calculate procentage to easier compare game prices  
 
 
 '''Grouping, use columns from different tables'''
 #TODO
 # Maybe incorporate grouping when creating our View table?
 
-
-'''Create and use a View'''
-#TODO
 
 
 #############################################################
