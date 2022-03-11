@@ -257,6 +257,7 @@ highestPrice = "599"
 #      maybe give them a choice to choose nothing, and return a specific code/number
 #     that can be passed to a new function that creates the query, and if a
 #     argument is a certain code, we choose not to include that part???
+#      easier to use true/flase maybe?
 
 def askForCustomSearch():
   print("choose a platform: ") # check for validity, not, empty, etc
