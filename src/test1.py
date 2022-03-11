@@ -261,11 +261,13 @@ highestPrice = "599"
 
 def askForCustomSearch():
   print("choose a platform: ") # check for validity, not, empty, etc
+  # Provide a list of platforms that a user can choose from
   print(get_platform())
   if checkIfPlatformExists(platform) == False:
     return "Platform doesn't exist!"
   else:
     print("choose a genre: ") # check for validity, not, empty, etc
+    # provide a list of genres that a user can chose from
     print(getExistingGenres())
     if checkIfGenreExists(genre) == False:
       return "Genre doesn't exist!"
