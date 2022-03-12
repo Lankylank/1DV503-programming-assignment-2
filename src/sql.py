@@ -13,4 +13,5 @@ def exists(dbm: CDatabaseManager, tableName: str, collumn: str, row: str):
           collumn + "= '" + 
           row + "')")
   dbm.Execute(sql)
-  return dbm.Fetchall()
+  flag = dbm.Fetchall()
+  return flag[0]  # retarded tuple
