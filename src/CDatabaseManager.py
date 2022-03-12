@@ -249,11 +249,9 @@ class CDatabaseManager:
       attributes = self.__GetAttribs(matrix[0][i])
       if(i < numPrimaryTables):
         scheme = self.__CreateScheme(attributes)
-        print(scheme) # for testing purpose now since no sql intalled
         tableName = self.__CreateTableName(attributes)
       else:
         scheme = self.__CreateSchemeJunction(attributes)
-        print(scheme)
         tableName = self.__CreateTableNameJunction(attributes)
 
 
