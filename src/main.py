@@ -6,7 +6,7 @@
 
 # custom modules
 import CDatabaseManager
-import sql
+import funcs
 
 # Connection details
 # set as you wish
@@ -26,32 +26,8 @@ DatabaseManager.SelectDatabase(DB_NAME)
 NUM_JUNCTION_TABLES = 3
 DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES) 
 
+result = funcs.custom_search(DatabaseManager)
 
-info = sql.select_all(DatabaseManager, "title_table")
-info = sql.exists(DatabaseManager, "title_table", "title", "Minecraft")
-
-
-
-
-
-chosenPlatform = input("platform: ")
-if(sql.exists(DatabaseManager, "platform_table", "platform", chosenPlatform) == False):
-  print("shit doesnt exist bruh")
-
-
-chosenGenre = input("grenre: ")
-if(sql.exists(DatabaseManager, "genre_table", "genre", chosenGenre) == False):
-  print("shit doesnt exist bruh")
-
-
-minPrice = input("minprice: ")
-maxPrice = input("maxprice: ")
-
-
-result = sql.custom_search(DatabaseManager, chosenPlatform, chosenGenre, minPrice, maxPrice)
-
-for res in result:
-  print(res[0])
 
 
 

@@ -21,7 +21,7 @@ def exists(dbm: CDatabaseManager, tableName: str, collumn: str, row: str):
           row + "')")
   dbm.Execute(sql)
   flag = dbm.Fetchall()
-  return flag[0]  # retarded tuple
+  return flag[0][0]  # retarded tuple
 
 
 def custom_search(dbm: CDatabaseManager, platform: str, genre: str, 
