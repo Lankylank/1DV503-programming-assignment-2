@@ -26,9 +26,12 @@ NUM_JUNCTION_TABLES = 3
 DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES) 
 
 
+import test1
 
+info = test1.getGameInfo(DatabaseManager, "Minecraft")
 
-
+for element in info:
+  print(element)
 
 
 

@@ -4,17 +4,17 @@ import csv
 
 # Connection details
 # set as you wish
-username  = "root"
-password  = "root"
-host      = "127.0.0.1"
-DB_NAME   = "game_database"
+#username  = "root"
+#password  = "root"
+#host      = "127.0.0.1"
+#DB_NAME   = "game_database"
 
 # Create database object with the  connection details as parameters
-DatabaseManager = CDatabaseManager.CDatabaseManager(username, password, host)
-DatabaseManager.Connect() # Connect to to database and a crusor with this function
-DatabaseManager.SelectDatabase(DB_NAME)
+#DatabaseManager = CDatabaseManager.CDatabaseManager(username, password, host)
+#DatabaseManager.Connect() # Connect to to database and a crusor with this function
+#DatabaseManager.SelectDatabase(DB_NAME)
 
-GAME_NAME = 'minecraft'
+#GAME_NAME = 'minecraft'
 
 
 # GROUP_CONCAT is a group function so if we dont use a group clause
@@ -32,12 +32,12 @@ def create_priceStatistics_view():
         "GROUP BY title") ### if we dont have this, it only gets 1 row
   DatabaseManager.Execute(sql)
 
-def getGameInfo(title: str):
+def getGameInfo(dbm: CDatabaseManager, title: str):
   sql = ("SELECT * "
         "FROM title_table "
         "WHERE title = '" + title + "'")
-  DatabaseManager.Execute(sql)
-  result = DatabaseManager.cursor.fetchall()
+  dbm.Execute(sql)
+  result = dbm.cursor.fetchall()
   return result
 
 def getGameGenres(title: str):
