@@ -22,7 +22,8 @@ DatabaseManager.SelectDatabase(DB_NAME)
 
 # this loads the data and parses it,
 #  creates table based on this data and inserts data
-####DatabaseManager.ImportData("game_data.csv", "game") 
+NUM_JUNCTION_TABLES = 3
+DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES) 
 
 
 

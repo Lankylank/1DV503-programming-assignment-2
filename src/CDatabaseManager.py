@@ -132,7 +132,7 @@ class CDatabaseManager:
       Debugger.errormsg(error.msg)
       Debugger.attach()
 
-  
+  # Deprecated
   def ParseData(self, tableName: str):
     data = self.fstream.Data()  ## here we retrive the data from the file loaded in with the function ImportData()
     matrix = list()
@@ -153,16 +153,145 @@ class CDatabaseManager:
           values = str() # this is where we store all the values for the columns
           for y in range(0, len(matrix[x])): # matrix contains the data
             values += '"' # We want to wrap our value in quotes "value"
-            values += matrix[x][y].lower()
+            values += str(matrix[x][y]).lower()
             values += '", '
           values = values.removesuffix(", ")  
           self.__TableInsert(tableName, schema, values) # before going to the next row, we have to insert the row we created(values)
 
 
+  def __GetAttribs(self, attributeData: str):
+    attributes = list(str())
+    attrib = str()
+    for char in attributeData:
+      if(char == '~'):
+        attributes.append(attrib)
+        attrib = str() # Reset
+      else:
+        attrib += char
+    attributes.append(attrib)
+    return attributes
+
+
+  def __CreateScheme(self, attributes: list):
+    scheme = str()
+    for i in range(0, len(attributes)):
+      # Check the first character of each string in the list
+      if(attributes[i][0] == '*'):
+        attributes[i] = str(attributes[i]).removeprefix("*")
+        scheme += str(attributes[i]).removeprefix("*") + " VARCHAR(64) PRIMARY KEY,"
+      else:
+        scheme += attributes[i] + " VARCHAR(64),"
+
+    return scheme.removesuffix(",")
+
+  def __ForeginKeyCascade(self, key: str):
+    return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + ") ON DELETE CASCADE ON UPDATE CASCADE, "
+
+  def __ForeginKey(self, key: str):
+    return "FOREIGN KEY(" + key + ") REFERENCES " + key + "_table(" + key + "), "
+
+  def __PrimaryKey(self, keys: str):
+    return "PRIMARY KEY(" + keys.removesuffix(",") + "),"
+
+  def __CreateSchemeJunction(self, attributes: list):
+    scheme = str()
+    pkeys = str()
+    fkeys = str()
+    for i in range(0, len(attributes)):
+      # Check the first character of each string in the list
+      if(attributes[i][0] == '&'):  # FK Cascade symbol
+        attributes[i] = str(attributes[i]).removeprefix("&") # Attribute is already a string but intellisense is retarded
+        scheme += attributes[i] + " VARCHAR(64),"
+        fkeys += self.__ForeginKeyCascade(attributes[i])  
+        pkeys += attributes[i] + ","
+      elif(attributes[i][0] == '#'):# FK NON Cascade symbol
+        attributes[i] = str(attributes[i]).removeprefix("#")
+        scheme += attributes[i] + " VARCHAR(64),"
+        fkeys += self.__ForeginKey(attributes[i])
+        pkeys += attributes[i] + ","
+      else:
+        scheme += attributes[i] + " VARCHAR(64),"
+
+    scheme += self.__PrimaryKey(pkeys) + fkeys.removesuffix(", ")
+    return scheme
+
+
+  def __CreateSchemeInsert(self, attributes: list):
+    insertScheme = str()
+    for attribute in attributes:
+      insertScheme += attribute + ","
+    return insertScheme.removesuffix(",")
+
+
+  def __CreateTableName(self, attributes: list):
+    assert len(attributes) > 0
+
+    return attributes[0] + "_table"
+
+  def __CreateTableNameJunction(self, attributes: list):
+    assert len(attributes) > 1
+
+    return attributes[0] + "_" + attributes[1] + "_table"
+   
+
+  def ProccessData(self, numJunctions: int):
+    fileData = self.fstream.Data()
+    matrix = list()
+    for row in fileData:
+      matrix.append(row)
+
+    numTables = len(matrix[0])  # matrix[0] should be an argument
+    #numJunctions = 3
+    numPrimaryTables = numTables - numJunctions
+
+    # For each table in matrix[0]
+    for i in range(0, numTables):
+      attributes = self.__GetAttribs(matrix[0][i])
+      if(i < numPrimaryTables):
+        scheme = self.__CreateScheme(attributes)
+        print(scheme) # for testing purpose now since no sql intalled
+        tableName = self.__CreateTableName(attributes)
+      else:
+        scheme = self.__CreateSchemeJunction(attributes)
+        print(scheme)
+        tableName = self.__CreateTableNameJunction(attributes)
+
+
+      # Only insert data if we created the table.
+      if(self.__TableCreate(tableName, scheme)):
+        insertScheme = self.__CreateSchemeInsert(attributes)
+
+        for j in range(1, len(matrix)):
+          values = str()
+          attribValues = self.__GetAttribs(matrix[j][i])
+          # hack
+          if(len(attribValues[0]) < 1):
+            break
+
+          
+          if(len(attribValues) == 1):
+            values = "'" + attribValues[0] + "'"
+            #print("INSERT INTO " + tableName + insertScheme + values)
+            self.__TableInsert(tableName, insertScheme, values)
+          else:
+            NUM_ATTRIBUTES = len(attributes) - 1
+            numAdded = 0
+            for k in range(1, len(attribValues)):
+              values += ",'" + attribValues[k] + "'"
+              numAdded += 1
+              if(numAdded == NUM_ATTRIBUTES):
+                numAdded = 0
+                #print("INSERT INTO " + tableName + insertScheme + values)
+                values = "'" + attribValues[0] + "'" + values
+                self.__TableInsert(tableName, insertScheme, values)
+                values = str()
+
+
   # Simple wraps load and parse data functions under one function call
-  def ImportData(self, filename: str, tableName: str): ## We need to pass file name when using this function. this filename is what the other function class uses aswell
+  def ImportData(self, filename: str, numJunctions: int): ## We need to the name of the file and the amount of junction tables in it
     self.LoadData(filename)
-    self.ParseData(tableName)
+    #self.ParseData(tableName)
+    self.ProccessData(numJunctions)
 
 
   # Simple wrapper around the execute function
