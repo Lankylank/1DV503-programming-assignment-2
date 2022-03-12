@@ -269,7 +269,6 @@ class CDatabaseManager:
           
           if(len(attribValues) == 1):
             values = "'" + attribValues[0] + "'"
-            #print("INSERT INTO " + tableName + insertScheme + values)
             self.__TableInsert(tableName, insertScheme, values)
           else:
             NUM_ATTRIBUTES = len(attributes) - 1
@@ -279,7 +278,6 @@ class CDatabaseManager:
               numAdded += 1
               if(numAdded == NUM_ATTRIBUTES):
                 numAdded = 0
-                #print("INSERT INTO " + tableName + insertScheme + values)
                 values = "'" + attribValues[0] + "'" + values
                 self.__TableInsert(tableName, insertScheme, values)
                 values = str()

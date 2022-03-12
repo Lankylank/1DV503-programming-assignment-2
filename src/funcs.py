@@ -3,7 +3,7 @@ import Debugger
 import sql
 
 
-def user_input(message: str):
+def UserInput(message: str):
   while(True):
     try:
       data = input(message)
@@ -12,7 +12,7 @@ def user_input(message: str):
       Debugger.warningmsg("Invalid input")
 
 
-def user_input_int(message: str):
+def UserInputInt(message: str):
   while(True):
     try:
       data = int(input(message))
@@ -21,22 +21,22 @@ def user_input_int(message: str):
       Debugger.warningmsg("Invalid input")
 
 
-def custom_search(dbm: CDatabaseManager):
+def CustomSearch(dbm: CDatabaseManager):
   while(True):
-    chosenPlatform = user_input("platform: ")
-    if(sql.exists(dbm, "platform_table", "platform", chosenPlatform) == False):
+    chosenPlatform = UserInput("platform: ")
+    if(sql.Exists(dbm, "platform_table", "platform", chosenPlatform) == False):
       print("shit doesnt exist bruh")
     else:
       break
 
   while(True):
-    chosenGenre = user_input("grenre: ")
-    if(sql.exists(dbm, "genre_table", "genre", chosenGenre) == False):
+    chosenGenre = UserInput("grenre: ")
+    if(sql.Exists(dbm, "genre_table", "genre", chosenGenre) == False):
       print("shit doesnt exist bruh")
     else:
       break
 
-  minPrice = user_input_int("minprice: ")
-  maxPrice = user_input_int("maxprice: ")
+  minPrice = UserInputInt("minprice: ")
+  maxPrice = UserInputInt("maxprice: ")
 
-  return sql.custom_search(dbm, chosenPlatform, chosenGenre, minPrice, maxPrice)
+  return sql.CustomSearch(dbm, chosenPlatform, chosenGenre, minPrice, maxPrice)
