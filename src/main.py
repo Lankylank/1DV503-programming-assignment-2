@@ -6,6 +6,7 @@
 
 # custom modules
 import CDatabaseManager
+import ui
 import funcs
 
 # Connection details
@@ -26,7 +27,36 @@ DatabaseManager.SelectDatabase(DB_NAME)
 NUM_JUNCTION_TABLES = 3
 DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES) 
 
-result = funcs.custom_search(DatabaseManager)
+
+
+
+
+
+
+while(True):
+  ui.MainMenu()
+  selection = input()
+
+  if(selection.lower() == "q"):
+    print("quit")
+    break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
