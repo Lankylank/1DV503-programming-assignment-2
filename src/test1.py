@@ -2,6 +2,7 @@ from distutils.util import get_platform
 import CDatabaseManager
 import csv
 
+
 # Connection details
 # set as you wish
 #username  = "root"
@@ -37,7 +38,8 @@ def getGameInfo(dbm: CDatabaseManager, title: str):
         "FROM title_table "
         "WHERE title = '" + title + "'")
   dbm.Execute(sql)
-  result = dbm.cursor.fetchall()
+  result = dbm.Fetchall()
+
   return result
 
 def getGameGenres(title: str):

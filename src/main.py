@@ -28,7 +28,7 @@ DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES)
 
 import test1
 
-info = test1.getGameInfo(DatabaseManager, "Minecraft")
+info = test1.getGameInfo(DatabaseManager, "asdf")
 
 for element in info:
   print(element)
