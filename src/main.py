@@ -29,13 +29,44 @@ DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES)
 
 info = sql.select_all(DatabaseManager, "title_table")
 
-for element in info:
-  print(element)
-
 info = sql.exists(DatabaseManager, "title_table", "title", "Minecraft")
 
-for element in info:
-  print(element)
+
+chosenPlatform = input("platform: ")
+if(sql.exists(DatabaseManager, "platform_table", "platform", chosenPlatform)):
+  platforms = sql.select_all_of(DatabaseManager, "platform_table", "platform", chosenPlatform)
+  for plat in platforms:
+    print(plat)
+else:
+  print("shit doesnt exist bruh")
+
+
+
+
+
+""" 
+def askForCustomSearch():
+  print("choose a platform: ") # check for validity, not, empty, etc
+  # Provide a list of platforms that a user can choose from
+  print(get_platform())
+  if checkIfPlatformExists(platform) == False:
+    return "Platform doesn't exist!"
+  else:
+    print("choose a genre: ") # check for validity, not, empty, etc
+    # provide a list of genres that a user can chose from
+    print(getExistingGenres())
+    if checkIfGenreExists(genre) == False:
+      return "Genre doesn't exist!"
+    else: # this lowest/highest price could be more sofisticated
+      print("Choose the lowest price: ") # check for validity, not, empty, etc
+      print("Choose the highest price: ") # check for validity, not, empty, etc """
+
+
+
+
+
+
+
 
 
 ########   DATAFLOW   ########
