@@ -28,8 +28,10 @@ DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES)
 
 
 info = sql.select_all(DatabaseManager, "title_table")
-
 info = sql.exists(DatabaseManager, "title_table", "title", "Minecraft")
+
+
+
 
 
 chosenPlatform = input("platform: ")
@@ -43,12 +45,13 @@ if(sql.exists(DatabaseManager, "genre_table", "genre", chosenGenre) == False):
 
 
 minPrice = input("minprice: ")
-maxPrice = input("minprice: ")
+maxPrice = input("maxprice: ")
 
 
-print(chosenPlatform, chosenGenre, minPrice, maxPrice)
+result = sql.custom_search(DatabaseManager, chosenPlatform, chosenGenre, minPrice, maxPrice)
 
-
+for res in result:
+  print(res[0])
 
 
 
