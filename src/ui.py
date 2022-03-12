@@ -26,7 +26,7 @@ def PrintData(string: str):
 
 def MainMenu():
   PrintHeadline("Main Menu")
-  print(TextColor.TEAL + "1. Print all games")
+  print(TextColor.TEAL + "1. Print all available games")
   print("Q. Quit" + TextColor.CLEAR)
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
 

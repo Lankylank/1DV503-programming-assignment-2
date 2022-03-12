@@ -1,19 +1,19 @@
 import CDatabaseManager
 
-def SelectAll(dbm: CDatabaseManager, tableName: str):
+def SelectAll(dbm: CDatabaseManager, tableName: str) -> list:
   sql = ("SELECT * "
          "FROM ") + tableName
   dbm.Execute(sql)
   return dbm.Fetchall()
 
 
-def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, row: str):
+def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, row: str) -> list:
   sql = ("SELECT * FROM ") + tableName + " WHERE " + collumn + "= '" + row + "'"
   dbm.Execute(sql)
   return dbm.Fetchall()
 
 
-def Exists(dbm: CDatabaseManager, tableName: str, collumn: str, row: str):
+def Exists(dbm: CDatabaseManager, tableName: str, collumn: str, row: str) -> bool:
   sql = ("SELECT EXISTS (SELECT " + 
           collumn + " FROM " + 
           tableName + " WHERE " + 
@@ -25,7 +25,7 @@ def Exists(dbm: CDatabaseManager, tableName: str, collumn: str, row: str):
 
 
 def CustomSearch(dbm: CDatabaseManager, platform: str, genre: str, 
-                      lowestPrice: str, highestPrice: str):
+                      lowestPrice: str, highestPrice: str) -> list:
                       # FORMAT, return only a title
   sql = ("SELECT DISTINCT title_table.title "
         "FROM title_table "

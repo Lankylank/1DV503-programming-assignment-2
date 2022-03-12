@@ -40,3 +40,9 @@ def CustomSearch(dbm: CDatabaseManager):
   maxPrice = UserInputInt("maxprice: ")
 
   return sql.CustomSearch(dbm, chosenPlatform, chosenGenre, minPrice, maxPrice)
+
+
+def PrintAllGames(dbm: CDatabaseManager):
+  games = sql.SelectAll(dbm, "title_table")
+  for game in games:
+    print(game[0])  # not ideal
