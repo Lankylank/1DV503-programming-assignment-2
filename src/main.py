@@ -6,6 +6,7 @@
 
 # custom modules
 import CDatabaseManager
+import sql
 
 # Connection details
 # set as you wish
@@ -26,14 +27,15 @@ NUM_JUNCTION_TABLES = 3
 DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES) 
 
 
-import test1
-
-info = test1.getGameInfo(DatabaseManager, "asdf")
+info = sql.select_all(DatabaseManager, "title_table")
 
 for element in info:
   print(element)
 
+info = sql.exists(DatabaseManager, "title_table", "title", "Minecraft")
 
+for element in info:
+  print(element)
 
 
 ########   DATAFLOW   ########
