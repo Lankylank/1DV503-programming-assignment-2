@@ -42,7 +42,39 @@ def CustomSearch(dbm: CDatabaseManager):
   return sql.CustomSearch(dbm, chosenPlatform, chosenGenre, minPrice, maxPrice)
 
 
-def PrintAllGames(dbm: CDatabaseManager):
+def GamePrintAll(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "title_table")
+  
+  # Need some formatting
   for game in games:
     print(game[0])  # not ideal
+
+
+def GamePrintGenre(dbm: CDatabaseManager):
+  gameName = UserInput("Enter the name of the game: ")
+
+  result = sql.Select(dbm, "title_genre_table", "genre", "title", gameName)
+
+  # Need some formatting
+  for genre in result:
+    print(genre)
+
+
+def GamePrintPlatform(dbm: CDatabaseManager):
+  gameName = UserInput("Enter the name of the game: ")
+
+  result = sql.Select(dbm, "title_platform_table", "platform", "title", gameName)
+
+  # Need some formatting
+  for platform in result:
+    print(platform)
+
+
+def GamePrintPrices(dbm: CDatabaseManager):
+  gameName = UserInput("Enter the name of the game: ")
+
+  result = sql.SelectMany(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
+
+  # Need some formatting
+  for platform in result:
+    print(platform)

@@ -1,5 +1,24 @@
 import CDatabaseManager
 
+
+def Select(dbm: CDatabaseManager, tableName: str, thisCollumn: str, whereCollumn: str, this: str) -> list:
+  sql = "SELECT " + thisCollumn + " FROM " + tableName + " WHERE " + whereCollumn + "= '" + this + "'"
+  dbm.Execute(sql)
+  return dbm.Fetchall()
+
+
+def SelectMany(dbm: CDatabaseManager, tableName: str, theseCollumn: list, whereCollumn: str, this: str) -> list:
+  thisCollumn = str()
+  for collumn in theseCollumn:
+    thisCollumn += collumn + ","
+  thisCollumn = thisCollumn.removesuffix(",")
+  
+
+  sql = "SELECT " + thisCollumn + " FROM " + tableName + " WHERE " + whereCollumn + "= '" + this + "'"
+  dbm.Execute(sql)
+  return dbm.Fetchall()
+
+
 def SelectAll(dbm: CDatabaseManager, tableName: str) -> list:
   sql = ("SELECT * "
          "FROM ") + tableName
@@ -7,6 +26,7 @@ def SelectAll(dbm: CDatabaseManager, tableName: str) -> list:
   return dbm.Fetchall()
 
 
+# Variable names might be wrong
 def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, row: str) -> list:
   sql = ("SELECT * FROM ") + tableName + " WHERE " + collumn + "= '" + row + "'"
   dbm.Execute(sql)

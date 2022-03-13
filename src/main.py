@@ -30,13 +30,22 @@ DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES)
 
 
 
-menu = {"1" : funcs.PrintAllGames}
+menu = dict()
+menu["1"] = funcs.GamePrintAll
+menu["2"] = funcs.GamePrintGenre
+menu["3"] = funcs.GamePrintPlatform
+menu["4"] = funcs.GamePrintPrices
+
 
 while(True):
   ui.MainMenu()
   selection = input()
-  menu[selection](DatabaseManager)
-
+  
   if(selection.lower() == "q"):
-    print("quit")
     break
+
+  if selection in menu:
+    menu[selection](DatabaseManager)
+    pause = input()
+
+  
