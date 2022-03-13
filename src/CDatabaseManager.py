@@ -107,6 +107,19 @@ class CDatabaseManager:
     self.fstream.Read(filename) # fstream is the object we created at the beginning which contains the data
 
 
+  # Very primitive version just to allow for custom views to be created by application
+  def ViewCreate(self, viewData: str):
+    try:
+      self.cursor.execute("CREATE VIEW " + viewData ) # TableName comes from ImportData()
+
+    except mysql.connector.Error as error:
+      if (error.errno == mysql.connector.errorcode.ER_TABLE_EXISTS_ERROR):
+        Debugger.warningmsg(error.msg + ", canceling view creation..")
+      else:
+        Debugger.errormsg(error.msg)
+        Debugger.attach()
+
+
   def __TableCreate(self, tableName: str, schema: str):
     schema = " (" + schema + ")"
     try:

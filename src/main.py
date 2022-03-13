@@ -30,14 +30,14 @@ DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES)
 
 # Since this is application specific and dbm doesnt support view tables atm i'll put it here
 viewTable = (
-              "CREATE VIEW price_statistics AS "
+              "price_statistics AS "
               "SELECT title, min(price) AS min, "
               "max(price) AS max, "
               "round(avg(price)) as avg "
               "FROM title_game_store_table "
               "GROUP BY title"
             )
-DatabaseManager.Execute(viewTable)
+DatabaseManager.ViewCreate(viewTable)
 
 
 # The menu is simply a hashmap of function pointers
@@ -56,11 +56,9 @@ menu["7"] = funcs.GenrePrintAll
 menu["8"] = funcs.PlatformPrintAll
 
 
-
+# application loop
 while(True):
-  ui.MainMenu()
-  selection = input()
-  
+  selection = ui.MainMenu()
   if(selection.lower() == "q"):
     break
 
