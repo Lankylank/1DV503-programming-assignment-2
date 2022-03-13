@@ -27,8 +27,8 @@ def SelectAll(dbm: CDatabaseManager, tableName: str) -> list:
 
 
 # Variable names might be wrong
-def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, row: str) -> list:
-  sql = ("SELECT * FROM ") + tableName + " WHERE " + collumn + "= '" + row + "'"
+def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, this: str) -> list:
+  sql = ("SELECT * FROM ") + tableName + " WHERE " + collumn + "= '" + this + "'"
   dbm.Execute(sql)
   return dbm.Fetchall()
 
