@@ -49,7 +49,7 @@ menu["2"] = funcs.GamePrintGenre
 menu["3"] = funcs.GamePrintPlatform
 menu["4"] = funcs.GamePrintPrice
 menu["5"] = funcs.GamePrintPriceBetween
-menu["6"] = funcs.GamePrintVerbose  # requires view table
+menu["6"] = funcs.GamePrintVerbose
 # Genre
 menu["7"] = funcs.GenrePrintAll
 # Platform
