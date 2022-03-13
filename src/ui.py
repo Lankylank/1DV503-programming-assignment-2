@@ -26,10 +26,12 @@ def PrintData(string: str):
 
 def MainMenu():
   PrintHeadline("Main Menu")
-  print(TextColor.TEAL + "1. Print all available games")
+  print(TextColor.TEAL + "0. Custom Search")
+  print("1. Print all available games")
   print("2. Print genres tied to chosen game")
   print("3. Print platforms tied to chosen game")
   print("4. Print prices for chosen game")
+  print("5. Print litteraly everything for chosen game")
   print("Q. Quit" + TextColor.CLEAR)
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
 
