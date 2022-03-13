@@ -128,9 +128,9 @@ class CDatabaseManager:
     except mysql.connector.Error as error:
       if (error.errno == mysql.connector.errorcode.ER_TABLE_EXISTS_ERROR):
         Debugger.warningmsg(error.msg + ", canceling table creation..")
-        return False
-      Debugger.errormsg(error.msg)
-      Debugger.attach()
+      else:
+        Debugger.errormsg(error.msg)
+        Debugger.attach()
       return False
 
 
