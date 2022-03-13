@@ -32,6 +32,8 @@ def MainMenu():
   print("3. Print platforms tied to chosen game")
   print("4. Print prices for chosen game")
   print("5. Print litteraly everything for chosen game")
+  print("6. Print all available genres")
+  print("7. Print all available platforms")
   print("Q. Quit" + TextColor.CLEAR)
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
 

@@ -32,12 +32,17 @@ DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES)
 
 menu = dict()
 menu["0"] = funcs.CustomSearch
+# Games
 menu["1"] = funcs.GamePrintAll
 menu["2"] = funcs.GamePrintGenre
 menu["3"] = funcs.GamePrintPlatform
-menu["4"] = funcs.GamePrintPrices
-# menu["5"] = funcs.GamePrintVerbose  # requires view table
-
+menu["4"] = funcs.GamePrintPrice
+menu["5"] = funcs.GamePrintPriceBetween
+# menu["6"] = funcs.GamePrintVerbose  # requires view table
+# Genre
+menu["7"] = funcs.GenrePrintAll
+# Platform
+menu["8"] = funcs.PlatformPrintAll
 
 
 

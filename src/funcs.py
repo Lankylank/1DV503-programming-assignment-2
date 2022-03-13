@@ -70,7 +70,7 @@ def GamePrintPlatform(dbm: CDatabaseManager):
     print(platform)
 
 
-def GamePrintPrices(dbm: CDatabaseManager):
+def GamePrintPrice(dbm: CDatabaseManager):
   gameName = UserInput("Enter the name of the game: ")
 
   result = sql.SelectMany(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
@@ -80,25 +80,36 @@ def GamePrintPrices(dbm: CDatabaseManager):
     print(platform)
 
 
-# This uses all junction tables so copy pasted from test1
+def GamePrintPriceBetween(dbm: CDatabaseManager):
+  minPrice = UserInputInt("Enter minimum price: ")
+  maxPrice = UserInputInt("Enter maximum price: ")
+
+  result = sql.SelectDistinctBetween(dbm, "title_game_store_table", "title", "price", str(minPrice), str(maxPrice))
+
+  for game in result:
+    print(game)
+
+
 def GamePrintVerbose(dbm: CDatabaseManager):
   gameName = UserInput("Enter the name of the game: ")
 
-  sql = ("SELECT title_table.*, "
-        "GROUP_CONCAT(DISTINCT(title_genre_table.genre) SEPARATOR ', '), "
-        "GROUP_CONCAT(DISTINCT(title_platform_table.platform) SEPARATOR ', '), "
-        "GROUP_CONCAT(DISTINCT(title_game_store_table.game_store) SEPARATOR ', '), "
-        "price_statistics.min, price_statistics.max, price_statistics.avg "
-        "FROM title_table "
-        "JOIN title_genre_table USING (title) "
-        "JOIN title_platform_table USING (title) "
-        "JOIN title_game_store_table USING (title) "
-        "JOIN price_statistics USING (title) "
-        "WHERE title_table.title = '" + gameName + "'"
-        "GROUP BY title_table.title")
-
-  dbm.Execute(sql)
-  result = dbm.Fetchall()
+  result = sql.GameVerbose(dbm, gameName)
 
   for res in result:
     print(res)
+
+
+def GenrePrintAll(dbm: CDatabaseManager):
+  games = sql.SelectAll(dbm, "genre_table")
+  
+  # Need some formatting
+  for game in games:
+    print(game[0])  # not ideal
+
+
+def PlatformPrintAll(dbm: CDatabaseManager):
+  games = sql.SelectAll(dbm, "platform_table")
+  
+  # Need some formatting
+  for game in games:
+    print(game[0])  # not ideal
