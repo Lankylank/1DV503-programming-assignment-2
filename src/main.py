@@ -28,8 +28,19 @@ NUM_JUNCTION_TABLES = 3
 DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES) 
 
 
+# Since this is application specific and dbm doesnt support view tables atm i'll put it here
+viewTable = (
+              "CREATE VIEW price_statistics AS "
+              "SELECT title, min(price) AS min, "
+              "max(price) AS max, "
+              "round(avg(price)) as avg "
+              "FROM title_game_store_table "
+              "GROUP BY title"
+            )
+DatabaseManager.Execute(viewTable)
 
 
+# The menu is simply a hashmap of function pointers
 menu = dict()
 menu["0"] = funcs.CustomSearch
 # Games
@@ -38,7 +49,7 @@ menu["2"] = funcs.GamePrintGenre
 menu["3"] = funcs.GamePrintPlatform
 menu["4"] = funcs.GamePrintPrice
 menu["5"] = funcs.GamePrintPriceBetween
-# menu["6"] = funcs.GamePrintVerbose  # requires view table
+menu["6"] = funcs.GamePrintVerbose  # requires view table
 # Genre
 menu["7"] = funcs.GenrePrintAll
 # Platform
