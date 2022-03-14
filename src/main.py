@@ -46,17 +46,18 @@ menu = dict()
 menu["0"] = funcs.CustomSearch
 # Games
 menu["1"] = funcs.GamePrintAll
-menu["2"] = funcs.GamePrintVerbose
-menu["3"] = funcs.GamePrintPrice
-menu["4"] = funcs.GamePrintPriceBetween
-menu["5"] = funcs.GamePrintPrice
-menu["6"] = funcs.GamePrintPriceBetween
-menu["7"] = funcs.GamePrintVerbose
+menu["2"] = print() # get basic info, title, year, publisher, avg price
+menu["3"] = funcs.GamePrintVerbose
+menu["4"] = funcs.GamePrintPrice
+menu["5"] = funcs.GamePrintPriceBetween
+menu["6"] = funcs.GamePrintPrice
+menu["7"] = print()
+menu["8"] = print()
 # Genre
-menu["8"] = funcs.GenrePrintAll
+menu["9"] = funcs.GenrePrintAll
 # Platform
-menu["9"] = funcs.PlatformPrintAll
 menu["10"] = funcs.PlatformPrintAll
+menu["11"] = funcs.PlatformPrintAll
 
 
 # application loop
