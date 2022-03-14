@@ -34,11 +34,11 @@ def MainMenu() -> str:
   print("4. Show price and available stores for a given game")
   print("5. Show all games between given price range")
   print() # Our most important querys above
-  print("6. Show all games from a specific year")  # show a list of possible choices, show title, stores with prices
-  print("7. Show all games from a specific publisher") # show a list of possible choices, show title, stores with prices
-  print("8. Show all games from a specific platform") # show a list of possible choices, show title, stores with prices
-  print("9. Show all games from a specific genre") # show a list of possible choices, show title, stores with prices
-  print("10. Show all games from a specific store") # show a list of possible choices, show title, stores with prices
+  print("6. Show all games from a specific year")  
+  print("7. Show all games from a specific publisher") 
+  print("8. Show all games from a specific platform") 
+  print("9. Show all games from a specific genre") 
+  print("10. Show all games from a specific store") 
   print("Q. Quit" + TextColor.CLEAR)
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
   return input()
@@ -64,7 +64,7 @@ def PrintOutput_BetweenPrices(data: list, min: str, max: str):
 
 def PrintOutput_SingleHeading(heading: str, data: list):
   os.system('cls')
-  print(heading + "\n" + "-" * len(heading) + "\n")
+  print(heading + "\n" + "-" * len(heading))
   for i in data:
     print(i[0])
   

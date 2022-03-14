@@ -19,9 +19,10 @@ def SelectMany(dbm: CDatabaseManager, tableName: str, selectCollumns: list, wher
   return dbm.Fetchall()
 
 
-def SelectAll(dbm: CDatabaseManager, tableName: str) -> list:
+def SelectAll(dbm: CDatabaseManager, tableName: str, column: str) -> list:
   sql = ("SELECT * "
-         "FROM ") + tableName
+         "FROM " + tableName +
+         " ORDER BY " + column + " ASC")
   dbm.Execute(sql)
   return dbm.Fetchall()
 
@@ -32,6 +33,10 @@ def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, this: str) 
   dbm.Execute(sql)
   return dbm.Fetchall()
 
+def SelectAllDistinctChoices(dbm: CDatabaseManager, selectColumn: str, tableName: str):
+  sql = ("SELECT DISTINCT " + selectColumn + " FROM " + tableName + " ORDER BY " + selectColumn + " ASC")
+  dbm.Execute(sql)
+  return dbm.Fetchall()
 
 def SelectDistinctBetween(dbm: CDatabaseManager, tableName: str, collumn: str, whereCollumn: str, min: str, max: str) -> list:
 

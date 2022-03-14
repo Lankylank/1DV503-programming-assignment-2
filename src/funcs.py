@@ -1,3 +1,4 @@
+from ctypes import cdll
 import CDatabaseManager
 import Debugger
 import sql
@@ -102,21 +103,82 @@ def GamePrintVerbose(dbm: CDatabaseManager):
              "Min price", "Max price", "Avg price" ]
   ui.PrintOutput_Verbose(heading, result)
 
-
 def GenrePrintAll(dbm: CDatabaseManager):
-  games = sql.SelectAll(dbm, "genre_table")
-  
-  # Need some formatting
-  for game in games:
-    print(game[0])  # not ideal
-
+  games = sql.SelectAll(dbm, "genre_table", "genre")
+  heading = "All possible genres to choose from"
+  ui.PrintOutput_SingleHeading(heading, games)
 
 def PlatformPrintAll(dbm: CDatabaseManager):
-  games = sql.SelectAll(dbm, "platform_table")
+  games = sql.SelectAll(dbm, "platform_table", "platform")
+  heading = "All possible platforms to choose from"
+  ui.PrintOutput_SingleHeading(heading, games)
+
+def StoresPrintAll(dbm: CDatabaseManager):
+  games = sql.SelectAll(dbm, "game_store_table", "game_store")
+  heading = "All possible stores to choose from"
+  ui.PrintOutput_SingleHeading(heading, games)
+
+def YearPrintAll(dbm: CDatabaseManager):
+  years = sql.SelectAllDistinctChoices(dbm, "year", "title_table")
+  heading = "All possible years to choose from"
+  ui.PrintOutput_SingleHeading(heading, years)
+
+def PublisherPrintAll(dbm: CDatabaseManager):
+  publishers = sql.SelectAllDistinctChoices(dbm, "publisher", "title_table")
+  heading = "All possible publishers to choose from"
+  ui.PrintOutput_SingleHeading(heading, publishers)
+
   
-  # Need some formatting
-  for game in games:
-    print(game[0])  # not ideal
+def GamesOnYear(dbm: CDatabaseManager):
+  #Provide a list of choices
+  YearPrintAll(dbm)
+
+  year = UserInputInt("\nChoose a year: ")
+
+  games = sql.Select(dbm, "title_table", "title", "year", str(year))
+  heading = "All games released year " + str(year)
+  ui.PrintOutput_SingleHeading(heading, games)
+
+def GamesOnPlatform(dbm: CDatabaseManager):
+  #Provide a list of choices
+  PlatformPrintAll(dbm)
+
+  platform = UserInput("\nChoose a platform: ")
+
+  games = sql.Select(dbm, "title_platform_table", "title", "platform", platform)
+  heading = "All games on " + platform
+  ui.PrintOutput_SingleHeading(heading, games)
+
+def GamesOnGenre(dbm: CDatabaseManager):
+  #Provide a list of choices
+  GenrePrintAll(dbm)
+
+  genre = UserInput("\nChoose a genre: ")
+
+  games = sql.Select(dbm, "title_genre_table", "title", "genre", genre)
+  heading = "All games on " + genre
+  ui.PrintOutput_SingleHeading(heading, games)
+
+def GamesOnStore(dbm: CDatabaseManager):
+  #Provide a list of choices
+  StoresPrintAll(dbm)
+
+  store = UserInput("\nChoose a store: ")
+
+  games = sql.Select(dbm, "title_game_store_table", "title", "game_store", store)
+  heading = "All games on " + store
+  ui.PrintOutput_SingleHeading(heading, games)
+  
+
+def GamesOnPublisher(dbm: CDatabaseManager):
+  #Provide a list of choices
+  PublisherPrintAll(dbm)
+
+  publisher = UserInput("\nChoose a publisher: ")
+
+  games = sql.Select(dbm, "title_table", "title", "publisher", publisher)
+  heading = "All games on " + publisher
+  ui.PrintOutput_SingleHeading(heading, games)
 
 def BasicGameInfo(dbm: CDatabaseManager):
   gameName = UserInput("Enter the name of the game: ")
