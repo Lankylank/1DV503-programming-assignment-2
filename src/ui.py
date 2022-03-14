@@ -69,13 +69,16 @@ def PrintOutput_SingleHeading(heading: str, data: list):
     print(i[0])
   
 
-def PrintOutput_DoubleHeading(heading: str, data:list):
+def PrintOutput_DoubleHeading(heading: str, data: list):
   os.system('cls')
   print(heading + "\n" + "-" * len(heading) + "\n")
 
   for i in data:
     print(i[0] + ": " + i[1])
 
+def PrintOutput_BasicGameInfo(heading: str, data: list):
+  os.system('cls')
+  print(heading + "\n" + "-" * len(heading) + "\n")
 
 
 

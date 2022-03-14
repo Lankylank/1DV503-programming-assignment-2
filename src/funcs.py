@@ -117,3 +117,10 @@ def PlatformPrintAll(dbm: CDatabaseManager):
   # Need some formatting
   for game in games:
     print(game[0])  # not ideal
+
+def BasicGameInfo(dbm: CDatabaseManager):
+  gameName = UserInput("Enter the name of the game: ")
+
+  result = sql.BasicGameInfo(dbm, gameName)
+  heading = ["title", "Year", "Publisher", "Avg price"]
+  ui.PrintOutput_Verbose(heading, result)

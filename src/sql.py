@@ -89,3 +89,13 @@ def GameVerbose(dbm: CDatabaseManager, game: str):
 
   dbm.Execute(sql)
   return dbm.Fetchall()
+
+def BasicGameInfo(dbm: CDatabaseManager, game: str):
+  sql = ("SELECT title_table.*, "
+       "price_statistics.avg "
+       "FROM title_table "
+       "JOIN price_statistics USING (title) "
+       "WHERE title_table.title = '" + game + "'")
+  
+  dbm.Execute(sql)
+  return dbm.Fetchall()

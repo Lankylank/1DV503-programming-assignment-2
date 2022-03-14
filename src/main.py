@@ -46,7 +46,7 @@ menu = dict()
 menu["0"] = funcs.CustomSearch  # OK!
 # Games
 menu["1"] = funcs.GamePrintAll # OK!
-menu["2"] = print() # get basic info, title, year, publisher, avg price
+menu["2"] = funcs.BasicGameInfo # OK!
 menu["3"] = funcs.GamePrintVerbose # OK!
 menu["4"] = funcs.GamePrintPrice # OK!
 menu["5"] = funcs.GamePrintPriceBetween #OK!
@@ -59,19 +59,6 @@ menu["9"] = funcs.GenrePrintAll
 menu["10"] = funcs.PlatformPrintAll
 menu["11"] = funcs.PlatformPrintAll
 
-'''
-# format of basic info query
-sql = ("SELECT title_table.*, "
-       "price_statistics.avg "
-       "FROM title_table "
-       "JOIN price_statistics USING (title) "
-       "WHERE title_table.title = 'minecraft'")
-
-DatabaseManager.Execute(sql)
-result = DatabaseManager.cursor.fetchall()
-for i in result:
-  print(i)
-'''
 
 
 
