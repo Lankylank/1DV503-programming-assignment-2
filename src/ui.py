@@ -1,6 +1,7 @@
 # class keyword simply used as a namespace
 import os
 import funcs
+import CDatabaseManager
 
 class TextColor:
     PURPLE = '\033[95m'
@@ -80,7 +81,18 @@ def PrintOutputDoubleHeading(heading: str, data: list):
   for i in data:
     print(i[0] + ": " + i[1])
 
-  
+def MultiChoice(dbm: CDatabaseManager):
+  while(True):
+    print("------------\nY. for game info\nN. return to menu")
+    userChoice = funcs.UserInput("Choice: ")
+    # Terminal binary option should have default answer
+    if userChoice.lower() == "y":
+      funcs.GamePrintVerbose(dbm)
+      break
+    if(userChoice.lower() == "n"):
+      break
+    else:
+      os.system('cls')
   
 
     

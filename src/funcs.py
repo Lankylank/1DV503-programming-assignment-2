@@ -114,57 +114,49 @@ def PrintAllChoices(dbm: CDatabaseManager, column: str, tableName: str):
 ##########################################################################################
 
 def GamesOnYear(dbm: CDatabaseManager):
-  # If you ask for input to be in a given range you have to validate
-  # Answer: all i ask is for them to choose a year that is an int. i dont care if it
-  # is a year that is provided in the terminal, those are just for example search to the user
-  #YearPrintAll(dbm)
   PrintAllChoices(dbm, "year", "title_table")
   year = UserInputInt("\nChoose a year: ")
   games = sql.Select(dbm, "title_table", "title", "year", str(year))
   heading = "All games released year " + str(year)
   ui.PrintOutputSingleHeading(heading, games)
-  MultiChoice(dbm)
+  ui.MultiChoice(dbm)
 
 def GamesOnPlatform(dbm: CDatabaseManager):
-  #PlatformPrintAll(dbm)
   PrintAllChoices(dbm, "platform", "platform_table")
   platform = UserInput("\nChoose a platform: ")
 
   games = sql.Select(dbm, "title_platform_table", "title", "platform", platform)
   heading = "All games on " + platform
   ui.PrintOutputSingleHeading(heading, games)
-  MultiChoice(dbm)
+  ui.MultiChoice(dbm)
 
 def GamesOnGenre(dbm: CDatabaseManager):
-  #GenrePrintAll(dbm)
   PrintAllChoices(dbm, "genre", "genre_table")
   genre = UserInput("\nChoose a genre: ")
 
   games = sql.Select(dbm, "title_genre_table", "title", "genre", genre)
   heading = "All games on " + genre
   ui.PrintOutputSingleHeading(heading, games)
-  MultiChoice(dbm)
+  ui.MultiChoice(dbm)
 
 def GamesOnStore(dbm: CDatabaseManager):
-  #StoresPrintAll(dbm)
   PrintAllChoices(dbm, "game_store", "game_store_table")
   store = UserInput("\nChoose a store: ")
 
   games = sql.Select(dbm, "title_game_store_table", "title", "game_store", store)
   heading = "All games on " + store
   ui.PrintOutputSingleHeading(heading, games)
-  MultiChoice(dbm)
+  ui.MultiChoice(dbm)
 
 
 def GamesOnPublisher(dbm: CDatabaseManager):
-  #PublisherPrintAll(dbm)
   PrintAllChoices(dbm, "publisher", "title_table")
   publisher = UserInput("\nChoose a publisher: ")
 
   games = sql.Select(dbm, "title_table", "title", "publisher", publisher)
   heading = "All games on " + publisher
   ui.PrintOutputSingleHeading(heading, games)
-  MultiChoice(dbm)
+  ui.MultiChoice(dbm)
 
 def BasicGameInfo(dbm: CDatabaseManager):
   gameName = UserInput("Enter the name of the game: ")
@@ -172,17 +164,3 @@ def BasicGameInfo(dbm: CDatabaseManager):
   result = sql.BasicGameInfo(dbm, gameName)
   heading = ["title", "Year", "Publisher", "Avg price"]
   ui.PrintOutputVerbose(heading, result)
-
-
-def MultiChoice(dbm: CDatabaseManager):
-  while(True):
-    print("------------\nY. for game info\nN. return to menu")
-    userChoice = UserInput("Choice: ")
-    # Terminal binary option should have default answer
-    if userChoice.lower() == "y":
-      GamePrintVerbose(dbm)
-      break
-    if(userChoice.lower() == "n"):
-      break
-    else:
-      os.system('cls')
