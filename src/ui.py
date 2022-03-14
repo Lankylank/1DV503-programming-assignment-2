@@ -33,6 +33,7 @@ def MainMenu() -> str:
   print("3. Show all info about a game")
   print("4. Show price and available stores for a given game")
   print("5. Show all games between given price range")
+  # function calls are not new lines
   print() # Our most important querys above
   print("6. Show all games from a specific year")  
   print("7. Show all games from a specific publisher") 
@@ -44,8 +45,9 @@ def MainMenu() -> str:
   return input()
 
 
+# not camel case
 def PrintOutput_Verbose(heading: list, data: list):
-  os.system('cls')
+  os.system('cls')  # dont call system specific code if you can avoid it
   for i in range(0, len(heading)):
     tempString = str()
     tempString += heading[i] + ": "
@@ -53,8 +55,11 @@ def PrintOutput_Verbose(heading: list, data: list):
       tempString += str(j[i])
     print(tempString)
 
+
+# These print functions should be one
+# not camel case
 def PrintOutput_BetweenPrices(data: list, min: str, max: str):
-  os.system('cls')
+  os.system('cls')  # dont call system specific code if you can avoid it
   tempString = ("Games within " + min + " and " + max +
                 "\n----------------------------\n")
   for i in data:
@@ -62,22 +67,25 @@ def PrintOutput_BetweenPrices(data: list, min: str, max: str):
       tempString += j + "\n"
   print(tempString)
 
+# not camel case
 def PrintOutput_SingleHeading(heading: str, data: list):
-  os.system('cls')
+  os.system('cls')  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading))
   for i in data:
     print(i[0])
   
 
+# not camel case
 def PrintOutput_DoubleHeading(heading: str, data: list):
-  os.system('cls')
+  os.system('cls')  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading) + "\n")
 
   for i in data:
     print(i[0] + ": " + i[1])
 
+# not camel case
 def PrintOutput_BasicGameInfo(heading: str, data: list):
-  os.system('cls')
+  os.system('cls')  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading) + "\n")
 
 

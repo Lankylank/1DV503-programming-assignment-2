@@ -1,4 +1,3 @@
-from ctypes import cdll
 import CDatabaseManager
 import Debugger
 import sql
@@ -103,6 +102,10 @@ def GamePrintVerbose(dbm: CDatabaseManager):
              "Min price", "Max price", "Avg price" ]
   ui.PrintOutput_Verbose(heading, result)
 
+
+#####################################################################
+
+# All of these functions do the same thing but exist soley because you copy pasted before
 def GenrePrintAll(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "genre_table", "genre")
   heading = "All possible genres to choose from"
@@ -128,9 +131,13 @@ def PublisherPrintAll(dbm: CDatabaseManager):
   heading = "All possible publishers to choose from"
   ui.PrintOutput_SingleHeading(heading, publishers)
 
+
+##########################################################################################
+
   
 def GamesOnYear(dbm: CDatabaseManager):
   #Provide a list of choices
+  # If you ask for input to be in a given range you have to validate
   YearPrintAll(dbm)
 
   year = UserInputInt("\nChoose a year: ")
@@ -139,9 +146,11 @@ def GamesOnYear(dbm: CDatabaseManager):
   heading = "All games released year " + str(year)
   ui.PrintOutput_SingleHeading(heading, games)
 
+  # Copy pasted
   while(True):
     print("------------\nY. for game info\nN. return to menu")
     userChoice = UserInput("Choice: ")
+    # Terminal binary option should have default answer
     if userChoice.lower() == "y":
       GamePrintVerbose(dbm)
       break
@@ -158,9 +167,11 @@ def GamesOnPlatform(dbm: CDatabaseManager):
   heading = "All games on " + platform
   ui.PrintOutput_SingleHeading(heading, games)
 
+  # Copy pasted
   while(True):
     print("------------\nY. for game info\nN. return to menu")
     userChoice = UserInput("Choice: ")
+    # Terminal binary option should have default answer
     if userChoice.lower() == "y":
       GamePrintVerbose(dbm)
       break
@@ -177,9 +188,11 @@ def GamesOnGenre(dbm: CDatabaseManager):
   heading = "All games on " + genre
   ui.PrintOutput_SingleHeading(heading, games)
 
+  # Copy pasted
   while(True):
     print("------------\nY. for game info\nN. return to menu")
     userChoice = UserInput("Choice: ")
+    # Terminal binary option should have default answer
     if userChoice.lower() == "y":
       GamePrintVerbose(dbm)
       break
@@ -196,9 +209,11 @@ def GamesOnStore(dbm: CDatabaseManager):
   heading = "All games on " + store
   ui.PrintOutput_SingleHeading(heading, games)
 
+  # Copy pasted
   while(True):
     print("------------\nY. for game info\nN. return to menu")
     userChoice = UserInput("Choice: ")
+    # Terminal binary option should have default answer
     if userChoice.lower() == "y":
       GamePrintVerbose(dbm)
       break
@@ -219,6 +234,7 @@ def GamesOnPublisher(dbm: CDatabaseManager):
   while(True):
     print("------------\nY. for game info\nN. return to menu")
     userChoice = UserInput("Choice: ")
+    # Terminal binary option should have default answer
     if userChoice.lower() == "y":
       GamePrintVerbose(dbm)
       break
