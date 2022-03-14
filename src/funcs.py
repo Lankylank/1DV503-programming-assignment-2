@@ -50,7 +50,9 @@ def CustomSearch(dbm: CDatabaseManager):
 
 def GamePrintAll(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "title_table")
-  ui.PrintOutput_AllGames(games)
+
+  heading = "A list of all available games"
+  ui.PrintOutput_SingleHeading(games)
 
 
 def GamePrintGenre(dbm: CDatabaseManager):

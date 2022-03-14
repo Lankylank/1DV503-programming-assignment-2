@@ -30,7 +30,7 @@ def MainMenu() -> str:
   print(TextColor.TEAL + "0. Custom Search")
   print("1. Print all available games")
   print("2. Show all info about a game")
-  print("3. Print platforms tied to chosen game")
+  print("3. Show games between given price range")
   print("4. Print prices for chosen game")
   print("5. Print litteraly everything for chosen game")
   print("6. Print all available genres")
@@ -50,6 +50,7 @@ def PrintOutput_Verbose(heading: list, data: list):
     print(tempString)
 
 def PrintOutput_BetweenPrices(data: list, min: str, max: str):
+  os.system('cls')
   tempString = ("Games within " + min + " and " + max +
                 "\n----------------------------\n")
   for i in data:
@@ -57,8 +58,9 @@ def PrintOutput_BetweenPrices(data: list, min: str, max: str):
       tempString += j + "\n"
   print(tempString)
 
-def PrintOutput_AllGames(data: list):
-  tempString = ("All list of all games" + "\n--------------------\n")
+def PrintOutput_SingleHeading(heading: str, data: list):
+  os.system('cls')
+  tempString = (heading + "\n" + "-" * len(heading))
   for i in data:
     for j in i:
       tempString += j + "\n"
