@@ -59,10 +59,6 @@ menu["9"] = funcs.GamesOnGenre
 menu["10"] = funcs.GamesOnStore
 
 
-
-
-#  GROUP_CONCAT(title_game_store_table.price SEPARATOR ', ')
-# application loop
 while(True):
   selection = ui.MainMenu()
   if(selection.lower() == "q"):

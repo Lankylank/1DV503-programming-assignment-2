@@ -139,6 +139,15 @@ def GamesOnYear(dbm: CDatabaseManager):
   heading = "All games released year " + str(year)
   ui.PrintOutput_SingleHeading(heading, games)
 
+  while(True):
+    print("------------\nY. for game info\nN. return to menu")
+    userChoice = UserInput("Choice: ")
+    if userChoice.lower() == "y":
+      GamePrintVerbose(dbm)
+      break
+    if(userChoice.lower() == "n"):
+      break
+
 def GamesOnPlatform(dbm: CDatabaseManager):
   #Provide a list of choices
   PlatformPrintAll(dbm)
@@ -148,6 +157,15 @@ def GamesOnPlatform(dbm: CDatabaseManager):
   games = sql.Select(dbm, "title_platform_table", "title", "platform", platform)
   heading = "All games on " + platform
   ui.PrintOutput_SingleHeading(heading, games)
+
+  while(True):
+    print("------------\nY. for game info\nN. return to menu")
+    userChoice = UserInput("Choice: ")
+    if userChoice.lower() == "y":
+      GamePrintVerbose(dbm)
+      break
+    if(userChoice.lower() == "n"):
+      break
 
 def GamesOnGenre(dbm: CDatabaseManager):
   #Provide a list of choices
@@ -159,6 +177,15 @@ def GamesOnGenre(dbm: CDatabaseManager):
   heading = "All games on " + genre
   ui.PrintOutput_SingleHeading(heading, games)
 
+  while(True):
+    print("------------\nY. for game info\nN. return to menu")
+    userChoice = UserInput("Choice: ")
+    if userChoice.lower() == "y":
+      GamePrintVerbose(dbm)
+      break
+    if(userChoice.lower() == "n"):
+      break
+
 def GamesOnStore(dbm: CDatabaseManager):
   #Provide a list of choices
   StoresPrintAll(dbm)
@@ -168,7 +195,16 @@ def GamesOnStore(dbm: CDatabaseManager):
   games = sql.Select(dbm, "title_game_store_table", "title", "game_store", store)
   heading = "All games on " + store
   ui.PrintOutput_SingleHeading(heading, games)
-  
+
+  while(True):
+    print("------------\nY. for game info\nN. return to menu")
+    userChoice = UserInput("Choice: ")
+    if userChoice.lower() == "y":
+      GamePrintVerbose(dbm)
+      break
+    if(userChoice.lower() == "n"):
+      break
+
 
 def GamesOnPublisher(dbm: CDatabaseManager):
   #Provide a list of choices
@@ -179,6 +215,15 @@ def GamesOnPublisher(dbm: CDatabaseManager):
   games = sql.Select(dbm, "title_table", "title", "publisher", publisher)
   heading = "All games on " + publisher
   ui.PrintOutput_SingleHeading(heading, games)
+
+  while(True):
+    print("------------\nY. for game info\nN. return to menu")
+    userChoice = UserInput("Choice: ")
+    if userChoice.lower() == "y":
+      GamePrintVerbose(dbm)
+      break
+    if(userChoice.lower() == "n"):
+      break
 
 def BasicGameInfo(dbm: CDatabaseManager):
   gameName = UserInput("Enter the name of the game: ")
