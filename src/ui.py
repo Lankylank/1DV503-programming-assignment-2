@@ -1,4 +1,5 @@
 # class keyword simply used as a namespace
+import os
 class TextColor:
     PURPLE = '\033[95m'
     TEAL = '\033[96m'
@@ -39,3 +40,16 @@ def MainMenu() -> str:
   return input()
 
 
+def PrintOutput(heading: list, data: list):
+  os.system('cls')
+  for i in range(0, len(heading)):
+    tempString = str()
+    tempString += heading[i] + ": "
+    for i in data:
+      for j in i:
+        tempString += j
+    print(tempString)
+  
+  
+
+    

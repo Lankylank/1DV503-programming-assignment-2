@@ -1,6 +1,7 @@
 import CDatabaseManager
 import Debugger
 import sql
+from ui import *
 
 
 def UserInput(message: str):
@@ -34,16 +35,17 @@ def CustomSearch(dbm: CDatabaseManager):
     if(sql.Exists(dbm, "genre_table", "genre", chosenGenre) == False):
       print("shit doesnt exist bruh")
     else:
+
       break
 
   minPrice = UserInputInt("minprice: ")
   maxPrice = UserInputInt("maxprice: ")
 
-  # flyttade casten in i funktionen så behöver vi inte tänka på castsen, ta bort denna kommentar när du gjort det
   result = sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
+  
+  headings = ["Title"]
+  PrintOutput(headings, result)
 
-  for res in result:
-    print(res)
 
 
 def GamePrintAll(dbm: CDatabaseManager):
