@@ -32,6 +32,7 @@ def MainMenu() -> str:
   print("2. Show all info about a game")
   print("3. Show games between given price range")
   print("4. Print prices for chosen game")
+  print()
   print("5. Print litteraly everything for chosen game")
   print("6. Print all available genres")
   print("7. Print all available platforms")
