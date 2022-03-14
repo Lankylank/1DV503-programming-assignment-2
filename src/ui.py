@@ -1,5 +1,7 @@
 # class keyword simply used as a namespace
 import os
+import funcs
+
 class TextColor:
     PURPLE = '\033[95m'
     TEAL = '\033[96m'
@@ -17,7 +19,7 @@ def Clear():
 
 
 def PrintHeadline(string: str):
-  Clear()
+  #Clear()
   print(TextColor.BOLD + TextColor.UNDERLINE + TextColor.PURPLE + string + TextColor.CLEAR)
 
 
@@ -46,7 +48,7 @@ def MainMenu() -> str:
 
 
 # not camel case
-def PrintOutput_Verbose(heading: list, data: list):
+def PrintOutputVerbose(heading: list, data: list):
   os.system('cls')  # dont call system specific code if you can avoid it
   for i in range(0, len(heading)):
     tempString = str()
@@ -56,9 +58,8 @@ def PrintOutput_Verbose(heading: list, data: list):
     print(tempString)
 
 
-# These print functions should be one
-# not camel case
-def PrintOutput_BetweenPrices(data: list, min: str, max: str):
+# These print functions should be one, well i dont know how to do that :)
+def PrintOutputBetweenPrices(data: list, min: str, max: str):
   os.system('cls')  # dont call system specific code if you can avoid it
   tempString = ("Games within " + min + " and " + max +
                 "\n----------------------------\n")
@@ -67,30 +68,17 @@ def PrintOutput_BetweenPrices(data: list, min: str, max: str):
       tempString += j + "\n"
   print(tempString)
 
-# not camel case
-def PrintOutput_SingleHeading(heading: str, data: list):
+def PrintOutputSingleHeading(heading: str, data: list):
   os.system('cls')  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading))
   for i in data:
     print(i[0])
   
-
-# not camel case
-def PrintOutput_DoubleHeading(heading: str, data: list):
+def PrintOutputDoubleHeading(heading: str, data: list):
   os.system('cls')  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading) + "\n")
-
   for i in data:
     print(i[0] + ": " + i[1])
-
-# not camel case
-def PrintOutput_BasicGameInfo(heading: str, data: list):
-  os.system('cls')  # dont call system specific code if you can avoid it
-  print(heading + "\n" + "-" * len(heading) + "\n")
-
-
-
-
 
   
   

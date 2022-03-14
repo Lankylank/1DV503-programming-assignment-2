@@ -33,7 +33,7 @@ def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, this: str) 
   dbm.Execute(sql)
   return dbm.Fetchall()
 
-def SelectAllDistinctChoices(dbm: CDatabaseManager, selectColumn: str, tableName: str):
+def SelectAllDistinct(dbm: CDatabaseManager, selectColumn: str, tableName: str):
   sql = ("SELECT DISTINCT " + selectColumn + " FROM " + tableName + " ORDER BY " + selectColumn + " ASC")
   dbm.Execute(sql)
   return dbm.Fetchall()

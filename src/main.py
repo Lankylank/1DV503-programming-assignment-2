@@ -65,19 +65,11 @@ while(True):
     break
 
   if selection in menu:
-    os.system('cls') # why isn't Clear() defined?
+    os.system('cls')
     menu[selection](DatabaseManager)
     pause = input()
+        
 
-# 0 custom search
-# 1 list all game in the database
-# 2 get all info of a game
-# 3 List all games within a give price range
-# 4 list all games from a specific year
-# 5 list all games from a specific publisher
-# 6 list all games from a specific platform
-# 7 list all games from a specific genre
-# 8 list all games from a specific store
 
 
 
