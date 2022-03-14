@@ -55,6 +55,7 @@ menu["6"] = funcs.GamePrintVerbose
 menu["7"] = funcs.GenrePrintAll
 # Platform
 menu["8"] = funcs.PlatformPrintAll
+menu["9"] = funcs.PlatformPrintAll
 
 
 # application loop
