@@ -5,7 +5,6 @@
 
 
 # custom modules
-from lib2to3.pytree import _Results
 import CDatabaseManager
 import ui
 import funcs

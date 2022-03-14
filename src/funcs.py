@@ -39,7 +39,7 @@ def CustomSearch(dbm: CDatabaseManager):
   minPrice = UserInputInt("minprice: ")
   maxPrice = UserInputInt("maxprice: ")
 
-  return sql.CustomSearch(dbm, chosenPlatform, chosenGenre, minPrice, maxPrice)
+  return sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
 
 
 def GamePrintAll(dbm: CDatabaseManager):
