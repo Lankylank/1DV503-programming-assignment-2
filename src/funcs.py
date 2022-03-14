@@ -43,16 +43,16 @@ def CustomSearch(dbm: CDatabaseManager):
 
   result = sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
   
-  headings = ["Title"]
-  ui.PrintOutput(headings, result)
+  headings = "Games that match your criteria"
+  ui.PrintOutput_SingleHeading(headings, result)
 
 
 
 def GamePrintAll(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "title_table")
 
-  heading = "A list of all available games"
-  ui.PrintOutput_SingleHeading(games)
+  heading = "Available games"
+  ui.PrintOutput_SingleHeading(heading, games)
 
 
 def GamePrintGenre(dbm: CDatabaseManager):
@@ -80,9 +80,8 @@ def GamePrintPrice(dbm: CDatabaseManager):
 
   result = sql.SelectMany(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
 
-  # Need some formatting
-  for platform in result:
-    print(platform)
+  heading = "Stores and the corrensponding price "
+  ui.PrintOutput_DoubleHeading(heading, result)
 
 
 def GamePrintPriceBetween(dbm: CDatabaseManager):

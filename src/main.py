@@ -47,15 +47,16 @@ menu["0"] = funcs.CustomSearch
 # Games
 menu["1"] = funcs.GamePrintAll
 menu["2"] = funcs.GamePrintVerbose
-menu["3"] = funcs.GamePrintPriceBetween
-menu["4"] = funcs.GamePrintPrice
-menu["5"] = funcs.GamePrintPriceBetween
-menu["6"] = funcs.GamePrintVerbose
+menu["3"] = funcs.GamePrintPrice
+menu["4"] = funcs.GamePrintPriceBetween
+menu["5"] = funcs.GamePrintPrice
+menu["6"] = funcs.GamePrintPriceBetween
+menu["7"] = funcs.GamePrintVerbose
 # Genre
-menu["7"] = funcs.GenrePrintAll
+menu["8"] = funcs.GenrePrintAll
 # Platform
-menu["8"] = funcs.PlatformPrintAll
 menu["9"] = funcs.PlatformPrintAll
+menu["10"] = funcs.PlatformPrintAll
 
 
 # application loop

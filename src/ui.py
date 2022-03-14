@@ -30,13 +30,14 @@ def MainMenu() -> str:
   print(TextColor.TEAL + "0. Custom Search")
   print("1. Show all available games")
   print("2. Show all info about a game")
-  print("3. Show all games between given price range")
+  print("3. Show price and available stores for a given game")
+  print("4. Show all games between given price range")
   print()
-  print("4. Show all games from a specific year")
-  print("5. Show all games from a specific publisher")
-  print("6. Show all games from a specific platform")
-  print("7. Show all games from a specific genre")
-  print("8. Show all games from a specific store")
+  print("5. Show all games from a specific year")
+  print("6. Show all games from a specific publisher")
+  print("7. Show all games from a specific platform")
+  print("8. Show all games from a specific genre")
+  print("9. Show all games from a specific store")
   print("Q. Quit" + TextColor.CLEAR)
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
   return input()
@@ -62,11 +63,17 @@ def PrintOutput_BetweenPrices(data: list, min: str, max: str):
 
 def PrintOutput_SingleHeading(heading: str, data: list):
   os.system('cls')
-  tempString = (heading + "\n" + "-" * len(heading))
+  print(heading + "\n" + "-" * len(heading))
   for i in data:
-    for j in i:
-      tempString += j + "\n"
-  print(tempString)
+    print(i[0])
+  
+
+def PrintOutput_DoubleHeading(heading: str, data:list):
+  os.system('cls')
+  print(heading + "\n" + "-" * len(heading) + "\n")
+
+  for i in data:
+    print(i[0] + ": " + i[1])
 
 
 
