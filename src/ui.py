@@ -33,12 +33,12 @@ def MainMenu() -> str:
   print("3. Show all info about a game")
   print("4. Show price and available stores for a given game")
   print("5. Show all games between given price range")
-  print()
-  print("6. Show all games from a specific year")
-  print("7. Show all games from a specific publisher")
-  print("8. Show all games from a specific platform")
-  print("9. Show all games from a specific genre")
-  print("10. Show all games from a specific store")
+  print() # Our most important querys above
+  print("6. Show all games from a specific year")  # show a list of possible choices, show title, stores with prices
+  print("7. Show all games from a specific publisher") # show a list of possible choices, show title, stores with prices
+  print("8. Show all games from a specific platform") # show a list of possible choices, show title, stores with prices
+  print("9. Show all games from a specific genre") # show a list of possible choices, show title, stores with prices
+  print("10. Show all games from a specific store") # show a list of possible choices, show title, stores with prices
   print("Q. Quit" + TextColor.CLEAR)
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
   return input()
