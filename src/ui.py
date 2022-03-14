@@ -29,7 +29,7 @@ def MainMenu() -> str:
   PrintHeadline("Main Menu")
   print(TextColor.TEAL + "0. Custom Search")
   print("1. Print all available games")
-  print("2. Print genres tied to chosen game")
+  print("2. Show all info about a game")
   print("3. Print platforms tied to chosen game")
   print("4. Print prices for chosen game")
   print("5. Print litteraly everything for chosen game")

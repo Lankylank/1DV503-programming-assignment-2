@@ -46,7 +46,7 @@ menu = dict()
 menu["0"] = funcs.CustomSearch
 # Games
 menu["1"] = funcs.GamePrintAll
-menu["2"] = funcs.GamePrintGenre
+menu["2"] = funcs.GamePrintVerbose
 menu["3"] = funcs.GamePrintPlatform
 menu["4"] = funcs.GamePrintPrice
 menu["5"] = funcs.GamePrintPriceBetween
