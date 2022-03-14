@@ -100,9 +100,10 @@ def GamePrintVerbose(dbm: CDatabaseManager):
   gameName = UserInput("Enter the name of the game: ")
 
   result = sql.GameVerbose(dbm, gameName)
-
-  for res in result:
-    print(res)
+  heading = ["Title", "Year", "Publisher", 
+             "Platforms", "Genres", "Stores", 
+             "Min price", "Max price", "Avg price" ]
+  PrintOutput(heading, result)
 
 
 def GenrePrintAll(dbm: CDatabaseManager):

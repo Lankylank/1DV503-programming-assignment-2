@@ -45,9 +45,8 @@ def PrintOutput(heading: list, data: list):
   for i in range(0, len(heading)):
     tempString = str()
     tempString += heading[i] + ": "
-    for i in data:
-      for j in i:
-        tempString += j
+    for j in data:
+      tempString += str(j[i])
     print(tempString)
   
   
