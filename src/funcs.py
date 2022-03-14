@@ -50,10 +50,7 @@ def CustomSearch(dbm: CDatabaseManager):
 
 def GamePrintAll(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "title_table")
-  
-  # Need some formatting
-  for game in games:
-    print(game[0])  # not ideal
+  ui.PrintOutput_AllGames(games)
 
 
 def GamePrintGenre(dbm: CDatabaseManager):
@@ -92,8 +89,7 @@ def GamePrintPriceBetween(dbm: CDatabaseManager):
 
   result = sql.SelectDistinctBetween(dbm, "title_game_store_table", "title", "price", str(minPrice), str(maxPrice))
 
-  heading = ["Title"]
-  ui.PrintOutput_BetweenPrices(heading, result, str(minPrice), str(maxPrice))
+  ui.PrintOutput_BetweenPrices(result, str(minPrice), str(maxPrice))
 
 
 def GamePrintVerbose(dbm: CDatabaseManager):

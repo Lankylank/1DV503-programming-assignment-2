@@ -49,9 +49,16 @@ def PrintOutput_Verbose(heading: list, data: list):
       tempString += str(j[i])
     print(tempString)
 
-def PrintOutput_BetweenPrices(heading: list, data: list, min: str, max: str):
+def PrintOutput_BetweenPrices(data: list, min: str, max: str):
   tempString = ("Games within " + min + " and " + max +
                 "\n----------------------------\n")
+  for i in data:
+    for j in i:
+      tempString += j + "\n"
+  print(tempString)
+
+def PrintOutput_AllGames(data: list):
+  tempString = ("All list of all games" + "\n--------------------\n")
   for i in data:
     for j in i:
       tempString += j + "\n"
