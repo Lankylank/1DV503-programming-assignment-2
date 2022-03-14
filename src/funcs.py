@@ -1,7 +1,7 @@
 import CDatabaseManager
 import Debugger
 import sql
-from ui import *
+import ui
 
 
 def UserInput(message: str):
@@ -44,7 +44,7 @@ def CustomSearch(dbm: CDatabaseManager):
   result = sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
   
   headings = ["Title"]
-  PrintOutput(headings, result)
+  ui.PrintOutput(headings, result)
 
 
 
@@ -103,7 +103,7 @@ def GamePrintVerbose(dbm: CDatabaseManager):
   heading = ["Title", "Year", "Publisher", 
              "Platforms", "Genres", "Stores", 
              "Min price", "Max price", "Avg price" ]
-  PrintOutput(heading, result)
+  ui.PrintOutput(heading, result)
 
 
 def GenrePrintAll(dbm: CDatabaseManager):
