@@ -43,14 +43,14 @@ DatabaseManager.ViewCreate(viewTable)
 
 # The menu is simply a hashmap of function pointers
 menu = dict()
-menu["0"] = funcs.CustomSearch
+menu["0"] = funcs.CustomSearch  # OK!
 # Games
-menu["1"] = funcs.GamePrintAll
+menu["1"] = funcs.GamePrintAll # OK!
 menu["2"] = print() # get basic info, title, year, publisher, avg price
-menu["3"] = funcs.GamePrintVerbose
-menu["4"] = funcs.GamePrintPrice
-menu["5"] = funcs.GamePrintPriceBetween
-menu["6"] = funcs.GamePrintPrice
+menu["3"] = funcs.GamePrintVerbose # OK!
+menu["4"] = funcs.GamePrintPrice # OK!
+menu["5"] = funcs.GamePrintPriceBetween #OK!
+menu["6"] = funcs.GamePrintPrice # OK!
 menu["7"] = print()
 menu["8"] = print()
 # Genre
