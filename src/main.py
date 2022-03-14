@@ -59,6 +59,21 @@ menu["9"] = funcs.GenrePrintAll
 menu["10"] = funcs.PlatformPrintAll
 menu["11"] = funcs.PlatformPrintAll
 
+'''
+# formating for out last queries
+sql = ("SELECT title_table.*, "
+       "title_game_store_table.game_store, "
+       "title_game_store_table.price "
+       "FROM title_table "
+       "JOIN title_genre_table USING (title)"
+       "JOIN title_game_store_table USING (title) "
+       "WHERE title_genre_table.genre = 'sandbox'")
+
+DatabaseManager.Execute(sql)
+result = DatabaseManager.cursor.fetchall()
+for i in result:
+  print(i)
+'''
 
 # application loop
 while(True):
