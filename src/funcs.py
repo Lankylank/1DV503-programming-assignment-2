@@ -92,8 +92,8 @@ def GamePrintPriceBetween(dbm: CDatabaseManager):
 
   result = sql.SelectDistinctBetween(dbm, "title_game_store_table", "title", "price", str(minPrice), str(maxPrice))
 
-  for game in result:
-    print(game)
+  heading = ["Title"]
+  ui.PrintOutput_BetweenPrices(heading, result, str(minPrice), str(maxPrice))
 
 
 def GamePrintVerbose(dbm: CDatabaseManager):
@@ -103,7 +103,7 @@ def GamePrintVerbose(dbm: CDatabaseManager):
   heading = ["Title", "Year", "Publisher", 
              "Platforms", "Genres", "Stores", 
              "Min price", "Max price", "Avg price" ]
-  ui.PrintOutput(heading, result)
+  ui.PrintOutput_Verbose(heading, result)
 
 
 def GenrePrintAll(dbm: CDatabaseManager):

@@ -40,7 +40,7 @@ def MainMenu() -> str:
   return input()
 
 
-def PrintOutput(heading: list, data: list):
+def PrintOutput_Verbose(heading: list, data: list):
   os.system('cls')
   for i in range(0, len(heading)):
     tempString = str()
@@ -48,6 +48,20 @@ def PrintOutput(heading: list, data: list):
     for j in data:
       tempString += str(j[i])
     print(tempString)
+
+def PrintOutput_BetweenPrices(heading: list, data: list, min: str, max: str):
+  tempString = ("Games within " + min + " and " + max +
+                "\n----------------------------\n")
+  for i in data:
+    for j in i:
+      tempString += j + "\n"
+  print(tempString)
+
+
+
+
+
+
   
   
 
