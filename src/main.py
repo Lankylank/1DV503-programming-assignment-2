@@ -70,7 +70,7 @@ while(True):
 '''
 Option 0.
 ----------
-1. [Option]: custom search.
+1. [Option]: --custom search.--
 2. ask for users input
     2.1 choose platform
     2.2 choose genre
@@ -86,7 +86,7 @@ Option 0.
     4.2 [Option]: return to menu 
 
 
-Option 1.    list all game in the database.
+Option 1.    --list all game in the database.--
 ---------  
 
 1. [Option]: list all game in the database.
@@ -101,7 +101,7 @@ Option 1.    list all game in the database.
   3.2. [Option]: return to menu
 
 
-Option 2.    get all info of a game
+Option 2.    --get all info of a game--
 ---------  
 
 1. [Option]: get all info of a game
@@ -111,7 +111,7 @@ Option 2.    get all info of a game
 4. [Option]: return to menu
 
 
-Option 3.   List all games within a give price range
+Option 3.   --List all games within a give price range--
 ---------
 
 1. [Option]: List all games within a give price range
@@ -128,7 +128,7 @@ Option 3.   List all games within a give price range
           4.1.5. get publiser/year (published year 2019 by "publisher name")
       4.2. [Option]: return to menu
 
-Option 4.   list all games from a specific year
+Option 4.   --list all games from a specific year--
 --------
 
 1. [Option]: list all games from a specific year
@@ -145,7 +145,7 @@ Option 4.   list all games from a specific year
       4.2. [Option]: return to menu
 
 
-Option 5.   list all games from a specific publisher
+Option 5.   --list all games from a specific publisher--
 --------
 
 1. [Option]: list all games from a specific publisher
@@ -164,7 +164,7 @@ Option 5.   list all games from a specific publisher
 
 
 
-Option 6.  list all games from a specific platform
+Option 6.  --list all games from a specific platform--
 --------
 
 1. [Option]: list all games from a specific platform
@@ -183,7 +183,7 @@ Option 6.  list all games from a specific platform
 
 
 
-Option 7.   list all games from a specific genre
+Option 7.  -- list all games from a specific genre--
 --------
 
 1. [Option]: list all games from a specific genre
@@ -200,7 +200,7 @@ Option 7.   list all games from a specific genre
           5.1.5. get publiser/year (published year 2019 by "publisher name")
       6.2. [Option]: return to menu
 
-Option 8.   list all games from a specific store
+Option 8.   --list all games from a specific store--
 --------
 
 1. [Option]: list all games from a specific store
