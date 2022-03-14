@@ -60,14 +60,12 @@ menu["10"] = funcs.PlatformPrintAll
 menu["11"] = funcs.PlatformPrintAll
 
 '''
-# formating for out last queries
+# format of basic info query
 sql = ("SELECT title_table.*, "
-       "title_game_store_table.game_store, "
-       "title_game_store_table.price "
+       "price_statistics.avg "
        "FROM title_table "
-       "JOIN title_genre_table USING (title)"
-       "JOIN title_game_store_table USING (title) "
-       "WHERE title_genre_table.genre = 'sandbox'")
+       "JOIN price_statistics USING (title) "
+       "WHERE title_table.title = 'minecraft'")
 
 DatabaseManager.Execute(sql)
 result = DatabaseManager.cursor.fetchall()
@@ -75,6 +73,9 @@ for i in result:
   print(i)
 '''
 
+
+
+#  GROUP_CONCAT(title_game_store_table.price SEPARATOR ', ')
 # application loop
 while(True):
   selection = ui.MainMenu()
