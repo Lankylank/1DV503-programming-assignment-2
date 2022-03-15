@@ -47,25 +47,23 @@ def PrintData(string: str):
 def MainMenu() -> str:
   Clear()
   PrintHeadline("Main Menu")
-  print(TextColor.TEAL + "0. Custom Search")
+  print(TextColor.TEAL + "0. Custom Search\n")
   print("1. Show all available games")
   print("2. Show basic info about a game") # show Title, year, publisher, avg price
   print("3. Show all info about a game")
   print("4. Show price and available stores for a given game")
-  print("5. Show all games between given price range")
+  print("5. Show all games between given price range\n")
   # function calls are not new lines
-  print() # Our most important querys above
   print("6. Show all games from a specific year")  
   print("7. Show all games from a specific publisher") 
   print("8. Show all games from a specific platform") 
   print("9. Show all games from a specific genre") 
-  print("10. Show all games from a specific store") 
+  print("10. Show all games from a specific store\n") 
   print("Q. Quit" + TextColor.CLEAR)
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
   return input()
 
 
-# not camel case
 def PrintOutputVerbose(heading: list, data: list):
   for i in range(0, len(heading)):
     tempString = str()
@@ -76,7 +74,7 @@ def PrintOutputVerbose(heading: list, data: list):
 
 
 def PrintData(heading: str, data: list):
-  print("\n\n" + TextColor.PURPLE + TextColor.UNDERLINE + heading + "\n" + TextColor.CLEAR)
+  print("\n\n" + TextColor.PURPLE + TextColor.UNDERLINE + heading + TextColor.CLEAR)
   
   for tuple in data:
     line = str()
@@ -86,7 +84,7 @@ def PrintData(heading: str, data: list):
     print(TextColor.TEAL + line + TextColor.CLEAR)
 
 
-# These print functions should be one, well i dont know how to do that :)
+""" # These print functions should be one, well i dont know how to do that :)
 def PrintOutputBetweenPrices(data: list, min: str, max: str):
   tempString = ("Games within " + min + " and " + max +
                 "\n----------------------------\n")
@@ -94,7 +92,7 @@ def PrintOutputBetweenPrices(data: list, min: str, max: str):
     for j in i:
       tempString += j + "\n"
   print(tempString)
-
+ """
 """ def PrintOutputSingleHeading(heading: str, data: list):
   print(heading + "\n" + "-" * len(heading))
   for i in data:

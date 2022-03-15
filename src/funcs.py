@@ -5,16 +5,16 @@ import ui
 
 def CustomSearch(dbm: CDatabaseManager):
   while(True):
-    chosenPlatform = ui.UserInput("platform: ")
+    chosenPlatform = ui.UserInput("Platform: ")
     if(sql.Exists(dbm, "platform_table", "platform", chosenPlatform) == False):
-      print("shit doesnt exist bruh")
+      print("No results found")
     else:
       break
 
   while(True):
-    chosenGenre = ui.UserInput("grenre: ")
+    chosenGenre = ui.UserInput("Genre: ")
     if(sql.Exists(dbm, "genre_table", "genre", chosenGenre) == False):
-      print("shit doesnt exist bruh")
+      print("No results found")
     else:
 
       break
@@ -23,21 +23,20 @@ def CustomSearch(dbm: CDatabaseManager):
   maxPrice = ui.UserInputInt("maxprice: ")
 
   result = sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
+  ui.PrintData(("Games that match your criteria"), result)
   
-  heading = "Games that match your criteria"
-  ui.PrintData(heading, result)
   pause = input()
 
 
 
 def GamePrintAvailable(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "title_table", "title")
-
-  heading = "Available games"
-  ui.PrintData(heading, games)
+  ui.PrintData(("Available games"), games)
+ 
   pause = input()
 
 
+""" # Not used?
 def GamePrintGenre(dbm: CDatabaseManager):
   gameName = ui.UserInput("Enter the game's name: ")
 
@@ -49,6 +48,7 @@ def GamePrintGenre(dbm: CDatabaseManager):
   pause = input()
 
 
+# Not used?
 def GamePrintPlatform(dbm: CDatabaseManager):
   gameName = ui.UserInput("Enter the game's name: ")
 
@@ -57,16 +57,15 @@ def GamePrintPlatform(dbm: CDatabaseManager):
   # Need some formatting
   for platform in result:
     print(platform)
-  pause = input()
+  pause = input() """
 
 
 def GamePrintPrice(dbm: CDatabaseManager):
   gameName = ui.UserInput("Enter the game's name: ")
 
   result = sql.SelectMany(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
-
-  heading = "Stores and the corrensponding price "
-  ui.PrintData(heading, result)
+  ui.PrintData(("Stores and the corrensponding price "), result)
+  
   pause = input()
 
 
@@ -75,8 +74,8 @@ def GamePrintPriceBetween(dbm: CDatabaseManager):
   maxPrice = ui.UserInputInt("Enter maximum price: ")
 
   result = sql.SelectDistinctBetween(dbm, "title_game_store_table", "title", "price", str(minPrice), str(maxPrice))
-
-  ui.PrintOutputBetweenPrices(result, str(minPrice), str(maxPrice))
+  ui.PrintData(("Games within " + str(minPrice) + " and " + str(maxPrice)), result)
+  
   pause = input()
 
 
@@ -103,9 +102,10 @@ def PrintAllChoices(dbm: CDatabaseManager, column: str, tableName: str):
 def GamesOnYear(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "year", "title_table")
   year = ui.UserInputInt("\nChoose a year: ")
+ 
   games = sql.Select(dbm, "title_table", "title", "year", str(year))
-  heading = "All games released year " + str(year)
-  ui.PrintData(heading, games)
+  ui.PrintData(("All games released year " + str(year)), games)
+  
   AskToPrintVerbose(dbm)
 
 
@@ -114,8 +114,8 @@ def GamesOnPlatform(dbm: CDatabaseManager):
   platform = ui.UserInput("\nChoose a platform: ")
 
   games = sql.Select(dbm, "title_platform_table", "title", "platform", platform)
-  heading = "All games on " + platform
-  ui.PrintData(heading, games)
+  ui.PrintData(("All games on " + platform), games)
+  
   AskToPrintVerbose(dbm)
 
 
@@ -124,8 +124,8 @@ def GamesOnGenre(dbm: CDatabaseManager):
   genre = ui.UserInput("\nChoose a genre: ")
 
   games = sql.Select(dbm, "title_genre_table", "title", "genre", genre)
-  heading = "All games on " + genre
-  ui.PrintData(heading, games)
+  ui.PrintData(("All games on " + genre), games)
+  
   AskToPrintVerbose(dbm)
 
 
@@ -134,8 +134,8 @@ def GamesOnStore(dbm: CDatabaseManager):
   store = ui.UserInput("\nChoose a store: ")
 
   games = sql.Select(dbm, "title_game_store_table", "title", "game_store", store)
-  heading = "All games on " + store
-  ui.PrintData(heading, games)
+  ui.PrintData(("All games on " + store), games)
+  
   AskToPrintVerbose(dbm)
 
 
@@ -144,8 +144,8 @@ def GamesOnPublisher(dbm: CDatabaseManager):
   publisher = ui.UserInput("\nChoose a publisher: ")
 
   games = sql.Select(dbm, "title_table", "title", "publisher", publisher)
-  heading = "All games by " + publisher
-  ui.PrintData(heading, games)
+  ui.PrintData(("All games by " + publisher), games)
+  
   AskToPrintVerbose(dbm)
 
 
@@ -155,6 +155,8 @@ def GamePrintBasic(dbm: CDatabaseManager):
   result = sql.GameBasic(dbm, gameName)
   heading = ["title", "Year", "Publisher", "Avg price"]
   ui.PrintOutputVerbose(heading, result)
+  
+  pause = input()
 
 
 def AskToPrintVerbose(dbm: CDatabaseManager):
