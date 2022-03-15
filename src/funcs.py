@@ -24,8 +24,8 @@ def CustomSearch(dbm: CDatabaseManager):
 
   result = sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
   
-  headings = "Games that match your criteria"
-  ui.PrintOutputSingleHeading(headings, result)
+  heading = "Games that match your criteria"
+  ui.PrintData(heading, result)
   pause = input()
 
 
@@ -34,12 +34,12 @@ def GamePrintAvailable(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "title_table", "title")
 
   heading = "Available games"
-  ui.PrintOutputSingleHeading(heading, games)
+  ui.PrintData(heading, games)
   pause = input()
 
 
 def GamePrintGenre(dbm: CDatabaseManager):
-  gameName = ui.UserInput("Enter the name of the game: ")
+  gameName = ui.UserInput("Enter the game's name: ")
 
   result = sql.Select(dbm, "title_genre_table", "genre", "title", gameName)
 
@@ -50,7 +50,7 @@ def GamePrintGenre(dbm: CDatabaseManager):
 
 
 def GamePrintPlatform(dbm: CDatabaseManager):
-  gameName = ui.UserInput("Enter the name of the game: ")
+  gameName = ui.UserInput("Enter the game's name: ")
 
   result = sql.Select(dbm, "title_platform_table", "platform", "title", gameName)
 
@@ -61,12 +61,12 @@ def GamePrintPlatform(dbm: CDatabaseManager):
 
 
 def GamePrintPrice(dbm: CDatabaseManager):
-  gameName = ui.UserInput("Enter the name of the game: ")
+  gameName = ui.UserInput("Enter the game's name: ")
 
   result = sql.SelectMany(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
 
   heading = "Stores and the corrensponding price "
-  ui.PrintOutputDoubleHeading(heading, result)
+  ui.PrintData(heading, result)
   pause = input()
 
 
@@ -81,7 +81,7 @@ def GamePrintPriceBetween(dbm: CDatabaseManager):
 
 
 def GamePrintVerbose(dbm: CDatabaseManager):
-  gameName = ui.UserInput("Enter the name of the game: ")
+  gameName = ui.UserInput("\nEnter the name of the game: ")
 
   result = sql.GameVerbose(dbm, gameName)
   heading = ["Title", "Year", "Publisher", 
@@ -97,7 +97,7 @@ def GamePrintVerbose(dbm: CDatabaseManager):
 def PrintAllChoices(dbm: CDatabaseManager, column: str, tableName: str):
   games = sql.SelectAllDistinct(dbm, column, tableName)
   heading = "All possible " + column +"s to choose from"
-  ui.PrintOutputSingleHeading(heading, games)
+  ui.PrintData(heading, games)
 
 
 def GamesOnYear(dbm: CDatabaseManager):
@@ -105,7 +105,7 @@ def GamesOnYear(dbm: CDatabaseManager):
   year = ui.UserInputInt("\nChoose a year: ")
   games = sql.Select(dbm, "title_table", "title", "year", str(year))
   heading = "All games released year " + str(year)
-  ui.PrintOutputSingleHeading(heading, games)
+  ui.PrintData(heading, games)
   AskToPrintVerbose(dbm)
 
 
@@ -115,7 +115,7 @@ def GamesOnPlatform(dbm: CDatabaseManager):
 
   games = sql.Select(dbm, "title_platform_table", "title", "platform", platform)
   heading = "All games on " + platform
-  ui.PrintOutputSingleHeading(heading, games)
+  ui.PrintData(heading, games)
   AskToPrintVerbose(dbm)
 
 
@@ -125,7 +125,7 @@ def GamesOnGenre(dbm: CDatabaseManager):
 
   games = sql.Select(dbm, "title_genre_table", "title", "genre", genre)
   heading = "All games on " + genre
-  ui.PrintOutputSingleHeading(heading, games)
+  ui.PrintData(heading, games)
   AskToPrintVerbose(dbm)
 
 
@@ -135,7 +135,7 @@ def GamesOnStore(dbm: CDatabaseManager):
 
   games = sql.Select(dbm, "title_game_store_table", "title", "game_store", store)
   heading = "All games on " + store
-  ui.PrintOutputSingleHeading(heading, games)
+  ui.PrintData(heading, games)
   AskToPrintVerbose(dbm)
 
 
@@ -144,8 +144,8 @@ def GamesOnPublisher(dbm: CDatabaseManager):
   publisher = ui.UserInput("\nChoose a publisher: ")
 
   games = sql.Select(dbm, "title_table", "title", "publisher", publisher)
-  heading = "All games on " + publisher
-  ui.PrintOutputSingleHeading(heading, games)
+  heading = "All games by " + publisher
+  ui.PrintData(heading, games)
   AskToPrintVerbose(dbm)
 
 
@@ -159,7 +159,11 @@ def GamePrintBasic(dbm: CDatabaseManager):
 
 def AskToPrintVerbose(dbm: CDatabaseManager):
   while(True):
-    userChoice = ui.UserInput("\n\n------------\nRetrieve game specific information? y/N ")
+    userChoice = ui.UserInput(ui.TextColor.PURPLE + 
+                  "----------------------------------------\n" + 
+                  ui.TextColor.CLEAR + 
+                  "Retrieve game specific information? y/N ")
+    
     if userChoice.lower() == "y":
       GamePrintVerbose(dbm)
     break

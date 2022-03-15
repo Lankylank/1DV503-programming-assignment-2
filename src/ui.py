@@ -75,6 +75,17 @@ def PrintOutputVerbose(heading: list, data: list):
     print(tempString)
 
 
+def PrintData(heading: str, data: list):
+  print("\n\n" + TextColor.PURPLE + TextColor.UNDERLINE + heading + "\n" + TextColor.CLEAR)
+  
+  for tuple in data:
+    line = str()
+    for element in tuple:
+      line += element + " : "
+    line = line.removesuffix(": ")
+    print(TextColor.TEAL + line + TextColor.CLEAR)
+
+
 # These print functions should be one, well i dont know how to do that :)
 def PrintOutputBetweenPrices(data: list, min: str, max: str):
   tempString = ("Games within " + min + " and " + max +
@@ -84,7 +95,7 @@ def PrintOutputBetweenPrices(data: list, min: str, max: str):
       tempString += j + "\n"
   print(tempString)
 
-def PrintOutputSingleHeading(heading: str, data: list):
+""" def PrintOutputSingleHeading(heading: str, data: list):
   print(heading + "\n" + "-" * len(heading))
   for i in data:
     print(i[0])
@@ -93,6 +104,6 @@ def PrintOutputDoubleHeading(heading: str, data: list):
   print(heading + "\n" + "-" * len(heading) + "\n")
   for i in data:
     print(i[0] + ": " + i[1])
-
+ """
 
     
