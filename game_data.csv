@@ -1,11 +1,34 @@
-title,year,platform,publisher,genre,game_store
-Minecraft,2009,"playstation, pc, xbox, nintendo, android",Mojan Studios,"sandbox, survival","minecraft store, 149, xbox store, 199, playstation store, 179"
-Grand Theft Auto V,2013,"playstation, pc, xbox",Rockstar Games,"action, adventure","steam, 399, playstation store ,429, xbox store, 429 spelbutiken, 379"
-Elden Ring,2022,"pc, xbox, playstation",Bandai Namco Entertainment,action-role-playing,"xbox store, 599, steam, 599, playstation, 599, spelbutiken, 599"
-The Elder Scrolls V: Skyrim,2011,"pc, xbox, playstation, android, nintendo",Bethesda Softworks,action-role-playing,"bethesda store, 369, steam, 379, playstation store, 349, xbox store, 349"
-Gears 5,2019,"PC, xbox",Xbox Game Studios,third-person Shooter,"xbox store, 399, steam, 379"
-The witcher 3,2015,"pc, xbox, playstation, nintendo",CD Projekt,action-role-playing,"steam, 299, playstation store, 329, xbox store, 329, spelbutiken, 299"
-Borderlands 2,2012,"pc, xbox, playstation, nintendo, android",2K Games,"action-role-playing, first-person Shooter","steam, 199, playstation store, 199, xbox store, 199, spelbutiken, 189"
-FIFA 22,2021,"pc, nintendo, xbox, playstation",EA Sports,sports,"playstation store, 599, xbox store, 599, steam, 499, spelbutiken, 599"
-God of War,2018,"pc, playstation",Santa Monica Studio,"action-role-playing, adventure","steam, 329, playstation store, 399, spelbutiken, 359"
-The Last Guardian,2016,playstation,Japan Studio GenDesign,adventure,"spelbutiken, 349, playstation store, 399"
+*title~year~publisher,*genre,*platform,*game_store,&title~#genre,&title~&platform,&title~&game_store~price
+Minecraft~2009~Mojan Studios,Sandbox,playstation,steam,Minecraft~sandbox~survival,Minecraft~playstation~windows~xbox~nintendo~android,Minecraft~minecraft store~149~xbox store~199~playstation store~179
+Grand Theft Auto V~2013~Rockstar Games,Survival,xbox,xbox store,Grand Theft Auto V~action~adventure,Grand Theft Auto V~playstation~windows~xbox,Grand Theft Auto V~steam~399~playstation store~429~xbox store~429~spelbutiken~379
+Elden Ring~2022~Bandai Namco Entertainment,Adventure,windows,playstation store,Elden Ring~action-role-playing,Elden Ring~windows~xbox~playstation,Elden Ring~xbox store~599~steam~599~playstation store~599~spelbutiken~599
+The Elder Scrolls V: Skyrim~2011~Bethesda Softworks,action,nintendo,spelbutiken,The Elder Scrolls V: Skyrim~action-role-playing,The Elder Scrolls V: Skyrim~windows~xbox~playstation~android~nintendo,The Elder Scrolls V: Skyrim~bethesda store~369~steam~379~playstation store~349~xbox store~349
+Gears 5~2019~Xbox Game Studios,Third-Person Shooter,android,bethesda store,Gears 5~third-person Shooter,Gears 5~windows~xbox,Gears 5~xbox store~399~steam~379
+The witcher 3~2015~CD Projekt,Action-Role-Playing,ios,minecraft store,The witcher 3~action-role-playing,The witcher 3~windows~xbox~playstation~nintendo,The witcher 3~steam~299~playstation store~329~xbox store~329~spelbutiken~299
+Borderlands 2~2012~2K Games,sports,linux,,Borderlands 2~action-role-playing~first-person Shooter,Borderlands 2~windows~xbox~playstation~nintendo~android,Borderlands 2~steam~199~playstation store~199~xbox store~199~spelbutiken~189
+FIFA 22~2021~EA Sports,first-person Shooter,mac,,FIFA 22~sports,FIFA 22~windows~nintendo~xbox~playstation,FIFA 22~playstation store~599~xbox store~599~steam~499~spelbutiken~599
+God of War~2018~Santa Monica Studio,Racing,,,God of War~action-role-playing~adventure,God of War~windows~playstation,God of War~steam~329~playstation store~399~spelbutiken~359
+The Last Guardian~2016~Japan Studio GenDesign,strategy,,,The Last Guardian~adventure,The Last Guardian~playstation,The Last Guardian~spelbutiken~349~playstation store~399
+Monster Hunter Rise~2022~capcom,digital collectible card game,,,Monster Hunter Rise~action-role-playing,Monster Hunter Rise~windows,Monster Hunter Rise~steam 599
+Astroneer~2019~System Era Softworks,tactical shooter,,,Astroneer~sandbox~adventure,astroneer~windows~xbox,astroneer~steam~279
+Yu-Gi-Oh! Master Duel~2022~Konami,Graphic adventure,,,Yu-Gi-Oh! Master Duel~strategy~digital collectible card game,Yu-Gi-Oh! Master Duel~windows~playstation~xbox~nintendo~android~ios,Yu-Gi-Oh! Master Duel~steam~free
+Rainbow Six Siege~2015~Ubisoft,social deduction game,,,Rainbow Six Siege~tactical shooter,Rainbow Six Siege~windows~playstation~xbox,Rainbow Six Siege~steam~199
+Dying Light 2~2022~Techland,platform battle royale,,,Dying Light 2~action-role-playing,Dying Light 2~windows~playstation~xbox~nintendo,Dying Light 2~steam~599
+Babylons Fall~2022~Square enix,fighting,,,Babylons Fall~action-role-playing,Babylons Fall~windows~playstation,Babylons Fall~steam~699
+WWE 2K22~2022~2k sports,survival horror,,,WWE 2K22~sports,WWE 2K22~windows~playstation~xbox,WWE 2K22~steam~599
+Syberia: The World Before~2022~Microids,platform,,,Syberia: The World Before~Graphic adventure,Syberia: The World Before~windows,Syberia: The World Before~steam~399
+Weird West~2022~Devolver Digital,metroidvania,,,Weird West~action-role-playing,Weird West~windows~playstation~xbox,Weird West~steam~399
+Among Us~2020~Innersloth,Action-adventure,,,Among Us~social deduction game,Among Us~windows~playstation~xbox~android~ios~nintendo,Among Us~steam~39
+Fall Guys~2020~Devolver Digital,,,,Fall Guys~platform battle royale,Fall Guys~playstation~windows,Fall Guys~steam~199
+NBA 2K21~2020~2k sports,,,,NBA 2K21~sports,NBA 2K21~windows~playstation~xbox~ios~android~nintendo,NBA 2K21~steam~599
+Dragon Ball Z: Kakarot~2020~Bandai namco entertainment,,,,Dragon Ball Z: Kakarot~fighting~action-role-playing,Dragon Ball Z: Kakarot~windows~playstation~xbox~nintendo,Dragon Ball Z: Kakarot~steam~599
+Daemon X Machina~2020~Xseed Games,,,,Daemon X Machina~third-person shooter,Daemon X Machina~windows~nintendo,Daemon X Machina~steam~499
+Black Mesa~2020~Crowbar Collective,,,,Black Mesa~first-person shooter,Black Mesa~windows~linux,Black Mesa~steam~149
+Doom 64~2020~Bethesda Softworks,,,,Doom 64~first-person shooter,Doom 64~windows~nintendo~playstation~xbox,Doom 64~steam~49
+Doom Eternal~2020~Bethesda Softworks,,,,Doom Eternal~first-person shooter,Doom Eternal~windows~nintendo~playstation~xbox,Doom Eternal~steam~399
+Resident Evil 3~2020~capcom,,,,Resident Evil 3~survival horror,Resident Evil 3~windows~playstation~xbox,Resident Evil 3~steam~159
+The Witcher 2: Assassins of Kings~2011~CD projekt,,,,The Witcher 2: Assassins of Kings~Action-Role-Playing,The Witcher 2: Assassins of Kings~windows~linux~xbox~mac,The Witcher 2: Assassins of Kings~steam~199
+The Witcher: Enhanced Edition~2008~CD projekt,,,,The Witcher: Enhanced Edition~Action-Role-Playing,The Witcher: Enhanced Edition~windows~mac,The Witcher: Enhanced Edition~steam~79
+Celeste~2018~Extremely OK games,,,,Celeste~platform,Celeste~windows~mac~linux~nintendo~playstation~xbox,Celeste~steam~199
+Hollow Knight~2017~Team Cherry,,,,Hollow Knight~metroidvania~action-adventure,Hollow Knight~windows~linux~nintendo~playstation~xbox,Hollow Knight~steam~149
+Red Dead Redemption 2~2018~Rockstar games,,,,Red Dead Redemption 2~action-adventure,Red Dead Redemption 2~windows~playstation~xbox,Red Dead Redemption 2~steam~599
