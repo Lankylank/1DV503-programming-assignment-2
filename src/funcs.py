@@ -28,36 +28,11 @@ def CustomSearch(dbm: CDatabaseManager):
   pause = input()
 
 
-
 def GamePrintAvailable(dbm: CDatabaseManager):
   games = sql.Select(dbm, "title_table", "title")
   ui.PrintData(("Available games"), games)
  
   pause = input()
-
-
-""" # Not used?
-def GamePrintGenre(dbm: CDatabaseManager):
-  gameName = ui.UserInput("Enter the game's name: ")
-
-  result = sql.Select(dbm, "title_genre_table", "genre", "title", gameName)
-
-  # Need some formatting
-  for genre in result:
-    print(genre)
-  pause = input()
-
-
-# Not used?
-def GamePrintPlatform(dbm: CDatabaseManager):
-  gameName = ui.UserInput("Enter the game's name: ")
-
-  result = sql.Select(dbm, "title_platform_table", "platform", "title", gameName)
-
-  # Need some formatting
-  for platform in result:
-    print(platform)
-  pause = input() """
 
 
 def GamePrintPrice(dbm: CDatabaseManager):

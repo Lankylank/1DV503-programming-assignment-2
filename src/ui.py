@@ -82,26 +82,3 @@ def PrintData(heading: str, data: list):
       line += element + " : "
     line = line.removesuffix(": ")
     print(TextColor.TEAL + line + TextColor.CLEAR)
-
-
-""" # These print functions should be one, well i dont know how to do that :)
-def PrintOutputBetweenPrices(data: list, min: str, max: str):
-  tempString = ("Games within " + min + " and " + max +
-                "\n----------------------------\n")
-  for i in data:
-    for j in i:
-      tempString += j + "\n"
-  print(tempString)
- """
-""" def PrintOutputSingleHeading(heading: str, data: list):
-  print(heading + "\n" + "-" * len(heading))
-  for i in data:
-    print(i[0])
-  
-def PrintOutputDoubleHeading(heading: str, data: list):
-  print(heading + "\n" + "-" * len(heading) + "\n")
-  for i in data:
-    print(i[0] + ": " + i[1])
- """
-
-    
