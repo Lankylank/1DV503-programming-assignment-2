@@ -62,9 +62,9 @@ def GamePrintVerbose(dbm: CDatabaseManager):
   if(sql.Exists(dbm, "title_table", "title", gameName)):
     result = sql.GameVerbose(dbm, gameName)
     heading = ["Title", "Year", "Publisher", 
-              "Platforms", "Genres", "Stores", 
+              "Genres","Platforms", "Stores", 
               "Min price", "Max price", "Avg price" ]
-    ui.PrintOutputVerbose(heading, result)
+    ui.PrintVertical(heading, result)
   else:
     print("No results for " + gameName)
   pause = input()
@@ -140,7 +140,7 @@ def GamePrintBasic(dbm: CDatabaseManager):
 
   result = sql.GameBasic(dbm, gameName)
   heading = ["title", "Year", "Publisher", "Avg price"]
-  ui.PrintOutputVerbose(heading, result)
+  ui.PrintVertical(heading, result)
   
   pause = input()
 

@@ -40,7 +40,7 @@ def PrintHeadline(headline: str):
   print(TextColor.BOLD + TextColor.UNDERLINE + TextColor.PURPLE + headline + TextColor.CLEAR)
 
 
-def PrintData(string: str):
+def Print(string: str):
   print(TextColor.TEAL + string + TextColor.CLEAR, end="")
 
 
@@ -64,13 +64,13 @@ def MainMenu() -> str:
   return input()
 
 
-def PrintOutputVerbose(heading: list, data: list):
+def PrintVertical(heading: list, data: list):
   for i in range(0, len(heading)):
-    tempString = str()
-    tempString += heading[i] + ": "
-    for j in data:
-      tempString += str(j[i])
-    print(tempString)
+    print(TextColor.PURPLE + TextColor.UNDERLINE + heading[i] + ":" + TextColor.CLEAR, end="")
+    line = str()
+    for result in data:
+      line += " " + str(result[i])
+    print(TextColor.TEAL + line + TextColor.CLEAR)
 
 
 def PrintData(heading: str, data: list):
