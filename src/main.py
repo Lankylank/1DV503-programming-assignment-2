@@ -14,7 +14,7 @@ import funcs
 username  = "root"
 password  = "root"
 host      = "127.0.0.1"
-DB_NAME   = "database_name"
+DB_NAME   = "database_fat"
 
 
 # Create database object with the  connection details as parameters
@@ -25,7 +25,7 @@ DatabaseManager.SelectDatabase(DB_NAME)
 # this loads the data and parses it,
 #  creates table based on this data and inserts data
 NUM_JUNCTION_TABLES = 3
-DatabaseManager.ImportData("game_data_ordered.csv", NUM_JUNCTION_TABLES) 
+DatabaseManager.ImportData("game_data_ordered_fattest.csv", NUM_JUNCTION_TABLES) 
 
 
 # Since this is application specific and dbm doesnt support view tables atm i'll put it here
