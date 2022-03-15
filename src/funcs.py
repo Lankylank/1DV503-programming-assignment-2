@@ -39,7 +39,7 @@ def GamePrintPrice(dbm: CDatabaseManager):
   gameName = ui.UserInput("Enter the game's name: ")
   ui.Clear()
 
-  result = sql.SelectMany(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
+  result = sql.SelectManyThis(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
   ui.PrintData(("Stores and the corrensponding price "), result)
   
   pause = input()
@@ -74,7 +74,7 @@ def GamePrintVerbose(dbm: CDatabaseManager):
 
 
 def PrintAllChoices(dbm: CDatabaseManager, column: str, tableName: str):
-  games = sql.SelectAllDistinct(dbm, column, tableName)
+  games = sql.SelectDistinctSorted(dbm, column, tableName)
   heading = "All possible " + column +"s to choose from"
   ui.PrintData(heading, games)
 

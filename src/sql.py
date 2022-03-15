@@ -1,32 +1,50 @@
 import CDatabaseManager
 
 
+# Selects a single column
 def Select(dbm: CDatabaseManager, tableName: str, thisCollumn: str) -> list:
   sql = "SELECT " + thisCollumn + " FROM " + tableName
   dbm.Execute(sql)
   return dbm.Fetchall()
 
 
+# Selects a single column with row condition this
 def SelectThis(dbm: CDatabaseManager, tableName: str, thisCollumn: str, whereCollumn: str, this: str) -> list:
   sql = "SELECT " + thisCollumn + " FROM " + tableName + " WHERE " + whereCollumn + "= '" + this + "'"
   dbm.Execute(sql)
   return dbm.Fetchall()
 
 
-# Bad function name
-def SelectMany(dbm: CDatabaseManager, tableName: str, selectCollumns: list, whereCollumn: str, this: str) -> list:
+# Selects a single column with distinct condition and sort the result
+def SelectDistinctSorted(dbm: CDatabaseManager, selectColumn: str, tableName: str):
+  sql = ("SELECT DISTINCT " + selectColumn + " FROM " + tableName + " ORDER BY " + selectColumn + " ASC")
+  dbm.Execute(sql)
+  return dbm.Fetchall()
+
+
+# Selects a single column with distinct condition and and row condition between two values
+def SelectDistinctBetween(dbm: CDatabaseManager, tableName: str, collumn: str, whereCollumn: str, min: str, max: str) -> list:
+
+  sql = ("SELECT DISTINCT " + collumn + " FROM " + tableName + " WHERE " + whereCollumn + " BETWEEN " + min + " AND " + max)
+
+  dbm.Execute(sql)
+  return dbm.Fetchall()
+
+
+# Selects many columns with row condition this
+def SelectManyThis(dbm: CDatabaseManager, tableName: str, selectCollumns: list, whereCollumn: str, this: str) -> list:
   collumns = str()
   for collumn in selectCollumns:
     collumns += collumn + ","
   collumns = collumns.removesuffix(",")
   
-
   sql = "SELECT " + collumns + " FROM " + tableName + " WHERE " + whereCollumn + "= '" + this + "'"
   dbm.Execute(sql)
   return dbm.Fetchall()
 
 
-def SelectAll(dbm: CDatabaseManager, tableName: str, column: str) -> list:
+# Selects all columns and sort them
+def SelectAllSorted(dbm: CDatabaseManager, tableName: str, column: str) -> list:
   sql = ("SELECT * "
          "FROM " + tableName +
          " ORDER BY " + column + " ASC")
@@ -34,24 +52,9 @@ def SelectAll(dbm: CDatabaseManager, tableName: str, column: str) -> list:
   return dbm.Fetchall()
 
 
-# Variable names might be wrong
-def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, this: str) -> list:
+# Select all columns with row condition this
+def SelectAllThis(dbm: CDatabaseManager, tableName: str, collumn: str, this: str) -> list:
   sql = ("SELECT * FROM ") + tableName + " WHERE " + collumn + "= '" + this + "'"
-  dbm.Execute(sql)
-  return dbm.Fetchall()
-
-
-# Incorrect function name
-def SelectAllDistinct(dbm: CDatabaseManager, selectColumn: str, tableName: str):
-  sql = ("SELECT DISTINCT " + selectColumn + " FROM " + tableName + " ORDER BY " + selectColumn + " ASC")
-  dbm.Execute(sql)
-  return dbm.Fetchall()
-
-
-def SelectDistinctBetween(dbm: CDatabaseManager, tableName: str, collumn: str, whereCollumn: str, min: str, max: str) -> list:
-
-  sql = ("SELECT DISTINCT " + collumn + " FROM " + tableName + " WHERE " + whereCollumn + " BETWEEN " + min + " AND " + max)
-
   dbm.Execute(sql)
   return dbm.Fetchall()
 
