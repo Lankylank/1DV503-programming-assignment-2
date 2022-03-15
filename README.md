@@ -7,7 +7,7 @@ This is the applications EntryPoint and where the application loop is located. I
 #### ***funcs.py***
 Here is where the application specific functionality is placed. Such as calling functions from sql.py and building specific queries, retrieving the data and passing that data on to the responsible print function inside ui.py.
 #### ***sql.py***
-This file contains both generalized SQL queries as well as application specific queries.
+This file contains functions for both generalized SQL queries as well as application specific queries.
 #### ***CDatabaseManager.py***
 This class is responsible for managing the mysql connector and mysql cursor. When provided with data stored in memory it creates schemas, tables and inserting data into the newly created tables. This includes creating the Primary keys and Foreign keys and linking them togheter.
 
