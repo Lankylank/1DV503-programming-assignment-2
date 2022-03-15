@@ -1,7 +1,5 @@
 # class keyword simply used as a namespace
-import os
-import funcs
-import CDatabaseManager
+import Debugger
 
 class TextColor:
     PURPLE = '\033[95m'
@@ -12,6 +10,24 @@ class TextColor:
     SUCCESS = '\033[92m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
+
+
+def UserInput(message: str):
+  while(True):
+    try:
+      data = input(message)
+      return data
+    except ValueError:
+      Debugger.warningmsg("Invalid input")
+
+
+def UserInputInt(message: str):
+  while(True):
+    try:
+      data = int(input(message))
+      return data
+    except ValueError:
+      Debugger.warningmsg("Invalid input")
 
 
 # hack to clear the screen cross platform
@@ -29,6 +45,7 @@ def PrintData(string: str):
 
 
 def MainMenu() -> str:
+  Clear()
   PrintHeadline("Main Menu")
   print(TextColor.TEAL + "0. Custom Search")
   print("1. Show all available games")
@@ -50,7 +67,6 @@ def MainMenu() -> str:
 
 # not camel case
 def PrintOutputVerbose(heading: list, data: list):
-  Clear()  # dont call system specific code if you can avoid it
   for i in range(0, len(heading)):
     tempString = str()
     tempString += heading[i] + ": "
@@ -61,7 +77,6 @@ def PrintOutputVerbose(heading: list, data: list):
 
 # These print functions should be one, well i dont know how to do that :)
 def PrintOutputBetweenPrices(data: list, min: str, max: str):
-  Clear()  # dont call system specific code if you can avoid it
   tempString = ("Games within " + min + " and " + max +
                 "\n----------------------------\n")
   for i in data:
@@ -70,29 +85,14 @@ def PrintOutputBetweenPrices(data: list, min: str, max: str):
   print(tempString)
 
 def PrintOutputSingleHeading(heading: str, data: list):
-  Clear()  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading))
   for i in data:
     print(i[0])
   
 def PrintOutputDoubleHeading(heading: str, data: list):
-  Clear()  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading) + "\n")
   for i in data:
     print(i[0] + ": " + i[1])
 
-def MultiChoice(dbm: CDatabaseManager):
-  while(True):
-    print("------------\nY. for game info\nN. return to menu")
-    userChoice = funcs.UserInput("Choice: ")
-    # Terminal binary option should have default answer
-    if userChoice.lower() == "y":
-      funcs.GamePrintVerbose(dbm)
-      break
-    if(userChoice.lower() == "n"):
-      break
-    else:
-      Clear()
-  
 
     

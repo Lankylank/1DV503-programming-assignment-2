@@ -44,7 +44,7 @@ DatabaseManager.ViewCreate(viewTable)
 # The menu is simply a hashmap of function pointers
 menu = dict()
 menu["0"] = funcs.CustomSearch  # OK!
-menu["1"] = funcs.GamePrintAll # OK!
+menu["1"] = funcs.GamePrintAvailable # OK!
 menu["2"] = funcs.GamePrintBasic # OK!
 menu["3"] = funcs.GamePrintVerbose # OK!
 menu["4"] = funcs.GamePrintPrice # OK!
@@ -67,7 +67,6 @@ while(True):
   if selection in menu:
     ui.Clear()
     menu[selection](DatabaseManager)
-    pause = input()
         
 
 
