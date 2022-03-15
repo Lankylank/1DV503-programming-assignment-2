@@ -103,7 +103,7 @@ def GamesOnYear(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "year", "title_table")
   year = ui.UserInputInt("\nChoose a year: ")
  
-  games = sql.Select(dbm, "title_table", "title", "year", str(year))
+  games = sql.SelectThis(dbm, "title_table", "title", "year", str(year))
   ui.PrintData(("All games released year " + str(year)), games)
   
   AskToPrintVerbose(dbm)
@@ -113,7 +113,7 @@ def GamesOnPlatform(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "platform", "platform_table")
   platform = ui.UserInput("\nChoose a platform: ")
 
-  games = sql.Select(dbm, "title_platform_table", "title", "platform", platform)
+  games = sql.SelectThis(dbm, "title_platform_table", "title", "platform", platform)
   ui.PrintData(("All games on " + platform), games)
   
   AskToPrintVerbose(dbm)
@@ -123,7 +123,7 @@ def GamesOnGenre(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "genre", "genre_table")
   genre = ui.UserInput("\nChoose a genre: ")
 
-  games = sql.Select(dbm, "title_genre_table", "title", "genre", genre)
+  games = sql.SelectThis(dbm, "title_genre_table", "title", "genre", genre)
   ui.PrintData(("All games on " + genre), games)
   
   AskToPrintVerbose(dbm)
@@ -133,7 +133,7 @@ def GamesOnStore(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "game_store", "game_store_table")
   store = ui.UserInput("\nChoose a store: ")
 
-  games = sql.Select(dbm, "title_game_store_table", "title", "game_store", store)
+  games = sql.SelectThis(dbm, "title_game_store_table", "title", "game_store", store)
   ui.PrintData(("All games on " + store), games)
   
   AskToPrintVerbose(dbm)
@@ -143,7 +143,7 @@ def GamesOnPublisher(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "publisher", "title_table")
   publisher = ui.UserInput("\nChoose a publisher: ")
 
-  games = sql.Select(dbm, "title_table", "title", "publisher", publisher)
+  games = sql.SelectThis(dbm, "title_table", "title", "publisher", publisher)
   ui.PrintData(("All games by " + publisher), games)
   
   AskToPrintVerbose(dbm)
