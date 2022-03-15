@@ -30,7 +30,7 @@ def CustomSearch(dbm: CDatabaseManager):
 
 
 def GamePrintAvailable(dbm: CDatabaseManager):
-  games = sql.SelectAll(dbm, "title_table", "title")
+  games = sql.Select(dbm, "title_table", "title")
   ui.PrintData(("Available games"), games)
  
   pause = input()

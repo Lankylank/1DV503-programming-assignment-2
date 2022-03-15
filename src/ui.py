@@ -35,9 +35,9 @@ def Clear():
   print("\n" * 50)
 
 
-def PrintHeadline(string: str):
+def PrintHeadline(headline: str):
   #Clear()
-  print(TextColor.BOLD + TextColor.UNDERLINE + TextColor.PURPLE + string + TextColor.CLEAR)
+  print(TextColor.BOLD + TextColor.UNDERLINE + TextColor.PURPLE + headline + TextColor.CLEAR)
 
 
 def PrintData(string: str):
@@ -74,7 +74,7 @@ def PrintOutputVerbose(heading: list, data: list):
 
 
 def PrintData(heading: str, data: list):
-  print("\n\n" + TextColor.PURPLE + TextColor.UNDERLINE + heading + TextColor.CLEAR)
+  PrintHeadline("\n\n" + heading)
   
   for tuple in data:
     line = str()

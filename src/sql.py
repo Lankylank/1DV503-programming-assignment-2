@@ -1,12 +1,20 @@
+from ast import Str
 import CDatabaseManager
 
 
-def Select(dbm: CDatabaseManager, tableName: str, thisCollumn: str, whereCollumn: str, this: str) -> list:
+def Select(dbm: CDatabaseManager, tableName: str, thisCollumn: str) -> list:
+  sql = "SELECT " + thisCollumn + " FROM " + tableName
+  dbm.Execute(sql)
+  return dbm.Fetchall()
+
+
+def SelectThis(dbm: CDatabaseManager, tableName: str, thisCollumn: str, whereCollumn: str, this: str) -> list:
   sql = "SELECT " + thisCollumn + " FROM " + tableName + " WHERE " + whereCollumn + "= '" + this + "'"
   dbm.Execute(sql)
   return dbm.Fetchall()
 
 
+# Bad function name
 def SelectMany(dbm: CDatabaseManager, tableName: str, selectCollumns: list, whereCollumn: str, this: str) -> list:
   collumns = str()
   for collumn in selectCollumns:
@@ -33,10 +41,13 @@ def SelectAllOf(dbm: CDatabaseManager, tableName: str, collumn: str, this: str) 
   dbm.Execute(sql)
   return dbm.Fetchall()
 
+
+# Incorrect function name
 def SelectAllDistinct(dbm: CDatabaseManager, selectColumn: str, tableName: str):
   sql = ("SELECT DISTINCT " + selectColumn + " FROM " + tableName + " ORDER BY " + selectColumn + " ASC")
   dbm.Execute(sql)
   return dbm.Fetchall()
+
 
 def SelectDistinctBetween(dbm: CDatabaseManager, tableName: str, collumn: str, whereCollumn: str, min: str, max: str) -> list:
 
