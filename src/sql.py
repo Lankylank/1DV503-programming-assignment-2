@@ -96,7 +96,7 @@ def GameVerbose(dbm: CDatabaseManager, game: str):
   return dbm.Fetchall()
 
 # This function is tied to Game, begin name with the category it belongs to
-def BasicGameInfo(dbm: CDatabaseManager, game: str):
+def GameBasic(dbm: CDatabaseManager, game: str):
   sql = ("SELECT title_table.*, "
        "price_statistics.avg "
        "FROM title_table "

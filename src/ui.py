@@ -50,7 +50,7 @@ def MainMenu() -> str:
 
 # not camel case
 def PrintOutputVerbose(heading: list, data: list):
-  os.system('cls')  # dont call system specific code if you can avoid it
+  Clear()  # dont call system specific code if you can avoid it
   for i in range(0, len(heading)):
     tempString = str()
     tempString += heading[i] + ": "
@@ -61,7 +61,7 @@ def PrintOutputVerbose(heading: list, data: list):
 
 # These print functions should be one, well i dont know how to do that :)
 def PrintOutputBetweenPrices(data: list, min: str, max: str):
-  os.system('cls')  # dont call system specific code if you can avoid it
+  Clear()  # dont call system specific code if you can avoid it
   tempString = ("Games within " + min + " and " + max +
                 "\n----------------------------\n")
   for i in data:
@@ -70,13 +70,13 @@ def PrintOutputBetweenPrices(data: list, min: str, max: str):
   print(tempString)
 
 def PrintOutputSingleHeading(heading: str, data: list):
-  os.system('cls')  # dont call system specific code if you can avoid it
+  Clear()  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading))
   for i in data:
     print(i[0])
   
 def PrintOutputDoubleHeading(heading: str, data: list):
-  os.system('cls')  # dont call system specific code if you can avoid it
+  Clear()  # dont call system specific code if you can avoid it
   print(heading + "\n" + "-" * len(heading) + "\n")
   for i in data:
     print(i[0] + ": " + i[1])
@@ -92,7 +92,7 @@ def MultiChoice(dbm: CDatabaseManager):
     if(userChoice.lower() == "n"):
       break
     else:
-      os.system('cls')
+      Clear()
   
 
     

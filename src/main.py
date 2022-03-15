@@ -45,7 +45,7 @@ DatabaseManager.ViewCreate(viewTable)
 menu = dict()
 menu["0"] = funcs.CustomSearch  # OK!
 menu["1"] = funcs.GamePrintAll # OK!
-menu["2"] = funcs.BasicGameInfo # OK!
+menu["2"] = funcs.GamePrintBasic # OK!
 menu["3"] = funcs.GamePrintVerbose # OK!
 menu["4"] = funcs.GamePrintPrice # OK!
 menu["5"] = funcs.GamePrintPriceBetween # OK!
@@ -65,7 +65,7 @@ while(True):
     break
 
   if selection in menu:
-    os.system('cls')
+    ui.Clear()
     menu[selection](DatabaseManager)
     pause = input()
         

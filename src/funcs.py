@@ -2,7 +2,6 @@ import CDatabaseManager
 import Debugger
 import sql
 import ui
-import os
 
 
 def UserInput(message: str):
@@ -45,7 +44,7 @@ def CustomSearch(dbm: CDatabaseManager):
   result = sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
   
   headings = "Games that match your criteria"
-  ui.PrintOutput_SingleHeading(headings, result)
+  ui.PrintOutputSingleHeading(headings, result)
 
 
 
@@ -53,7 +52,7 @@ def GamePrintAll(dbm: CDatabaseManager):
   games = sql.SelectAll(dbm, "title_table", "title")
 
   heading = "Available games"
-  ui.PrintOutput_SingleHeading(heading, games)
+  ui.PrintOutputSingleHeading(heading, games)
 
 
 def GamePrintGenre(dbm: CDatabaseManager):
@@ -101,7 +100,7 @@ def GamePrintVerbose(dbm: CDatabaseManager):
   heading = ["Title", "Year", "Publisher", 
              "Platforms", "Genres", "Stores", 
              "Min price", "Max price", "Avg price" ]
-  ui.PrintOutput_Verbose(heading, result)
+  ui.PrintOutputVerbose(heading, result)
 
 
 #####################################################################
@@ -158,9 +157,9 @@ def GamesOnPublisher(dbm: CDatabaseManager):
   ui.PrintOutputSingleHeading(heading, games)
   ui.MultiChoice(dbm)
 
-def BasicGameInfo(dbm: CDatabaseManager):
+def GamePrintBasic(dbm: CDatabaseManager):
   gameName = UserInput("Enter the name of the game: ")
 
-  result = sql.BasicGameInfo(dbm, gameName)
+  result = sql.GameBasic(dbm, gameName)
   heading = ["title", "Year", "Publisher", "Avg price"]
   ui.PrintOutputVerbose(heading, result)
