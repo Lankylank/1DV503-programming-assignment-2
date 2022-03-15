@@ -99,8 +99,7 @@ def GameVerbose(dbm: CDatabaseManager, game: str):
         "JOIN title_platform_table USING (title) "
         "JOIN title_game_store_table USING (title) "
         "JOIN price_statistics USING (title) "
-        "WHERE title_table.title = '" + game + "'"
-        "GROUP BY title_table.title")
+        "WHERE title_table.title = '" + game + "'")
 
   dbm.Execute(sql)
   return dbm.Fetchall()
