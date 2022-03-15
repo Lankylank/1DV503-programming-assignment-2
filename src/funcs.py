@@ -37,6 +37,7 @@ def GamePrintAvailable(dbm: CDatabaseManager):
 
 def GamePrintPrice(dbm: CDatabaseManager):
   gameName = ui.UserInput("Enter the game's name: ")
+  ui.Clear()
 
   result = sql.SelectMany(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
   ui.PrintData(("Stores and the corrensponding price "), result)
@@ -47,7 +48,7 @@ def GamePrintPrice(dbm: CDatabaseManager):
 def GamePrintPriceBetween(dbm: CDatabaseManager):
   minPrice = ui.UserInputInt("Enter minimum price: ")
   maxPrice = ui.UserInputInt("Enter maximum price: ")
-
+  ui.Clear()
   result = sql.SelectDistinctBetween(dbm, "title_game_store_table", "title", "price", str(minPrice), str(maxPrice))
   ui.PrintData(("Games within " + str(minPrice) + " and " + str(maxPrice)), result)
   
@@ -56,6 +57,7 @@ def GamePrintPriceBetween(dbm: CDatabaseManager):
 
 def GamePrintVerbose(dbm: CDatabaseManager):
   gameName = ui.UserInput("\nEnter the name of the game: ")
+  ui.Clear()
 
   result = sql.GameVerbose(dbm, gameName)
   heading = ["Title", "Year", "Publisher", 
@@ -77,6 +79,7 @@ def PrintAllChoices(dbm: CDatabaseManager, column: str, tableName: str):
 def GamesOnYear(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "year", "title_table")
   year = ui.UserInputInt("\nChoose a year: ")
+  ui.Clear()
  
   games = sql.SelectThis(dbm, "title_table", "title", "year", str(year))
   ui.PrintData(("All games released year " + str(year)), games)
@@ -87,6 +90,7 @@ def GamesOnYear(dbm: CDatabaseManager):
 def GamesOnPlatform(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "platform", "platform_table")
   platform = ui.UserInput("\nChoose a platform: ")
+  ui.Clear()
 
   games = sql.SelectThis(dbm, "title_platform_table", "title", "platform", platform)
   ui.PrintData(("All games on " + platform), games)
@@ -97,6 +101,7 @@ def GamesOnPlatform(dbm: CDatabaseManager):
 def GamesOnGenre(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "genre", "genre_table")
   genre = ui.UserInput("\nChoose a genre: ")
+  ui.Clear()
 
   games = sql.SelectThis(dbm, "title_genre_table", "title", "genre", genre)
   ui.PrintData(("All games on " + genre), games)
@@ -107,6 +112,7 @@ def GamesOnGenre(dbm: CDatabaseManager):
 def GamesOnStore(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "game_store", "game_store_table")
   store = ui.UserInput("\nChoose a store: ")
+  ui.Clear()
 
   games = sql.SelectThis(dbm, "title_game_store_table", "title", "game_store", store)
   ui.PrintData(("All games on " + store), games)
@@ -117,6 +123,7 @@ def GamesOnStore(dbm: CDatabaseManager):
 def GamesOnPublisher(dbm: CDatabaseManager):
   PrintAllChoices(dbm, "publisher", "title_table")
   publisher = ui.UserInput("\nChoose a publisher: ")
+  ui.Clear()
 
   games = sql.SelectThis(dbm, "title_table", "title", "publisher", publisher)
   ui.PrintData(("All games by " + publisher), games)
@@ -126,6 +133,7 @@ def GamesOnPublisher(dbm: CDatabaseManager):
 
 def GamePrintBasic(dbm: CDatabaseManager):
   gameName = ui.UserInput("Enter the name of the game: ")
+  ui.Clear()
 
   result = sql.GameBasic(dbm, gameName)
   heading = ["title", "Year", "Publisher", "Avg price"]
