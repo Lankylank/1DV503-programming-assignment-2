@@ -1,7 +1,7 @@
 # **README**
 
 ## **Files**
-Because we have several hundred lines of code I will give a quick rundown of what the different files contain and are responsible for.
+Because we have several hundred lines of code, here is a quick rundown of what the different files contain and are responsible for.
 #### ***main.py***
 This is the applications EntryPoint and where the application loop is located. It contains the global variables that hold the database connection information. Such as username, password etc.
 #### ***funcs.py***
