@@ -5,7 +5,7 @@ Because we have several hundred lines of code, here is a quick rundown of what t
 #### ***main.py***
 This is the applications EntryPoint and where the application loop is located. It contains the global variables that hold the database connection information. Such as username, password etc.
 #### ***funcs.py***
-Here is where the application specific functionality is placed. Such as calling functions from sql.py and building specific queries, retrieving the data and passing that data on to the responsible print function inside ui.py.
+Here is where the application specific functionality is placed. Such as calling functions from sql.py and building specific queries, retrieving the data and passing that data on to the print function inside ui.py.
 #### ***sql.py***
 This file contains functions for both generalized SQL queries as well as application specific queries.
 #### ***CDatabaseManager.py***
