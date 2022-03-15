@@ -40,6 +40,7 @@ viewTable = (
 DatabaseManager.ViewCreate(viewTable)
 
 
+
 # The menu is simply a hashmap of function pointers
 menu = dict()
 menu["0"] = funcs.CustomSearch  # OK!
