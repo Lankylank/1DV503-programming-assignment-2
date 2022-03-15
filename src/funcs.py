@@ -59,11 +59,14 @@ def GamePrintVerbose(dbm: CDatabaseManager):
   gameName = ui.UserInput("\nEnter the name of the game: ")
   ui.Clear()
 
-  result = sql.GameVerbose(dbm, gameName)
-  heading = ["Title", "Year", "Publisher", 
-             "Platforms", "Genres", "Stores", 
-             "Min price", "Max price", "Avg price" ]
-  ui.PrintOutputVerbose(heading, result)
+  if(sql.Exists(dbm, "title_table", "title", gameName)):
+    result = sql.GameVerbose(dbm, gameName)
+    heading = ["Title", "Year", "Publisher", 
+              "Platforms", "Genres", "Stores", 
+              "Min price", "Max price", "Avg price" ]
+    ui.PrintOutputVerbose(heading, result)
+  else:
+    print("No results for " + gameName)
   pause = input()
 
 
