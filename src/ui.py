@@ -63,7 +63,7 @@ def MainMenu() -> str:
   print(TextColor.BOLD + TextColor.PURPLE + "------------------------------------------------------------------" + TextColor.CLEAR)
   return input()
 
-
+###################################
 def PrintVertical(heading: list, data: list):
   for i in range(0, len(heading)):
     print(TextColor.PURPLE + TextColor.UNDERLINE + heading[i] + ":" + TextColor.CLEAR, end="")

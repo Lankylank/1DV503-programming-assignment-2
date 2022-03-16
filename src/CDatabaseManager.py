@@ -20,13 +20,6 @@ class CDatabaseManager:
 # where we choose a file path and reads it and attatches it as an class attribute
     self.fstream = CFileStream.CFileStream()
 
-# TODO: look into when retard python frees resources automaticly
-  # Use RAII to free our resources
-  #def __del__(self):
-    # Free resources in the reverse order they were allocated.
-  # self.cursor.close()
-  # self.connector.close()
-
 
   def __GetCursor(self): # check if we are connected before we get cursor for our database
     assert self.connector.is_connected()

@@ -5,65 +5,79 @@ import ui
 
 def CustomSearch(dbm: CDatabaseManager):
   while(True):
+    # user input
     chosenPlatform = ui.UserInput("Platform: ")
+    # check if the input exists
     if(sql.Exists(dbm, "platform_table", "platform", chosenPlatform) == False):
       print("No results found")
     else:
       break
 
   while(True):
+    # user input
     chosenGenre = ui.UserInput("Genre: ")
+    # check if the inpu exists
     if(sql.Exists(dbm, "genre_table", "genre", chosenGenre) == False):
       print("No results found")
     else:
 
       break
-
+  #user input
   minPrice = ui.UserInputInt("minprice: ")
   maxPrice = ui.UserInputInt("maxprice: ")
-
+  # query the database
   result = sql.CustomSearch(dbm, chosenPlatform, chosenGenre, str(minPrice), str(maxPrice))
+  # prints the result
   ui.PrintData(("Games that match your criteria"), result)
-  
+
   pause = input()
 
 
 def GamePrintAvailable(dbm: CDatabaseManager):
+  # query the database
   games = sql.Select(dbm, "title_table", "title")
+  # prints the result
   ui.PrintData(("Available games"), games)
- 
   pause = input()
 
 
 def GamePrintPrice(dbm: CDatabaseManager):
+  # take user inpit
   gameName = ui.UserInput("Enter the game's name: ")
   ui.Clear()
-
+  # query the database
   result = sql.SelectManyThis(dbm, "title_game_store_table", ["game_store", "price"], "title", gameName)
+  # prints the result
   ui.PrintData(("Stores and the corrensponding price "), result)
   
   pause = input()
 
 
 def GamePrintPriceBetween(dbm: CDatabaseManager):
+  # user inputs
   minPrice = ui.UserInputInt("Enter minimum price: ")
   maxPrice = ui.UserInputInt("Enter maximum price: ")
   ui.Clear()
+  # queries the database
   result = sql.SelectDistinctBetween(dbm, "title_game_store_table", "title", "price", str(minPrice), str(maxPrice))
+  # prints the result
   ui.PrintData(("Games within " + str(minPrice) + " and " + str(maxPrice)), result)
   
   pause = input()
 
-
+###################################################
 def GamePrintVerbose(dbm: CDatabaseManager):
+  # user input
   gameName = ui.UserInput("\nEnter the name of the game: ")
   ui.Clear()
-
+  # check if the input exists in the datbase
   if(sql.Exists(dbm, "title_table", "title", gameName)):
+    # query the database
     result = sql.GameVerbose(dbm, gameName)
     heading = ["Title", "Year", "Publisher", 
               "Genres","Platforms", "Stores", 
               "Min price", "Max price", "Avg price" ]
+    # print results
     ui.PrintVertical(heading, result)
   else:
     print("No results for " + gameName)
