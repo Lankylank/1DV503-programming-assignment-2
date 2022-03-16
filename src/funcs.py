@@ -70,7 +70,7 @@ def GamePrintVerbose(dbm: CDatabaseManager):
   # user input
   gameName = ui.UserInput("\nEnter the name of the game: ")
   ui.Clear()
-  # check if the input exists in the datbase
+  # check if the input exists in the database
   if(sql.Exists(dbm, "title_table", "title", gameName)):
     # query the database
     result = sql.GameVerbose(dbm, gameName)
