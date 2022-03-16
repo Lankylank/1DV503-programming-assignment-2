@@ -42,7 +42,7 @@ def GamePrintAvailable(dbm: CDatabaseManager):
 
 
 def GamePrintPrice(dbm: CDatabaseManager):
-  # take user inpit
+  # take user input
   gameName = ui.UserInput("Enter the game's name: ")
   ui.Clear()
   # query the database
